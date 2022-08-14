@@ -1,5 +1,5 @@
 ## INSTRUCTIONS
-
+# Project is under development
 #### 1. clone or download zip from this repository
 #### 2. open the folder with any code editor
 #### 3. install the dependencies (run the code below in terminal)
@@ -14,9 +14,9 @@ yarn
 
 #### 4.run the program
 ```bash 
-npm start
+npm dev
 ```
 or
 ```bash
-yarn start
+yarn dev
 ```
