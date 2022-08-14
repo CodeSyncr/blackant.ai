@@ -1,9 +1,66 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "fractual-bold";
+  src: url("../public/fonts/Fractul/Fractul-Bold.otf");
+}
+
+@font-face {
+  font-family: "fractual-light";
+  src: url("../public/fonts/Fractul/Fractul-Light.otf");
+}
+
+@font-face {
+  font-family: "fractual-medium";
+  src: url("../public/fonts/Fractul/Fractul-Medium.otf");
+}
+
+@font-face {
+  font-family: "fractual-regular";
+  src: url("../public/fonts/Fractul/Fractul-Regular.otf");
+}
+
+@font-face {
+  font-family: "manrope-bold";
+  src: url("../public/fonts/Manrope/Manrope-Bold.otf");
+}
+@font-face {
+  font-family: "manrope-extrabold";
+  src: url("../public/fonts/Manrope/Manrope-ExtraBold.otf");
+}
+@font-face {
+  font-family: "manrope-extralight";
+  src: url("../public/fonts/Manrope/Manrope-ExtraLight.otf");
+}
+@font-face {
+  font-family: "manrope-light";
+  src: url("../public/fonts/Manrope/Manrope-Light.otf");
+}
+@font-face {
+  font-family: "manrope-medium";
+  src: url("../public/fonts/Manrope/Manrope-Medium.otf");
+}
+@font-face {
+  font-family: "manrope-regular";
+  src: url("../public/fonts/Manrope/Manrope-Regular.otf");
+}
+@font-face {
+  font-family: "manrope-semibold";
+  src: url("../public/fonts/Manrope/Manrope-SemiBold.otf");
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 a {
@@ -15,12 +72,40 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.snap-parent-y-mandatory {
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
+  height: 100vh;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* header {
+  position: fixed;
+  height: 10vh;
+} */
+
+.snap-parent-y-proximity {
+  scroll-snap-type: y proximity;
+  overflow: scroll;
+  height: 100vh;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-child-start {
+  z-index: 10;
+  scroll-snap-align: start;
+  flex: none;
+}
+
+.snap-child-center {
+  z-index: 10;
+  scroll-snap-align: center;
+  flex: none;
 }
