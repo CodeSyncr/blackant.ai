@@ -4,7 +4,7 @@ import { cssClasses } from "../../utils/helpers";
 import { spring, variantTypes } from "../../utils/animation_variants";
 
 interface HeadingProps {
-  data: string;
+  data?: string;
   className?: string;
   style?: React.CSSProperties;
   animatable?: boolean;
@@ -16,7 +16,7 @@ interface HeadingProps {
 }
 
 const Heading = ({
-  data,
+  data = "",
   className = "",
   style,
   animatable,

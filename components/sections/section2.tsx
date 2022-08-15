@@ -27,27 +27,16 @@ import { SectionProps } from "./Types";
 import VerticleCardsComp from "../generals/VerticleCardsComp";
 import { delayFunc } from "../../utils/helpers";
 
-const Section2 = ({ onTopY, setOnTopY }: SectionProps) => {
+const Section2 = ({ sections, setSections }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
   const imgScrollRef = useRef<HTMLDivElement>(null!);
   const [exit, setExit] = useState(false);
-  const [show, setShow] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [showCardValue, setShowCardValue] = useState(25);
-
-  const { scrollY, scrollYProgress } = useScroll({
-    container: imgScrollRef,
+  const [items, setItems] = useState({
+    item1: true,
+    item2: false,
+    item3: false,
+    item4: false,
   });
-
-  useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
-      bottom && delayFunc(setOnTopY, true);
-      bottom && onTopY && delayFunc(setExit, true);
-    });
-  }, [onTopY, exit, scrollY]);
 
   return (
     <Container
@@ -56,52 +45,85 @@ const Section2 = ({ onTopY, setOnTopY }: SectionProps) => {
     >
       <motion.div
         initial={"show"}
-        animate={exit ? "exit" : "show"}
+        animate={items.item1 ? "show" : "exit"}
         variants={anim_x}
         transition={{
           ...springTrans,
-          delay: exit ? 0.9 : 0.1,
+          delay: items.item1 ? 0.1 : 0.9,
         }}
-        className="absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-        onClick={() => setExit(!exit)}
+        className="s2_item1 absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
       >
         <Section2Content1
           data={sectionsData.section2.content1}
           initial={"show"}
-          animate={exit ? "exit" : "show"}
+          animate={items.item1 ? "show" : "exit"}
           variants={anim_x}
+          sections={sections}
+          setSections={setSections}
+          items={items}
+          setItems={setItems}
         />
       </motion.div>
 
-      <motion.div
-        initial={"hidden"}
-        animate={exit ? "show" : "hidden"}
-        variants={anim_x}
-        transition={{
-          ...springTrans,
-          delay: exit ? 0.1 : 0.4,
-        }}
-        className="absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-      >
-        <Section2Content2
-          data={sectionsData.section2.content2}
+      {items.item2 && (
+        <motion.div
           initial={"hidden"}
-          animate={exit ? "show" : "hidden"}
+          animate={items.item2 ? "show" : "hidden"}
           variants={anim_x}
-        />
-      </motion.div>
+          transition={{
+            ...springTrans,
+            delay: items.item2 ? 0.4 : 0.1,
+          }}
+          className="s2_item2 absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
+        >
+          <Section2Content2
+            data={sectionsData.section2.content2}
+            initial={"hidden"}
+            animate={items.item2 ? "show" : "hidden"}
+            variants={anim_x}
+            items={items}
+            setItems={setItems}
+          />
+        </motion.div>
+      )}
 
-      {showCard && (
+      {items.item3 && (
         <>
-          <motion.div className="absolute top-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
+          <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
             <VerticleCardsComp
               data={sectionsData.section2.content3}
-              showCard={showCard}
-              setShowCard={setShowCard}
+              items={items}
+              setItems={setItems}
+              sections={sections!}
+              setSections={setSections!}
+              setExit={setExit}
             />
           </motion.div>
           <div className="absolute bg-baBlack w-full opacity-50 h-full top-0 z-0"></div>
         </>
+      )}
+
+      {items.item4 && (
+        <motion.div
+          initial={"show"}
+          animate={exit ? "exit" : "show"}
+          variants={anim_x}
+          transition={{
+            ...springTrans,
+            delay: exit ? 0.4 : 0.1,
+          }}
+          className="s2_item4 absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
+        >
+          <Section2Content2
+            data={sectionsData.section2.content2}
+            initial={"show"}
+            animate={exit ? "exit" : "show"}
+            variants={anim_x}
+            sections={sections!}
+            setSections={setSections!}
+            exit
+          />
+        </motion.div>
       )}
     </Container>
   );

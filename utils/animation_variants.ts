@@ -90,6 +90,17 @@ export const anim_x = {
 };
 
 
+export const anim_x1y0 = {
+    show: { x: TEXT_ANIMATION.VISIBLE, y:TEXT_ANIMATION.VISIBLE },
+    hidden: { x: TEXT_ANIMATION.HIDDEN_RIGHT, y:TEXT_ANIMATION.VISIBLE },
+    exit:{x: TEXT_ANIMATION.HIDDEN_LEFT, y:TEXT_ANIMATION.VISIBLE}
+};
+export const anim_x0y1 = {
+    show: { y: TEXT_ANIMATION.VISIBLE, x:TEXT_ANIMATION.VISIBLE },
+    hidden: { y: TEXT_ANIMATION.HIDDEN_BOTTOM, x:TEXT_ANIMATION.VISIBLE },
+    exit:{y: TEXT_ANIMATION.HIDDEN_TOP, x:TEXT_ANIMATION.VISIBLE}
+};
+
 
 
 

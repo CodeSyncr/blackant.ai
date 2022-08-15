@@ -9,7 +9,7 @@ import { SectionProps } from "./Types";
 
 // eslint-disable-next-line react/display-name
 
-const Section1 = ({ onTopY, setOnTopY }: SectionProps) => {
+const Section1 = ({ sections, setSections }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -17,17 +17,18 @@ const Section1 = ({ onTopY, setOnTopY }: SectionProps) => {
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        setOnTopY(true);
+        console.log(bottom);
+        setSections?.((prev) => ({ ...prev, sec1: false, sec2: true }));
       } else {
-        setOnTopY(false);
+        setSections?.((prev) => ({ ...prev, sec2: false, sec1: true }));
       }
     });
-  }, [onTopY]);
+  }, [sections]);
 
   return (
     <Container
       ref={ref}
-      className="bg-baBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] overflow-y-scroll"
+      className="s1_item1 bg-baBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] overflow-y-scroll"
     >
       <Heading
         data={sectionsData.section1.txt1}

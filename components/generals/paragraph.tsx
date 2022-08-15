@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cssClasses } from "../../utils/helpers";
 import { spring, variantTypes } from "../../utils/animation_variants";
 interface ParagraphProps {
-  data: string;
+  data?: string;
   className?: string;
   style?: React.CSSProperties;
   linkText?: string;
@@ -18,7 +18,7 @@ interface ParagraphProps {
 }
 
 const Paragraph = ({
-  data,
+  data = "",
   className = "",
   style,
   linkText,

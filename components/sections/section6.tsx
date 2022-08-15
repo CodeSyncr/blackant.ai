@@ -1,37 +1,53 @@
 import React, { useState } from "react";
 import { sectionsData } from "../../modules/sections";
+import AboutBa from "../generals/about_ba";
 import Container from "../generals/Container";
 import Heading from "../generals/Heading";
 import Paragraph from "../generals/Paragraph";
 import RotateTextComp from "../generals/RotateTextComp";
 import RotateTextCompSvg from "../generals/RotateTextCompSvg";
 import { SectionProps } from "./Types";
+import { motion } from "framer-motion";
+import { anim_x, anim_y } from "../../utils/animation_variants";
+import Section7 from "./section7";
 
-const Section6 = () => {
+const Section6 = ({ setSections, sections }: SectionProps) => {
+  const [items, setItems] = useState({
+    item1: true,
+    item2: false,
+  });
+
   return (
     <Container className="bg-baCream text-baBlack font-fracRegular w-screen">
-      <div className="relative w-full h-screen px-8 md:pl-[15%] font-fracRegular text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] flex justify-center flex-col">
-        <Heading data={sectionsData.section6.txt1} className="md:-mt-8" />
-        <Heading
-          data={sectionsData.section6.txt2}
-          className="text-baOrange lg:pl-[15%] md:-mt-8 mb-[4rem]"
+      <motion.div
+        initial={"show"}
+        animate={items.item1 ? "show" : "exit"}
+        variants={anim_y}
+        className="absolute"
+      >
+        <AboutBa
+          data={sectionsData.section6}
+          setItems={setItems}
+          items={items}
+          setSections={setSections!}
+          sections={sections!}
         />
-        <div className="md:pl-[20%] w-[90%] md:w-[60%]">
-          <Paragraph
-            data={sectionsData.section6.paratxt1}
-            className="text-[1.3rem] mb-[2rem] font-manrSemiBold"
-            linkText={sectionsData.section6.linkText}
-          />
-          <div className="font-manrRegular text-[1rem]">
-            <Paragraph data={sectionsData.section6.paratxt2} className="mb-4" />
+      </motion.div>
 
-            <Paragraph data={sectionsData.section6.paratxt3} />
-          </div>
-        </div>
-      </div>
-      <div className=" hidden md:block md:absolute bottom-32 right-32">
-        <RotateTextCompSvg black />
-      </div>
+      <motion.div
+        initial={"hidden"}
+        animate={items.item2 ? "show" : "hidden"}
+        variants={anim_y}
+        className="absolute"
+      >
+        <Section7
+          data={sectionsData.section7}
+          setItems={setItems}
+          items={items}
+          setSections={setSections!}
+          sections={sections!}
+        />
+      </motion.div>
     </Container>
   );
 };

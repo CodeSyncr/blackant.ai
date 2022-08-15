@@ -16,6 +16,9 @@ import SnapContainer from "../components/generals/SnapContainer";
 import SectionContainer from "../components/generals/SectionContainer";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import {
+  anim_x,
+  anim_x0y1,
+  anim_x1y0,
   anim_y,
   containerSpringTransition,
   hidden_bottom,
@@ -28,6 +31,16 @@ const Home: NextPage = () => {
   const [black, setBlack] = useState(false);
   const ref = useRef<HTMLDivElement>(null!);
   const [onTopY, setOnTopY] = useState(false);
+  const [sections, setSections] = useState({
+    sec1: true,
+    sec2: false,
+    sec2exit: false,
+    sec3: false,
+    sec4: false,
+    sec4exit: false,
+    sec5: false,
+    footer: false,
+  });
 
   return (
     <>
@@ -42,33 +55,64 @@ const Home: NextPage = () => {
       <main>
         <motion.div
           ref={ref}
-          className="h-screen w-screen relative overflow-y-scroll"
+          className="h-screen w-screen relative overflow-hidden"
         >
           <motion.div
-            className="absolute w-full h-full z-50 "
-            initial={{ y: "0" }}
-            animate={onTopY ? { y: "-100vh" } : { y: "0" }}
+            className="absolute inset-0 z-50"
+            initial={"show"}
+            animate={sections.sec1 ? "show" : "exit"}
             transition={screenSpringTransition}
             variants={anim_y}
           >
-            <Section1 onTopY={onTopY} setOnTopY={setOnTopY} />
+            <Section1 sections={sections} setSections={setSections} />
           </motion.div>
+
+          {sections.sec2 && (
+            <motion.div
+              className="absolute w-full h-full z-10"
+              initial={"hidden"}
+              animate={sections.sec2 ? "show" : "hidden"}
+              transition={screenSpringTransition}
+              variants={anim_x0y1}
+            >
+              <Section2 sections={sections} setSections={setSections} />
+            </motion.div>
+          )}
+
+          {sections.sec3 && (
+            <motion.div
+              className="absolute w-full h-full z-10"
+              initial={"show"}
+              animate={sections.sec3 ? "exit" : "show"}
+              transition={screenSpringTransition}
+              variants={anim_x1y0}
+            >
+              <Section2 sections={sections} setSections={setSections} />
+            </motion.div>
+          )}
+
+          {/* ===========work start here========== */}
+          {/* sec-2 is true then? */}
+
+          {sections.sec4 && (
+            <motion.div
+              initial={"show"}
+              animate={sections.sec4exit ? "exit" : "show"}
+              variants={anim_x}
+              className="absolute w-full h-full section-4"
+            >
+              <Section5 setSections={setSections} sections={sections} />
+            </motion.div>
+          )}
 
           <motion.div
-            className="absolute w-full h-full z-10"
-            initial={{ y: "100vh" }}
-            animate={onTopY ? { y: "0" } : { y: "100vh" }}
-            transition={screenSpringTransition}
+            initial={"show"}
+            animate={sections.sec5 ? "show" : "hidden"}
+            variants={anim_x}
+            className="absolute w-full h-full section-5"
           >
-            <Section2 onTopY={onTopY} setOnTopY={setOnTopY} />
-            {/* window2 */}
+            <Section6 setSections={setSections} sections={sections} />
           </motion.div>
-
-          <motion.div className="absolute w-full h-full">window3</motion.div>
-
-          <motion.div className="absolute w-full h-full">window4</motion.div>
-
-          <motion.div className="absolute w-full h-full">window5</motion.div>
         </motion.div>
 
         {/* <SnapContainer ref={ref}>
@@ -102,7 +146,9 @@ const Home: NextPage = () => {
         </SnapContainer> */}
       </main>
 
-      <footer>{/* <Section8 /> */}</footer>
+      <footer>
+        <motion.div>{/* <Section8 /> */}</motion.div>
+      </footer>
     </>
   );
 };

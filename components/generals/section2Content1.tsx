@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import RotateTextComp from "./RotateTextComp";
@@ -11,30 +11,36 @@ import {
   variantTypes,
   visible_left,
 } from "../../utils/animation_variants";
-
-interface Section2Content1Props {
-  data: {
-    txt1: string;
-    txt2: string;
-    txt3: string;
-    txt4: string;
-    placeHolderTxt: string;
-  };
-  variants?: variantTypes;
-  initial: string;
-  animate: string;
-}
+import { SectionProps } from "../sections/Types";
 
 const Section2Content1 = ({
   data,
   variants,
   initial,
   animate,
-}: Section2Content1Props) => {
+  items,
+  setItems,
+  sections,
+  setSections,
+}: SectionProps) => {
+  const ref = useRef<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    const element = ref.current;
+    element.addEventListener("wheel", (e) => {
+      const bottom = e.deltaY > 0;
+      if (bottom) {
+        setItems?.((prev) => ({ ...prev, item1: false, item2: true }));
+      } else {
+        setSections?.((prev) => ({ ...prev, sec2: false, sec1: true }));
+      }
+    });
+  }, [items, sections]);
+
   return (
-    <>
+    <div ref={ref}>
       <Heading
-        data={data.txt1}
+        data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"
         variants={variants}
         delay={0.1}
@@ -43,7 +49,7 @@ const Section2Content1 = ({
         animatable
       />
       <Heading
-        data={data.txt2}
+        data={data?.txt2}
         className="text-baOrange lg:pl-[30%] md:-mt-8"
         variants={variants}
         delay={0.2}
@@ -52,7 +58,7 @@ const Section2Content1 = ({
         animatable
       />
       <Heading
-        data={data.txt3}
+        data={data?.txt3}
         className=" md:-mt-8 lg:pl-[15%]"
         variants={variants}
         delay={0.3}
@@ -61,7 +67,7 @@ const Section2Content1 = ({
         animatable
       />
       <Heading
-        data={data.txt2}
+        data={data?.txt2}
         className=" pb-[2rem] lg:pl-[30%] md:-mt-8"
         variants={variants}
         delay={0.4}
@@ -71,7 +77,7 @@ const Section2Content1 = ({
       />
 
       <Paragraph
-        data={data.placeHolderTxt}
+        data={data?.placeHolderTxt}
         className="font-manrSemiBold text-[1.3rem] break-normal mb-[2rem] md:pl-[10%] lg:pl-[30%] md:pr-[20vw]"
         variants={variants}
         delay={0.5}
@@ -80,7 +86,7 @@ const Section2Content1 = ({
         animatable
       />
       <Paragraph
-        data={data.placeHolderTxt}
+        data={data?.placeHolderTxt}
         className="font-manrRegular text-[1rem] break-normal md:pl-[10%] lg:pl-[30%] md:pr-[20vw] mb-[2rem] "
         variants={variants}
         delay={0.6}
@@ -101,7 +107,7 @@ const Section2Content1 = ({
       >
         <RotateTextCompSvg black />
       </motion.div>
-    </>
+    </div>
   );
 };
 
