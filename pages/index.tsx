@@ -70,6 +70,18 @@ const Home: NextPage = () => {
         </motion.div>
 
         <motion.div
+          key="section2"
+          ref={ref}
+          initial={"hidden"}
+          animate={router.asPath === "/screen/s-2" ? "show" : "hidden"}
+          transition={screenSpringTransition}
+          variants={anim_y}
+          className="absolute inset-0 overflow-hidden h-screen"
+        >
+          <Section2 />
+        </motion.div>
+
+        <motion.div
           key="section3"
           ref={ref}
           initial={"show"}
