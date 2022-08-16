@@ -1,16 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { sectionsData } from "../../modules/sections";
-import Container from "../generals/Container";
-import ProjectCard from "../generals/ProjectCard";
-import { Section7Props, SectionProps } from "./Types";
 
-const Section7 = ({
+import ProjectCard from "../generals/ProjectCard";
+import { Section4Content2Props } from "../sections/Types";
+
+const Section4Content2 = ({
   data,
   items,
   setItems,
   sections,
   setSections,
-}: Section7Props) => {
+}: Section4Content2Props) => {
   const ref = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -18,12 +17,6 @@ const Section7 = ({
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        setSections?.((prev) => ({ ...prev, footer: true }));
-        setItems?.((prev) => ({
-          ...prev,
-          item1: true,
-          item2: false,
-        }));
       } else {
       }
     });
@@ -43,4 +36,4 @@ const Section7 = ({
   );
 };
 
-export default Section7;
+export default Section4Content2;

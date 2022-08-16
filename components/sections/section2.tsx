@@ -8,20 +8,7 @@ import Section2Content1 from "../generals/Section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TEXT_ANIMATION } from "../../utils/enums";
-import {
-  anim_x,
-  anim_x_container,
-  containerSpringTransition,
-  hidden_bottom,
-  hidden_left,
-  hidden_right,
-  spring,
-  springTrans,
-  textContainerSpringTransition,
-  visible_bottom,
-  visible_left,
-  visible_right,
-} from "../../utils/animation_variants";
+import { anim_x, springTrans } from "../../utils/animation_variants";
 import Section2Content3 from "../generals/Section2Content3";
 import { SectionProps } from "./Types";
 import VerticleCardsComp from "../generals/VerticleCardsComp";
@@ -29,7 +16,6 @@ import { delayFunc } from "../../utils/helpers";
 
 const Section2 = ({ sections, setSections }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
-  const imgScrollRef = useRef<HTMLDivElement>(null!);
   const [exit, setExit] = useState(false);
   const [items, setItems] = useState({
     item1: true,
@@ -58,8 +44,6 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
           initial={"show"}
           animate={items.item1 ? "show" : "exit"}
           variants={anim_x}
-          sections={sections}
-          setSections={setSections}
           items={items}
           setItems={setItems}
         />
@@ -94,8 +78,6 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
               data={sectionsData.section2.content3}
               items={items}
               setItems={setItems}
-              sections={sections!}
-              setSections={setSections!}
               setExit={setExit}
             />
           </motion.div>

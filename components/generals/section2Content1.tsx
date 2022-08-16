@@ -12,6 +12,7 @@ import {
   visible_left,
 } from "../../utils/animation_variants";
 import { SectionProps } from "../sections/Types";
+import { useRouter } from "next/router";
 
 const Section2Content1 = ({
   data,
@@ -24,7 +25,7 @@ const Section2Content1 = ({
   setSections,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
-
+  const router = useRouter();
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", (e) => {
@@ -32,7 +33,7 @@ const Section2Content1 = ({
       if (bottom) {
         setItems?.((prev) => ({ ...prev, item1: false, item2: true }));
       } else {
-        setSections?.((prev) => ({ ...prev, sec2: false, sec1: true }));
+        router.push("s-1");
       }
     });
   }, [items, sections]);

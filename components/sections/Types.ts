@@ -74,32 +74,12 @@ export interface VerticleCardsCompProps {
       item4:boolean
     }>
   >;
-  sections: {
-    sec1: boolean;
-    sec2: boolean;
-    sec2exit:boolean,
-    sec3: boolean;
-    sec4: boolean;
-    sec4exit:boolean;
-    sec5: boolean;
-    footer:boolean
-  };
-  setSections: React.Dispatch<React.SetStateAction<{
-    sec1: boolean;
-    sec2: boolean;
-    sec2exit:boolean,
-    sec3: boolean;
-    sec4: boolean;
-    sec4exit:boolean;
-    sec5: boolean;
-    footer:boolean
-  }>>
   exit?: boolean,
   setExit?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
-export interface AboutBaProps {
+export interface Section4Content1Props {
   data: {
     txt1: string;
     txt2: string;
@@ -140,7 +120,7 @@ export interface AboutBaProps {
   }>>
 }
 
-export interface Section7Props {
+export interface Section4Content2Props {
   data: {
     title: string;
     body: string;

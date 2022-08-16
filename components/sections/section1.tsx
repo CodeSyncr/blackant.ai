@@ -10,26 +10,8 @@ import { SectionProps } from "./Types";
 // eslint-disable-next-line react/display-name
 
 const Section1 = ({ sections, setSections }: SectionProps) => {
-  const ref = useRef<HTMLDivElement>(null!);
-
-  useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
-      if (bottom) {
-        console.log(bottom);
-        setSections?.((prev) => ({ ...prev, sec1: false, sec2: true }));
-      } else {
-        setSections?.((prev) => ({ ...prev, sec2: false, sec1: true }));
-      }
-    });
-  }, [sections]);
-
   return (
-    <Container
-      ref={ref}
-      className="s1_item1 bg-baBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] overflow-y-scroll"
-    >
+    <Container className="s1_item1 bg-baBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] overflow-y-scroll">
       <Heading
         data={sectionsData.section1.txt1}
         className="md:-mt-8"

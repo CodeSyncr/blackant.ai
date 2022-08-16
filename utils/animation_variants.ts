@@ -26,7 +26,7 @@ export const textContainerSpringTransition = {
 
 export const screenSpringTransition = {
     type: "easeOut",
-    stiffness: 50,
+    duration:1
 }
 
 

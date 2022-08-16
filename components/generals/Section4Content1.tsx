@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
-import { AboutBaProps } from "../sections/Types";
+import { Section4Content1Props } from "../sections/Types";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import RotateTextCompSvg from "./RotateTextCompSvg";
 
-const AboutBa = ({
+const Section4Content1 = ({
   data,
   setItems,
   items,
   sections,
   setSections,
-}: AboutBaProps) => {
+}: Section4Content1Props) => {
   const ref = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -59,4 +59,4 @@ const AboutBa = ({
   );
 };
 
-export default AboutBa;
+export default Section4Content1;
