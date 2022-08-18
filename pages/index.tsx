@@ -78,7 +78,7 @@ const Home: NextPage = () => {
 
         {sections.sec3 && (
           <motion.div
-            className={"absolute inset-0 overflow-hidden h-screen z-40"}
+            className={"absolute inset-0 overflow-hidden h-screen z-30"}
           >
             <Section3 sections={sections} setSections={setSections} />
           </motion.div>

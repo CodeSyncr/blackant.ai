@@ -16,67 +16,81 @@ const VerticleCardsComp = ({
   setExit,
 }: VerticleCardsCompProps) => {
   const ref = useRef<HTMLDivElement>(null!);
-  const [value, setValue] = useState(30);
-  const [increment, setIncrement] = useState(false);
+  const [out, setOut] = useState(false);
+  const [value, setValue] = useState(10);
   const { scrollYProgress } = useScroll({ container: ref });
-  const wheelHandler = (e: any) => {
-    e.preventDefault();
-    let bottom = e.deltaY > 0;
-    if (bottom) {
-      setValue((prev) => (prev <= -45 ? -45 : prev - 25));
-    } else {
-      setValue((prev) => (prev <= 30 ? prev + 25 : 30));
+  let scrollingDirection = 0;
+  let lastScroll = 9999;
+  let scrollIdleTime = 300;
+
+  const scrollUp = () => setValue((prev) => (prev < -50 ? -50 : prev - 20));
+  const scrollDown = () => setValue((prev) => (prev > 10 ? 10 : prev + 20));
+
+  const wheelEventHandler = (e) => {
+    let delta = e.deltaY;
+    let timeNow = performance.now();
+    if (
+      delta > 0 &&
+      (scrollingDirection != 1 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      scrollUp();
+      scrollingDirection = 1;
+    } else if (
+      delta < 0 &&
+      (scrollingDirection != 2 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      console.log("down");
+      scrollDown();
+      scrollingDirection = 2;
     }
-    if (value === -45) {
-      delayFunc(setExit, true);
-    } else {
-      setExit?.(false);
-    }
+    lastScroll = timeNow;
   };
 
   useEffect(() => {
-    return scrollYProgress.onChange((latest) => {
-      if (latest > 0.99) {
-        setItems((prev) => ({ ...prev, item3: false }));
-        delayFunc(setExit, true);
-        setTimeout(() => {
-          setSections?.((prev) => ({
-            ...prev,
-            sec2exit: true,
-            navBlack: false,
-            sec3: true,
-          }));
-        }, 1000);
-      }
-    });
+    const element = ref.current;
+    element.addEventListener("wheel", wheelEventHandler);
+    if (value === -70) {
+      delayFunc(setExit, true);
+      setTimeout(() => {
+        setSections?.((prev) => ({
+          ...prev,
+          sec2: false,
+          sec2exit: true,
+          navBlack: false,
+          sec3: true,
+        }));
+      }, 1000);
+    }
+    return () => {
+      element.removeEventListener("wheel", wheelEventHandler);
+    };
 
-    // const element = ref.current;
-    // element.addEventListener("wheel", wheelHandler);
-    // if (exit) {
-    //   setTimeout(() => {
-    //     setSections?.((prev) => ({
-    //       ...prev,
-    //       sec2exit: true,
-    //       navBlack: false,
-    //       sec3: true,
-    //     }));
-    //   }, 1000);
-    // }
-    // return () => {
-    //   element.removeEventListener("wheel", wheelHandler);
-    // };
-  }, [items, sections, value]);
+    // return scrollYProgress.onChange((latest) => {
+    //   if (latest > 0.99) {
+    //     setItems((prev) => ({ ...prev, item3: false }));
+    //     // delayFunc(setExit, true);
+    //     setExit?.(true);
+    //     setTimeout(() => {
+    //       setSections?.((prev) => ({
+    //         ...prev,
+    //         sec2exit: true,
+    //         navBlack: false,
+    //         sec3: true,
+    //       }));
+    //     }, 1000);
+    //   }
+    // });
+  }, [value]);
+  console.log(value);
 
   return (
-    <motion.div
-      ref={ref}
-      className="w-full flex flex-col h-screen overflow-y-scroll"
-    >
+    <motion.div ref={ref} className="w-full flex flex-col h-screen">
       <motion.div
         initial={{ y: `30%` }}
         animate={{ y: `${value}%` }}
         transition={{
           type: "spring",
+          stiffness: 100,
           duration: 0.5,
         }}
       >

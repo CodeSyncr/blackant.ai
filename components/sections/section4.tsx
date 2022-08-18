@@ -19,9 +19,9 @@ const Section4 = ({ setSections, sections }: SectionProps) => {
       className="bg-baCream text-baBlack font-fracRegular w-screen overflow-hidden"
     >
       <motion.div
-        initial={"show"}
-        animate={items.item1 ? "show" : "exit"}
-        variants={anim_y}
+        initial={"hidden"}
+        animate={items.item1 ? "show" : "hidden"}
+        variants={anim_x}
         className="absolute"
       >
         <Section4Content1

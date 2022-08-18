@@ -62,7 +62,7 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
         />
       </motion.div>
 
-      {exit ? (
+      {items.item2Exit ? (
         <motion.div
           initial={"show"}
           animate={exit ? "exit" : "show"}

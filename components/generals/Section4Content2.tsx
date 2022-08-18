@@ -26,7 +26,6 @@ const Section4Content2 = ({
   const wheelHandler = (e: any) => {
     e.preventDefault();
     let bottom = e.deltaY > 0;
-    console.log(bottom);
     if (bottom) {
       setValue((prev) => (prev < -60 ? -55 : prev - 5));
     } else {
@@ -49,6 +48,9 @@ const Section4Content2 = ({
         sec4exit: true,
         sec5: true,
         navBlack: false,
+        sec1: false,
+        sec2: false,
+        sec3: false,
       }));
     }
     return () => {

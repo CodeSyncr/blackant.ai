@@ -10,28 +10,32 @@ import { SectionProps } from "./Types";
 
 const Section3 = ({ sections, setSections }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const wheelEventHandler = (e) => {
+    const bottom = e.deltaY > 0;
+    if (bottom) {
+      setSections?.((prev) => ({
+        ...prev,
+        sec4: true,
+        sec4exit: false,
+        navBlack: true,
+      }));
+    } else {
+      setSections?.((prev) => ({
+        ...prev,
+        sec3: false,
+        sec2exit: false,
+        sec2: true,
+        navBlack: true,
+      }));
+    }
+  };
+
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
-
-      if (bottom) {
-        setSections?.((prev) => ({
-          ...prev,
-          sec4: true,
-          sec4exit: false,
-          navBlack: true,
-        }));
-      } else {
-        setSections?.((prev) => ({
-          ...prev,
-          sec3: false,
-          sec2exit: false,
-          sec2: true,
-          navBlack: true,
-        }));
-      }
-    });
+    element.addEventListener("wheel", wheelEventHandler);
+    return () => {
+      element.addEventListener("wheel", wheelEventHandler);
+    };
   }, [sections]);
   return (
     <Container
