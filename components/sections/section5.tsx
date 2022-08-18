@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Cta from "../generals/Cta";
@@ -9,9 +9,31 @@ import { Cell, Grid } from "../generals/LayoutComp";
 import Paragraph from "../generals/Paragraph";
 import { SectionProps } from "./Types";
 
-const Section5 = () => {
+const Section5 = ({ sections, setSections }: SectionProps) => {
+  const ref = useRef<HTMLDivElement>(null!);
+  useEffect(() => {
+    const element = ref.current;
+    element.addEventListener("wheel", (e) => {
+      const bottom = e.deltaY > 0;
+      if (!bottom) {
+        setSections?.((prev) => ({
+          ...prev,
+          sec5: false,
+          sec1: true,
+          sec2: false,
+          sec2exit: false,
+          sec4: false,
+          sec3: false,
+          navBlack: false,
+        }));
+      }
+    });
+  });
   return (
-    <Container className="bg-baBlack text-baWhite text-center font-fracRegular text-[1rem]">
+    <Container
+      ref={ref}
+      className="bg-baScrnBlack text-baWhite text-center font-fracRegular text-[1rem] overflow-hidden"
+    >
       <Grid className="flex gap-12 lg:gap-24 p-8 lg:px-16 md:h-[80vh] flex-col md:flex-row h-full">
         <Cell className="flex flex-col flex-1">
           <div className="font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[4rem] lg:text-[5.3rem] flex flex-col justify-center items-center md:items-end">
@@ -65,7 +87,7 @@ const Section5 = () => {
               className="border-none outline-none bg-baWhite text-baBlack font-bold p-4 px-10 flex justify-center items-center text-[1rem] font-manrBold mb-[4rem] w-full"
             />
           </div>
-          <div className="flex justify-center items-start flex-col">
+          <div className="flex justify-center items-start flex-col text-left">
             <Paragraph
               data={sectionsData.section5.paratxt2}
               className="font-manrRegular text-[0.9rem] text-baWhite/70 mb-[1rem] text-left"

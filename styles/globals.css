@@ -77,35 +77,4 @@ a {
   width: 0px;
 }
 
-.snap-parent-y-mandatory {
-  scroll-snap-type: y mandatory;
-  overflow: scroll;
-  height: 100vh;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-}
 
-/* header {
-  position: fixed;
-  height: 10vh;
-} */
-
-.snap-parent-y-proximity {
-  scroll-snap-type: y proximity;
-  overflow: scroll;
-  height: 100vh;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-}
-
-.snap-child-start {
-  z-index: 10;
-  scroll-snap-align: start;
-  flex: none;
-}
-
-.snap-child-center {
-  z-index: 10;
-  scroll-snap-align: center;
-  flex: none;
-}

@@ -24,7 +24,12 @@ const Section4Content1 = ({
           item2: true,
         }));
       } else {
-        setSections?.((prev) => ({ ...prev, sec4exit: false }));
+        setSections?.((prev) => ({
+          ...prev,
+          sec3: true,
+          sec4: false,
+          navBlack: false,
+        }));
       }
     });
   }, [items, sections]);

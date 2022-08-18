@@ -13,7 +13,7 @@ const MobileMenu = ({ black, menuHandler }: MobileMenuProps) => {
       className={
         black
           ? "absolute inset-0 bg-baWhite h-screen flex justify-center items-center lg:hidden"
-          : "absolute inset-0 bg-baBlack h-screen flex justify-center items-center lg:hidden"
+          : "absolute inset-0 bg-baScrnBlack h-screen flex justify-center items-center lg:hidden"
       }
     >
       <CloseIconComp

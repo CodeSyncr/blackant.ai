@@ -1,23 +1,25 @@
 /* eslint-disable react/display-name */
+import { motion } from "framer-motion";
 import React, { FC, forwardRef, useEffect, useRef } from "react";
-import useIntersectionObserver from "../../utils/interSectionHook";
 
 export interface ContainerProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  navBlack?: boolean;
 }
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ children, className, style, onClick }, ref) => {
+  ({ ...props }, ref) => {
     return (
       <div
-        onClick={onClick}
-        className={className}
+        {...props}
+        onClick={props.onClick}
+        className={props.className}
         ref={ref}
         style={{
-          ...style,
+          ...props.style,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -27,7 +29,23 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           position: "relative",
         }}
       >
-        {children}
+        <motion.div
+          className={
+            props.navBlack
+              ? "absolute h-[200vh] w-[40%]  border-l-2 border-r-2 border-dashed border-baScrnBlack/10"
+              : "absolute h-[200vh] w-[40%]  border-l-2 border-r-2 border-dashed border-baWhite/10"
+          }
+        >
+          <motion.div
+            className={
+              props.navBlack
+                ? "absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baScrnBlack/10"
+                : "absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baWhite/10"
+            }
+          ></motion.div>
+        </motion.div>
+
+        {props.children}
       </div>
     );
   }

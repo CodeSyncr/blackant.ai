@@ -25,7 +25,7 @@ const Section2Content1 = ({
   setSections,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
-  const router = useRouter();
+
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", (e) => {
@@ -33,11 +33,16 @@ const Section2Content1 = ({
       if (bottom) {
         setItems?.((prev) => ({ ...prev, item1: false, item2: true }));
       } else {
-        router.push("s-1");
+        // setItems?.((prev) => ({ ...prev, item1: true }));
+        setSections?.((prev) => ({
+          ...prev,
+          sec2: false,
+          sec1: true,
+          navBlack: false,
+        }));
       }
     });
   }, [items, sections]);
-
   return (
     <div ref={ref}>
       <Heading

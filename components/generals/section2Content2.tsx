@@ -30,9 +30,8 @@ const Section2Content2 = ({
         setTimeout(() => {
           setItems?.((prev) => ({
             ...prev,
-            item2: false,
             item3: true,
-            item4: true,
+            item2Exit: true,
           }));
         }, 500);
       } else {

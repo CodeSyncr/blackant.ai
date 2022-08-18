@@ -18,7 +18,10 @@ const Section4 = ({ setSections, sections }: SectionProps) => {
   });
 
   return (
-    <Container className="bg-baCream text-baBlack font-fracRegular w-screen">
+    <Container
+      navBlack={sections?.navBlack}
+      className="bg-baCream text-baBlack font-fracRegular w-screen overflow-hidden"
+    >
       <motion.div
         initial={"show"}
         animate={items.item1 ? "show" : "exit"}
@@ -29,8 +32,8 @@ const Section4 = ({ setSections, sections }: SectionProps) => {
           data={sectionsData.section4.content1}
           setItems={setItems}
           items={items}
-          setSections={setSections!}
           sections={sections!}
+          setSections={setSections!}
         />
       </motion.div>
 
@@ -38,14 +41,14 @@ const Section4 = ({ setSections, sections }: SectionProps) => {
         initial={"hidden"}
         animate={items.item2 ? "show" : "hidden"}
         variants={anim_y}
-        className="absolute"
+        className="absolute w-full h-full pt-[5rem] flex flex-col justify-center items-center "
       >
         <Section4Content2
           data={sectionsData.section4.content2}
           setItems={setItems}
           items={items}
-          setSections={setSections!}
           sections={sections!}
+          setSections={setSections!}
         />
       </motion.div>
     </Container>

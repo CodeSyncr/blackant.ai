@@ -4,7 +4,7 @@ import Section2Content3 from "./Section2Content3";
 import { useScroll } from "framer-motion";
 import { anim_y } from "../../utils/animation_variants";
 import { delayFunc } from "../../utils/helpers";
-import { VerticleCardsCompProps } from "../sections/Types";
+import { SectionProps, VerticleCardsCompProps } from "../sections/Types";
 
 const VerticleCardsComp = ({
   data,
@@ -12,56 +12,74 @@ const VerticleCardsComp = ({
   setItems,
   sections,
   setSections,
+  exit,
   setExit,
 }: VerticleCardsCompProps) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const [value, setValue] = useState(30);
+  const [increment, setIncrement] = useState(false);
   const { scrollYProgress } = useScroll({ container: ref });
-  const [scroll, setScroll] = useState(false);
-  const scrollInitialVal = 25;
-  const [cardDecrement, setCardDecrement] = useState(0);
-
-  // useEffect(() => {
-  //   return scrollYProgress.onChange((latest) => {
-  //     if (latest > 0.99) {
-  //       setItems((prev) => ({ ...prev, item3: false }));
-  //       delayFunc(setExit, true);
-  //       setTimeout(() => {
-  //         setSections((prev) => ({
-  //           ...prev,
-  //           sec2: false,
-  //           sec3: true,
-  //           sec4: true,
-  //         }));
-  //       }, 1000);
-  //     }
-  //   });
-  // }, [items, sections]);
-  console.log(cardDecrement);
-
-  const handleScrollevent = (e: React.Mout) => {
-    const bottom = e.deltaY > 0;
+  const wheelHandler = (e: any) => {
+    e.preventDefault();
+    let bottom = e.deltaY > 0;
     if (bottom) {
-      setTimeout(() => {
-        setCardDecrement((prev) => prev - scrollInitialVal);
-      }, 600);
+      setValue((prev) => (prev <= -45 ? -45 : prev - 25));
     } else {
-      setSections?.((prev) => ({
-        ...prev,
-        sec2: true,
-        sec3: false,
-        sec4: false,
-      }));
+      setValue((prev) => (prev <= 30 ? prev + 25 : 30));
+    }
+    if (value === -45) {
+      delayFunc(setExit, true);
+    } else {
+      setExit?.(false);
     }
   };
 
   useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("wheel", handleScrollevent);
-  }, [sections, cardDecrement]);
+    return scrollYProgress.onChange((latest) => {
+      if (latest > 0.99) {
+        setItems((prev) => ({ ...prev, item3: false }));
+        delayFunc(setExit, true);
+        setTimeout(() => {
+          setSections?.((prev) => ({
+            ...prev,
+            sec2exit: true,
+            navBlack: false,
+            sec3: true,
+          }));
+        }, 1000);
+      }
+    });
+
+    // const element = ref.current;
+    // element.addEventListener("wheel", wheelHandler);
+    // if (exit) {
+    //   setTimeout(() => {
+    //     setSections?.((prev) => ({
+    //       ...prev,
+    //       sec2exit: true,
+    //       navBlack: false,
+    //       sec3: true,
+    //     }));
+    //   }, 1000);
+    // }
+    // return () => {
+    //   element.removeEventListener("wheel", wheelHandler);
+    // };
+  }, [items, sections, value]);
 
   return (
-    <motion.div ref={ref} className="w-full flex flex-col h-screen">
-      <motion.div initial={{ y: `0%` }} animate={{ y: "25%" }}>
+    <motion.div
+      ref={ref}
+      className="w-full flex flex-col h-screen overflow-y-scroll"
+    >
+      <motion.div
+        initial={{ y: `30%` }}
+        animate={{ y: `${value}%` }}
+        transition={{
+          type: "spring",
+          duration: 0.5,
+        }}
+      >
         {data.map((cardItem, i) => (
           <Section2Content3
             key={i}
