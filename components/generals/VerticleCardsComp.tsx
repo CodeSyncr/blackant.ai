@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Section2Content3 from "./Section2Content3";
@@ -64,24 +65,7 @@ const VerticleCardsComp = ({
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);
     };
-
-    // return scrollYProgress.onChange((latest) => {
-    //   if (latest > 0.99) {
-    //     setItems((prev) => ({ ...prev, item3: false }));
-    //     // delayFunc(setExit, true);
-    //     setExit?.(true);
-    //     setTimeout(() => {
-    //       setSections?.((prev) => ({
-    //         ...prev,
-    //         sec2exit: true,
-    //         navBlack: false,
-    //         sec3: true,
-    //       }));
-    //     }, 1000);
-    //   }
-    // });
   }, [value]);
-  console.log(value);
 
   return (
     <motion.div ref={ref} className="w-full flex flex-col h-screen">
