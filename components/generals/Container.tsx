@@ -39,8 +39,8 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           <motion.div
             className={
               props.navBlack
-                ? "absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baScrnBlack/10"
-                : "absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baWhite/10"
+                ? "invisible md:visible  absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baScrnBlack/10"
+                : "invisible md:visible  absolute h-[200vh] w-[50%]  border-r-2 border-dashed border-baWhite/10"
             }
           ></motion.div>
         </motion.div>
