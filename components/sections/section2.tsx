@@ -4,103 +4,121 @@ import Container from "../generals/Container";
 import Heading from "../generals/Heading";
 import Paragraph from "../generals/Paragraph";
 import RotateTextCompSvg from "../generals/RotateTextCompSvg";
-import Section2Content1 from "../generals/Section2Content1";
+import Section2Content1 from "../generals/section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TEXT_ANIMATION } from "../../utils/enums";
-import {
-  anim_x,
-  anim_x_container,
-  containerSpringTransition,
-  hidden_bottom,
-  hidden_left,
-  hidden_right,
-  spring,
-  springTrans,
-  textContainerSpringTransition,
-  visible_bottom,
-  visible_left,
-  visible_right,
-} from "../../utils/animation_variants";
+import { anim_x, springTrans } from "../../utils/animation_variants";
 import Section2Content3 from "../generals/Section2Content3";
 import { SectionProps } from "./Types";
 import VerticleCardsComp from "../generals/VerticleCardsComp";
 import { delayFunc } from "../../utils/helpers";
 
-const Section2 = ({ onTopY, setOnTopY }: SectionProps) => {
-  const ref = useRef<HTMLDivElement>(null!);
-  const imgScrollRef = useRef<HTMLDivElement>(null!);
+const Section2 = ({ sections, setSections }: SectionProps) => {
   const [exit, setExit] = useState(false);
-  const [show, setShow] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [showCardValue, setShowCardValue] = useState(25);
-
-  const { scrollY, scrollYProgress } = useScroll({
-    container: imgScrollRef,
+  const [items, setItems] = useState({
+    item1: true,
+    item2: false,
+    item2Exit: false,
+    item3: false,
   });
-
-  useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
-      bottom && delayFunc(setOnTopY, true);
-      bottom && onTopY && delayFunc(setExit, true);
+  const resetHandler = () => {
+    setExit(false);
+    setItems({
+      item1: true,
+      item2: false,
+      item2Exit: false,
+      item3: false,
     });
-  }, [onTopY, exit, scrollY]);
+  };
+  useEffect(() => {
+    sections?.sec2 && resetHandler();
+  }, [sections]);
 
   return (
     <Container
-      ref={ref}
+      navBlack={sections?.navBlack}
       className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
     >
       <motion.div
         initial={"show"}
-        animate={exit ? "exit" : "show"}
+        animate={items.item1 ? "show" : "exit"}
         variants={anim_x}
         transition={{
           ...springTrans,
-          delay: exit ? 0.9 : 0.1,
+          delay: items.item1 ? 0.1 : 0.9,
         }}
-        className="absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-        onClick={() => setExit(!exit)}
+        className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center "
       >
         <Section2Content1
           data={sectionsData.section2.content1}
           initial={"show"}
+          animate={items.item1 ? "show" : "exit"}
+          variants={anim_x}
+          items={items}
+          setItems={setItems}
+          sections={sections}
+          setSections={setSections}
+        />
+      </motion.div>
+
+      {items.item2Exit ? (
+        <motion.div
+          initial={"show"}
           animate={exit ? "exit" : "show"}
           variants={anim_x}
-        />
-      </motion.div>
-
-      <motion.div
-        initial={"hidden"}
-        animate={exit ? "show" : "hidden"}
-        variants={anim_x}
-        transition={{
-          ...springTrans,
-          delay: exit ? 0.1 : 0.4,
-        }}
-        className="absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-      >
-        <Section2Content2
-          data={sectionsData.section2.content2}
+          transition={{
+            ...springTrans,
+            delay: exit ? 0.4 : 0.1,
+          }}
+          className="s2_item4 absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
+        >
+          <Section2Content2
+            data={sectionsData.section2.content2}
+            initial={"show"}
+            animate={exit ? "exit" : "show"}
+            variants={anim_x}
+            sections={sections!}
+            setSections={setSections!}
+            exit
+          />
+        </motion.div>
+      ) : (
+        <motion.div
           initial={"hidden"}
-          animate={exit ? "show" : "hidden"}
+          animate={items.item2 ? "show" : "hidden"}
           variants={anim_x}
-        />
-      </motion.div>
+          transition={{
+            ...springTrans,
+            delay: items.item2 ? 0.4 : 0.1,
+          }}
+          className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center"
+        >
+          <Section2Content2
+            data={sectionsData.section2.content2}
+            initial={"hidden"}
+            animate={items.item2 ? "show" : "hidden"}
+            variants={anim_x}
+            items={items}
+            setItems={setItems}
+          />
+        </motion.div>
+      )}
 
-      {showCard && (
+      {items.item3 && (
         <>
-          <motion.div className="absolute top-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
+          <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
             <VerticleCardsComp
               data={sectionsData.section2.content3}
-              showCard={showCard}
-              setShowCard={setShowCard}
+              items={items}
+              setItems={setItems}
+              setExit={setExit}
+              exit={exit}
+              sections={sections}
+              setSections={setSections}
             />
           </motion.div>
-          <div className="absolute bg-baBlack w-full opacity-50 h-full top-0 z-0"></div>
+          <div className="absolute bg-baScrnBlack w-full opacity-30 h-full top-0 z-0"></div>
         </>
       )}
     </Container>

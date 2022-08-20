@@ -20,6 +20,7 @@ module.exports = {
         manrSemiBold:"'manrope-semibold'",
       },
       colors:{
+        baScrnBlack:"#000",
         baBlack:"#484847",
         baWhite:"#fff",
         baOrange:"#FF9866",

@@ -26,3 +26,28 @@ export const cssClasses = (str1: string, str2: string) => {
   export const delayFunc = (func:any, value:boolean)=>{
     setTimeout(()=>func(value),500)
   }
+
+
+  export const wheelEventHandler = (func1, func2)=>{
+  let scrollingDirection = 0;
+  let lastScroll = 9999;
+  let scrollIdleTime = 300;
+    return (e)=> {
+    let delta = e.deltaY;
+    let timeNow = performance.now();
+    if (
+      delta > 0 &&
+      (scrollingDirection != 1 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      func1();
+      scrollingDirection = 1;
+    } else if (
+      delta < 0 &&
+      (scrollingDirection != 2 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      func2();
+      scrollingDirection = 2;
+    }
+    lastScroll = timeNow;
+    }
+  }

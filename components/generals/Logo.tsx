@@ -6,7 +6,10 @@ interface LogoProps {
 }
 const Logo = ({ black }: LogoProps) => {
   return (
-    <div className="w-[10rem]">
+    <div
+      className="w-[10rem] cursor-pointer"
+      onClick={() => window.location.reload()}
+    >
       {
         /* eslint-disable-next-line @next/next/no-img-element */
         <img src={`${black ? "LogoBlack" : "Logo"}.svg`} alt="blackant_logo" />

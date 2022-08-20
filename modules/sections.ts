@@ -43,7 +43,7 @@ export const sectionsData = {
             },
         ]
     },
-    section5:{
+    section3:{
         txt1:"We here at Blackant continuously learns new top-tier languages to keep ourself updated.",
         txt2:"Following are the technologies which guided us:",
         txt3:"Development",
@@ -70,42 +70,48 @@ export const sectionsData = {
             },
         ]
     },
-    section6:{
-        txt1:"About",
-        txt2:"Blackant",
-        paratxt1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-        linkText:" veniam, quis nostrud.",
-        paratxt2:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        paratxt3:"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    section4:{
+        content1:{
+            txt1:"About",
+            txt2:"Blackant",
+            paratxt1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+            linkText:" veniam, quis nostrud.",
+            paratxt2:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            paratxt3:"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        },
+        content2:{
+            txt1:"Recent Projects",
+            txt2:"More on instagram",        
+            cards:[
+                {
+                    title:"Sarthi bus app",
+                    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    img:"sarthi_bus_app",
+                },
+                {
+                    title:"Yellow Taxi app",
+                    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    img:"yellow_taxi_app",
+                },
+                {
+                    title:"Teacher's board",
+                    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    img:"teacher's_board",
+                },
+                {
+                    title:"Game Zone 11 app",
+                    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    img:"game_zone_11_app",
+                },
+                {
+                    title:"Therapy connect",
+                    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    img:"therapy_connect",
+                },
+            ],
+        }
     },
-    section7:[
-        {
-            title:"Sarthi bus app",
-            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            img:"sarthi_bus_app",
-        },
-        {
-            title:"Yellow Taxi app",
-            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            img:"yellow_taxi_app",
-        },
-        {
-            title:"Teacher's board",
-            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            img:"teacher's_board",
-        },
-        {
-            title:"Game Zone 11 app",
-            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            img:"game_zone_11_app",
-        },
-        {
-            title:"Therapy connect",
-            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            img:"therapy_connect",
-        },
-    ],
-    section8:{
+    section5:{
         txt1:"Pitch your",
         txt2:"thoughts",
         txt3:"here",
