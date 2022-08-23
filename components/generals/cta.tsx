@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 interface QuoteCtaProps {
@@ -14,7 +15,6 @@ const Cta = ({ text, icon, className, style, onClick }: QuoteCtaProps) => {
       {text}
       {icon && (
         <span className="ml-4 ">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={icon} alt="aero" />
         </span>
       )}
