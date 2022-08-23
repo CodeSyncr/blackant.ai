@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { navlinks, ctaData } from "../../modules/navlinks";
-import Cta from "./Cta";
 import LinkComp from "./LinkComp";
 
 interface NavLinksProps {
