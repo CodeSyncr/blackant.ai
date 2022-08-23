@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { navlinks, ctaData } from "../../modules/navlinks";
-import Cta from "./Cta";
+// import Cta from "./Cta";
 import LinkComp from "./LinkComp";
 
 interface NavLinksProps {
@@ -19,11 +19,12 @@ const NavLinks = ({ className }: NavLinksProps) => {
             </Link>
           );
         })}
-        <Cta
+
+        {/* <Cta
           text={ctaData.quote.text}
           icon={`/icons/long_aero.svg`}
           className="border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
-        />
+        /> */}
       </div>
     </>
   );
