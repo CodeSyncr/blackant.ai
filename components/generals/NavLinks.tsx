@@ -21,7 +21,7 @@ const NavLinks = ({ className }: NavLinksProps) => {
         })}
         <Cta
           text={ctaData.quote.text}
-          icon={`/icons/${ctaData.quote.icon}.svg`}
+          icon={`/icons/long_aero.svg`}
           className="border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
         />
       </div>
