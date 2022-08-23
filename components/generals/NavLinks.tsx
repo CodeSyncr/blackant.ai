@@ -19,11 +19,18 @@ const NavLinks = ({ className }: NavLinksProps) => {
             </Link>
           );
         })}
-        <Cta
-          text={ctaData.quote.text}
-          icon={`/icons/long_aero.svg`}
-          className="border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
-        />
+
+        <button
+          className={
+            "border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
+          }
+        >
+          {ctaData.quote.text}
+          <span className="ml-4 ">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/long_aero.svg" alt="aero" />
+          </span>
+        </button>
       </div>
     </>
   );
