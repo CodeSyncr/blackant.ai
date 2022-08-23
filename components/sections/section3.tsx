@@ -1,32 +1,23 @@
 import React, { useEffect, useRef } from "react";
+import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Heading from "../generals/Heading";
 import { Cell, Grid } from "../generals/LayoutComp";
 import ProgramCard from "../generals/ProgramCard";
-import RotateTextComp from "../generals/RotateTextComp";
 import RotateTextCompSvg from "../generals/RotateTextCompSvg";
-import { SectionProps } from "./Types";
 
-const Section3 = ({ sections, setSections }: SectionProps) => {
+const Section3 = () => {
+  const { state, dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
-  const wheelEventHandler = (e) => {
-    const bottom = e.deltaY > 0;
+
+  const wheelEventHandler = (e: any) => {
+    const delta = Math.sign(e.deltaY);
+    const bottom = delta > 0;
     if (bottom) {
-      setSections?.((prev) => ({
-        ...prev,
-        sec4: true,
-        sec4exit: false,
-        navBlack: true,
-      }));
+      setTimeout(() => dispatch({ type: "SEC-4" }), 500);
     } else {
-      setSections?.((prev) => ({
-        ...prev,
-        sec3: false,
-        sec2exit: false,
-        sec2: true,
-        navBlack: true,
-      }));
+      setTimeout(() => dispatch({ type: "SEC-1" }), 500);
     }
   };
 
@@ -36,7 +27,8 @@ const Section3 = ({ sections, setSections }: SectionProps) => {
     return () => {
       element.addEventListener("wheel", wheelEventHandler);
     };
-  }, [sections]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
   return (
     <Container
       ref={ref}

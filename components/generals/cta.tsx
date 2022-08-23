@@ -5,11 +5,12 @@ interface QuoteCtaProps {
   icon?: string;
   className?: string;
   style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-const Cta = ({ text, icon, className, style }: QuoteCtaProps) => {
+const Cta = ({ text, icon, className, style, onClick }: QuoteCtaProps) => {
   return (
-    <button className={className}>
+    <button className={className} onClick={onClick!}>
       {text}
       {icon && (
         <span className="ml-4 ">

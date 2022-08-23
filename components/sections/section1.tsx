@@ -1,51 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
-import { motion, useScroll } from "framer-motion";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useSection } from "../../context";
 import { ctaData } from "../../modules/navlinks";
 import { sectionsData } from "../../modules/sections";
-import { anim_y, screenSpringTransition } from "../../utils/animation_variants";
 import Container from "../generals/Container";
 import Cta from "../generals/Cta";
 import Heading from "../generals/Heading";
-import { SectionProps } from "./Types";
 
 // eslint-disable-next-line react/display-name
 
-const Section1 = ({ sections, setSections }: SectionProps) => {
+const Section1 = () => {
+  const { state, dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
-  useEffect(() => {
-    const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
-      if (bottom) {
-        setSections?.((prev) => ({
-          ...prev,
-          sec1: false,
-          sec2exit: false,
-          sec2: true,
-          navBlack: true,
-        }));
-      }
-    });
-  }, [sections]);
 
   useEffect(() => {
-    setSections?.({
-      sec1: true,
-      sec2: false,
-      sec2exit: false,
-      sec3: false,
-      sec4: false,
-      sec4exit: false,
-      sec5: false,
-      navBlack: false,
+    dispatch({ type: "SEC-1" });
+    const element = ref.current;
+    element.addEventListener("wheel", (e: any) => {
+      const bottom = e.deltaY > 0;
+      if (bottom) {
+        dispatch({ type: "SEC-2" });
+      } else {
+        dispatch({ type: "SEC-1" });
+      }
     });
   }, []);
 
   return (
     <Container
       ref={ref}
-      navBlack={sections?.navBlack}
+      navblack={state.navBlack}
       className="s1_item1 bg-baScrnBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] z-10"
     >
       <Heading

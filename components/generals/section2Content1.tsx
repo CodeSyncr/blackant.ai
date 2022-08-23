@@ -1,30 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
-import RotateTextComp from "./RotateTextComp";
 import RotateTextCompSvg from "./RotateTextCompSvg";
 import { motion } from "framer-motion";
-import {
-  hidden_left,
-  spring,
-  springTrans,
-  variantTypes,
-  visible_left,
-} from "../../utils/animation_variants";
+import { springTrans } from "../../utils/animation_variants";
 import { SectionProps } from "../sections/Types";
-import { useRouter } from "next/router";
+import { useSection } from "../../context";
 
 const Section2Content1 = ({
   data,
   variants,
   initial,
   animate,
-  items,
   setItems,
-  sections,
-  setSections,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const { state, dispatch } = useSection();
 
   useEffect(() => {
     const element = ref.current;
@@ -33,18 +24,13 @@ const Section2Content1 = ({
       if (bottom) {
         setItems?.((prev) => ({ ...prev, item1: false, item2: true }));
       } else {
-        // setItems?.((prev) => ({ ...prev, item1: true }));
-        setSections?.((prev) => ({
-          ...prev,
-          sec2: false,
-          sec1: true,
-          navBlack: false,
-        }));
+        dispatch({ type: "SEC-1" });
       }
     });
-  }, [items, sections]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <div ref={ref}>
+    <div ref={ref} className="px-8">
       <Heading
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"

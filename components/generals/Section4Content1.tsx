@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useSection } from "../../context";
 import { Section4Content1Props } from "../sections/Types";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
@@ -9,9 +10,9 @@ const Section4Content1 = ({
   setItems,
   items,
   sections,
-  setSections,
 }: Section4Content1Props) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const { state, dispatch } = useSection();
 
   useEffect(() => {
     const element = ref.current;
@@ -24,15 +25,11 @@ const Section4Content1 = ({
           item2: true,
         }));
       } else {
-        setSections?.((prev) => ({
-          ...prev,
-          sec3: true,
-          sec4: false,
-          navBlack: false,
-        }));
+        dispatch({ type: "SEC-1" });
       }
     });
-  }, [items, sections]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
   return (
     <>
       <div

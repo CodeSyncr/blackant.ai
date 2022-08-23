@@ -1,10 +1,5 @@
-import { motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
-import {
-  hidden_right,
-  variantTypes,
-  visible_right,
-} from "../../utils/animation_variants";
+
 import { SectionProps } from "../sections/Types";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
@@ -16,9 +11,6 @@ const Section2Content2 = ({
   animate,
   items,
   setItems,
-  sections,
-  setSections,
-  exit,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
 
@@ -38,9 +30,10 @@ const Section2Content2 = ({
         setItems?.((prev) => ({ ...prev, item2: false, item1: true }));
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
   return (
-    <div ref={ref}>
+    <div ref={ref} className="px-8">
       <Heading
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"

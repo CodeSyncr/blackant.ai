@@ -1,4 +1,4 @@
-import { TEXT_ANIMATION } from "./enums";
+import { TEXT_ANIMATION, SCREEN_DIRECTION } from "./enums";
 
 // variant types
 export interface variantTypes {
@@ -125,3 +125,41 @@ export const spring = (delay:number = 0.1)=> ({
         stiffness: 50,
       
 })
+
+// latest
+  
+  export const DIRECTION_VARIANT = {
+    left: {
+      show: { x: SCREEN_DIRECTION.SHOW, y:SCREEN_DIRECTION.SHOW },
+      hide: { x: SCREEN_DIRECTION.LEFT, y:SCREEN_DIRECTION.SHOW  }
+    },
+    right: {
+      show: { x: SCREEN_DIRECTION.SHOW, y:SCREEN_DIRECTION.SHOW  },
+      hide: { x: SCREEN_DIRECTION.RIGHT, y:SCREEN_DIRECTION.SHOW  }
+    },
+    top: {
+      show: { y: SCREEN_DIRECTION.SHOW, x:SCREEN_DIRECTION.SHOW  },
+      hide: { y: SCREEN_DIRECTION.TOP, x:SCREEN_DIRECTION.SHOW   }
+    },
+    bottom: {
+      show: { y: SCREEN_DIRECTION.SHOW, x:SCREEN_DIRECTION.SHOW   },
+      hide: { y: SCREEN_DIRECTION.BOTTOM, x:SCREEN_DIRECTION.SHOW   }
+    }
+  };
+  
+  export interface variants_type {
+    left?: direction;
+    right?: direction;
+    top?: direction;
+    bottom?: direction;
+  }
+  
+  export interface direction {
+    show: state;
+    hide: state;
+  }
+  
+  export interface state {
+    x: SCREEN_DIRECTION;
+  }
+  

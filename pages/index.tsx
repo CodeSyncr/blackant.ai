@@ -1,34 +1,22 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/header";
 import Section1 from "../components/sections/section1";
 import Section2 from "../components/sections/section2";
 import Section3 from "../components/sections/section3";
 import Section4 from "../components/sections/section4";
 import Section5 from "../components/sections/section5";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  anim_x,
-  anim_x0y1,
-  anim_x1y0,
   anim_y,
-  containerSpringTransition,
-  hidden_left,
+  DIRECTION_VARIANT,
   screenSpringTransition,
 } from "../utils/animation_variants";
+import { useSection } from "../context";
+import StickyContactUs from "../components/generals/sm_sticky_contact";
 
 const Home: NextPage = () => {
-  const [sections, setSections] = useState({
-    sec1: true,
-    sec2: false,
-    sec2exit: false,
-    sec3: false,
-    sec4: false,
-    sec4exit: false,
-    sec5: false,
-    navBlack: false,
-  });
+  const { state } = useSection();
 
   return (
     <>
@@ -39,87 +27,91 @@ const Home: NextPage = () => {
       </Head>
 
       <header className="fixed w-full z-50">
-        <Navbar black={sections.navBlack} />
+        <Navbar black={state.navBlack} />
       </header>
 
-      <main className="relative w-screen h-screen overflow-hidden">
-        <motion.div
-          key={"section1"}
-          initial={"show"}
-          animate={sections.sec1 ? "show" : "exit"}
-          transition={screenSpringTransition}
-          variants={anim_x0y1}
-          className="absolute inset-0 z-40"
-        >
-          <Section1 sections={sections} setSections={setSections} />
-        </motion.div>
-
-        {sections.sec2exit ? (
+      <main
+        style={{
+          height: state.contactUs ? "calc(100vh - 10rem)" : "100vh",
+        }}
+        className="relative w-screen overflow-hidden"
+      >
+        {state.sec1 && (
           <motion.div
             initial={"show"}
-            animate={sections.sec2exit ? "exit" : "show"}
+            animate={state.sec1ani ? "show" : "hide"}
             transition={screenSpringTransition}
-            variants={anim_x1y0}
-            className="absolute inset-0 overflow-hidden z-40"
+            variants={DIRECTION_VARIANT.top}
+            className="absolute inset-0"
+            style={{
+              zIndex: state.sec3 ? 20 : state.sec5 ? 50 : 40,
+            }}
           >
-            <Section2 sections={sections} setSections={setSections} />
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={"hidden"}
-            animate={sections.sec2 ? "show" : "hidden"}
-            transition={screenSpringTransition}
-            variants={anim_x0y1}
-            className="absolute inset-0 overflow-hidden z-40"
-          >
-            <Section2 sections={sections} setSections={setSections} />
+            <Section1 />
           </motion.div>
         )}
 
-        {sections.sec3 && (
+        {state.sec2 && (
           <motion.div
-            className={"absolute inset-0 overflow-hidden h-screen z-30"}
+            initial={state.sec2ani2 ? "show" : "hide"}
+            animate={state.sec2ani1 ? "show" : "hide"}
+            transition={screenSpringTransition}
+            variants={
+              state.sec2ani2 ? DIRECTION_VARIANT.left : DIRECTION_VARIANT.bottom
+            }
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              zIndex: state.sec2ani2 ? 39 : 21,
+            }}
           >
-            <Section3 sections={sections} setSections={setSections} />
+            <Section2 />
           </motion.div>
         )}
 
-        {sections.sec4 && (
+        {state.sec3 && (
           <motion.div
-            initial={"hidden"}
-            animate={sections.sec4 ? "show" : "hidden"}
-            transition={screenSpringTransition}
-            variants={anim_x}
-            className="absolute inset-0 overflow-hidden h-screen z-40"
+            className={"absolute inset-0 overflow-hidden h-screen z-20"}
           >
-            <Section4 sections={sections} setSections={setSections} />
+            <Section3 />
           </motion.div>
         )}
 
-        {sections.sec4exit && (
+        {state.sec4 && (
           <motion.div
-            initial={"show"}
-            animate={sections.sec4exit ? "exit" : "show"}
+            initial={"hide"}
+            animate={state.sec4ani1 ? "show" : "hide"}
             transition={screenSpringTransition}
-            variants={anim_x}
-            className="absolute inset-0 overflow-hidden h-screen z-20"
+            variants={
+              state.sec4ani1 ? DIRECTION_VARIANT.right : DIRECTION_VARIANT.left
+            }
+            className="absolute inset-0 overflow-hidden h-screen"
+            style={{
+              zIndex: state.sec3 ? 20 : 40,
+            }}
           >
-            <Section4 sections={sections} setSections={setSections} />
+            <Section4 />
+          </motion.div>
+        )}
+        {state.sec5 && (
+          <motion.div
+            initial={{ opacity: 0.8 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={screenSpringTransition}
+            variants={anim_y}
+            className="absolute inset-0 overflow-hidden h-screen"
+            style={{ zIndex: state.sec1 ? 20 : 30 }}
+          >
+            <Section5 />
           </motion.div>
         )}
       </main>
 
       <footer>
-        {sections.sec5 && (
-          <motion.div
-            initial={"show"}
-            animate={"show"}
-            transition={screenSpringTransition}
-            variants={anim_y}
-            className="absolute inset-0 overflow-hidden h-screen z-40"
-          >
-            <Section5 sections={sections} setSections={setSections} />
-          </motion.div>
+        {state.contactUs && (
+          <div className="bg-baScrnBlack w-full h-[10rem] fixed flex justify-between">
+            <StickyContactUs />
+          </div>
         )}
       </footer>
     </>

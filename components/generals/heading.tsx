@@ -28,7 +28,7 @@ const Heading = ({
 }: HeadingProps) => {
   return (
     <motion.div
-      className={cssClasses(className, "w-full")}
+      className={className + " " + "w-full"}
       style={style}
       initial={initial}
       animate={animate}

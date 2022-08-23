@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Cta from "../generals/Cta";
@@ -7,25 +8,18 @@ import Heading from "../generals/Heading";
 import Input from "../generals/Input";
 import { Cell, Grid } from "../generals/LayoutComp";
 import Paragraph from "../generals/Paragraph";
-import { SectionProps } from "./Types";
 
-const Section5 = ({ sections, setSections }: SectionProps) => {
+const Section5 = () => {
+  const { state, dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
-      if (!bottom) {
-        setSections?.((prev) => ({
-          ...prev,
-          sec5: false,
-          sec1: true,
-          sec2: false,
-          sec2exit: false,
-          sec4: false,
-          sec3: false,
-          navBlack: false,
-        }));
+      if (bottom) {
+        setTimeout(() => dispatch({ type: "SEC-5" }), 500);
+      } else {
+        setTimeout(() => dispatch({ type: "SEC-1" }), 500);
       }
     });
   });

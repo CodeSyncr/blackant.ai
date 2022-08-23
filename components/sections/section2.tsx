@@ -1,20 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
-import Heading from "../generals/Heading";
-import Paragraph from "../generals/Paragraph";
-import RotateTextCompSvg from "../generals/RotateTextCompSvg";
 import Section2Content1 from "../generals/section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { TEXT_ANIMATION } from "../../utils/enums";
+import { motion } from "framer-motion";
 import { anim_x, springTrans } from "../../utils/animation_variants";
-import Section2Content3 from "../generals/Section2Content3";
 import { SectionProps } from "./Types";
 import VerticleCardsComp from "../generals/VerticleCardsComp";
-import { delayFunc } from "../../utils/helpers";
+import { useSection } from "../../context";
 
 const Section2 = ({ sections, setSections }: SectionProps) => {
+  const { state, dispatch } = useSection();
   const [exit, setExit] = useState(false);
   const [items, setItems] = useState({
     item1: true,
@@ -22,8 +18,7 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
     item2Exit: false,
     item3: false,
   });
-  const resetHandler = () => {
-    setExit(false);
+  const reset = () => {
     setItems({
       item1: true,
       item2: false,
@@ -32,12 +27,12 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
     });
   };
   useEffect(() => {
-    sections?.sec2 && resetHandler();
-  }, [sections]);
+    reset();
+  }, []);
 
   return (
     <Container
-      navBlack={sections?.navBlack}
+      navblack={state.navBlack}
       className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
     >
       <motion.div
@@ -80,7 +75,6 @@ const Section2 = ({ sections, setSections }: SectionProps) => {
             variants={anim_x}
             sections={sections!}
             setSections={setSections!}
-            exit
           />
         </motion.div>
       ) : (

@@ -2,10 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Section2Content3 from "./Section2Content3";
-import { useScroll } from "framer-motion";
-import { anim_y } from "../../utils/animation_variants";
-import { delayFunc } from "../../utils/helpers";
-import { SectionProps, VerticleCardsCompProps } from "../sections/Types";
+import { VerticleCardsCompProps } from "../sections/Types";
+import { useSection } from "../../context";
 
 const VerticleCardsComp = ({
   data,
@@ -16,32 +14,31 @@ const VerticleCardsComp = ({
   exit,
   setExit,
 }: VerticleCardsCompProps) => {
+  const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
-  const [out, setOut] = useState(false);
   const [value, setValue] = useState(10);
-  const { scrollYProgress } = useScroll({ container: ref });
+
   let scrollingDirection = 0;
   let lastScroll = 9999;
   let scrollIdleTime = 300;
 
-  const scrollUp = () => setValue((prev) => (prev < -50 ? -50 : prev - 20));
+  const scrollUp = () => setValue((prev) => (prev < -50 ? -65 : prev - 20));
   const scrollDown = () => setValue((prev) => (prev > 10 ? 10 : prev + 20));
 
-  const wheelEventHandler = (e) => {
+  const wheelEventHandler = (e: any) => {
     let delta = e.deltaY;
     let timeNow = performance.now();
     if (
       delta > 0 &&
       (scrollingDirection != 1 || timeNow > lastScroll + scrollIdleTime)
     ) {
-      scrollUp();
+      setTimeout(() => scrollUp(), 500);
       scrollingDirection = 1;
     } else if (
       delta < 0 &&
       (scrollingDirection != 2 || timeNow > lastScroll + scrollIdleTime)
     ) {
-      console.log("down");
-      scrollDown();
+      setTimeout(() => scrollDown(), 500);
       scrollingDirection = 2;
     }
     lastScroll = timeNow;
@@ -51,16 +48,19 @@ const VerticleCardsComp = ({
     const element = ref.current;
     element.addEventListener("wheel", wheelEventHandler);
     if (value === -70) {
-      delayFunc(setExit, true);
       setTimeout(() => {
-        setSections?.((prev) => ({
+        setItems((prev) => ({
           ...prev,
-          sec2: false,
-          sec2exit: true,
-          navBlack: false,
-          sec3: true,
+          item3: false,
         }));
       }, 1000);
+      setTimeout(() => {
+        setExit?.(true);
+      }, 1200);
+
+      setTimeout(() => {
+        dispatch({ type: "SEC-3" });
+      }, 1500);
     }
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);

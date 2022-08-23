@@ -12,8 +12,8 @@ const MobileMenu = ({ black, menuHandler }: MobileMenuProps) => {
     <div
       className={
         black
-          ? "absolute inset-0 bg-baWhite h-screen flex justify-center items-center lg:hidden"
-          : "absolute inset-0 bg-baScrnBlack h-screen flex justify-center items-center lg:hidden"
+          ? "absolute inset-0 bg-baWhite text-baBlack h-screen flex justify-center items-center lg:hidden "
+          : "absolute inset-0 bg-baScrnBlack text-baWhite h-screen flex justify-center items-center lg:hidden"
       }
     >
       <CloseIconComp
@@ -28,8 +28,8 @@ const MobileMenu = ({ black, menuHandler }: MobileMenuProps) => {
       <NavLinks
         className={
           black
-            ? "flex flex-col lg:hidden justify-between items-center text-baBlack text-[2rem] h-[50%]"
-            : "flex flex-col lg:hidden justify-between items-center text-baWhite text-[2rem] h-[50%]"
+            ? "flex flex-col justify-between items-center text-[2rem] h-[50%]"
+            : "flex flex-col justify-between items-center text-[2rem] h-[50%]"
         }
       />
     </div>

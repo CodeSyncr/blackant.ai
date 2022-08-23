@@ -1,65 +1,59 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion } from "framer-motion";
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  WheelEvent,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import ProjectCard from "../generals/ProjectCard";
 import { Section4Content2Props } from "../sections/Types";
 import Heading from "./Heading";
-import { debounce, throttle } from "lodash";
+import { useSection } from "../../context";
 
-const Section4Content2 = ({
-  data,
-  items,
-  setItems,
-  sections,
-  setSections,
-}: Section4Content2Props) => {
+const Section4Content2 = ({ data }: Section4Content2Props) => {
+  const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
   const [value, setValue] = useState(1);
-  const [exit, setExit] = useState(false);
-  const wheelHandler = (e: any) => {
-    e.preventDefault();
-    let bottom = e.deltaY > 0;
-    if (bottom) {
-      setValue((prev) => (prev < -60 ? -55 : prev - 5));
-    } else {
-      setValue((prev) => (prev < -60 ? prev + 5 : 0));
+  let scrollingDirection = 0;
+  let lastScroll = 9999;
+  let scrollIdleTime = 300;
+
+  const scrollLeft = () => setValue((prev) => (prev < -50 ? -60 : prev - 20));
+  const scrollRight = () => setValue((prev) => (prev > -20 ? 0 : prev + 20));
+
+  const wheelEventHandler = (e: any) => {
+    let delta = e.deltaY;
+    let timeNow = performance.now();
+    if (
+      delta > 0 &&
+      (scrollingDirection != 1 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      setTimeout(() => scrollLeft(), 500);
+      scrollingDirection = 1;
+    } else if (
+      delta < 0 &&
+      (scrollingDirection != 2 || timeNow > lastScroll + scrollIdleTime)
+    ) {
+      setTimeout(() => scrollRight(), 500);
+      scrollingDirection = 2;
     }
-    if (value <= -55) {
-      setExit(true);
-    } else {
-      setExit(false);
-    }
+    lastScroll = timeNow;
   };
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", wheelHandler);
-    if (exit) {
-      setSections?.((prev) => ({
-        ...prev,
-        sec4: false,
-        sec4exit: true,
-        sec5: true,
-        navBlack: false,
-        sec1: false,
-        sec2: false,
-        sec3: false,
-      }));
+    element.addEventListener("wheel", wheelEventHandler);
+    if (value <= -60) {
+      setTimeout(() => {
+        console.log("bingo");
+        dispatch({ type: "SEC-5" });
+      }, 500);
     }
     return () => {
-      element.removeEventListener("wheel", wheelHandler);
+      element.removeEventListener("wheel", wheelEventHandler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
-    <div className="font-fracRegular w-full h-full  pl-[5rem]">
+    <div className="font-fracRegular w-full h-full px-8 md:pl-[5rem]">
       <Heading data={data.txt1} className="text-[2rem] md:text-[3rem] " />
       <div className="mb-[2rem] flex justify-start items-center ">
         <p className="text-baOrange mr-4 font-bold">{data.txt2}</p>
@@ -71,7 +65,7 @@ const Section4Content2 = ({
           animate={{ x: `${value}%` }}
           transition={{
             type: "spring",
-            duration: 0.5,
+            stiffness: 50,
           }}
           className="absolute h-full flex "
         >

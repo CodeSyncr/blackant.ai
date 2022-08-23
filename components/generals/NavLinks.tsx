@@ -13,7 +13,7 @@ interface NavLinksProps {
 const NavLinks = ({ className }: NavLinksProps) => {
   return (
     <>
-      <div className={cssClasses(className, "font-manrMedium")}>
+      <div className={className + " " + "font-manrMedium"}>
         {navlinks.map((link, idx) => {
           return (
             <Link key={idx} href={link.url} passHref>

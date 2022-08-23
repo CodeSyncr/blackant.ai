@@ -1,55 +1,31 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext, useReducer } from "react";
+import {
+  ContextProviderPropsTypes,
+  SectionStatesTypes,
+  Action,
+  Dispatch,
+} from "./Types";
+import { initialState, reducer } from "./reducer";
 
-interface contextTypes {
-  sec1?: {
-    status?: boolean;
-    anim?: boolean;
-  };
-  sec2?: {
-    status?: boolean;
-    anim1?: boolean;
-    anim2?: boolean;
-    item1?: {
-      status?: boolean;
-      anim?: boolean;
-    };
-    item2?: {
-      status?: boolean;
-      anim?: boolean;
-    };
-    item3?: {
-      status?: boolean;
-      anim?: boolean;
-    };
-  };
-  sec3?: {
-    status?: boolean;
-    anim?: boolean;
-  };
-  sec4?: {
-    status?: boolean;
-    anim1?: boolean;
-    anim2?: boolean;
-    item1?: {
-      status?: boolean;
-      anim?: boolean;
-    };
-    item2?: {
-      status?: boolean;
-      anim?: boolean;
-    };
-  };
-  sec5?: {
-    status?: boolean;
-    anim?: boolean;
-  };
-  navBlack: false;
-}
+const context = createContext<
+  { state: SectionStatesTypes; dispatch: Dispatch } | undefined
+>(undefined);
 
-const context = createContext({} as contextTypes);
-
-const StateProvider = () => {
-  return <div>index</div>;
+const ContextProvider = (props: ContextProviderPropsTypes) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <context.Provider value={{ state, dispatch }}>
+      {props.children}
+    </context.Provider>
+  );
 };
 
-export default StateProvider;
+const useSection = () => {
+  const cntx = useContext(context);
+  if (cntx === undefined) {
+    throw new Error("'useSection' must be used inside 'ContextProvider'");
+  }
+  return cntx;
+};
+
+export { useSection, ContextProvider };
