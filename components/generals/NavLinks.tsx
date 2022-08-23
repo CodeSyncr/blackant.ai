@@ -1,9 +1,7 @@
 import Link from "next/link";
-import React, { useState } from "react";
-import { cssClasses } from "../../utils/helpers";
+import React from "react";
 import { navlinks, ctaData } from "../../modules/navlinks";
 import Cta from "./Cta";
-import HamburgerMenu from "./HamburgerMenu";
 import LinkComp from "./LinkComp";
 
 interface NavLinksProps {
