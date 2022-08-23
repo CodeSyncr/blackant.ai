@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { navlinks, ctaData } from "../../modules/navlinks";
+import Cta from "./Cta";
 import LinkComp from "./LinkComp";
 
 interface NavLinksProps {
@@ -18,18 +19,11 @@ const NavLinks = ({ className }: NavLinksProps) => {
             </Link>
           );
         })}
-
-        <button
-          className={
-            "border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
-          }
-        >
-          {ctaData.quote.text}
-          <span className="ml-4 ">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icons/long_aero.svg" alt="aero" />
-          </span>
-        </button>
+        <Cta
+          text={ctaData.quote.text}
+          icon={`/icons/long_aero.svg`}
+          className="border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
+        />
       </div>
     </>
   );
