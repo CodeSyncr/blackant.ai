@@ -17,7 +17,7 @@ const Section3 = () => {
     if (bottom) {
       setTimeout(() => dispatch({ type: "SEC-4" }), 500);
     } else {
-      setTimeout(() => dispatch({ type: "SEC-1" }), 500);
+      setTimeout(() => dispatch({ type: "SEC-2" }), 500);
     }
   };
 

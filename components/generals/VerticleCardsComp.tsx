@@ -48,9 +48,9 @@ const VerticleCardsComp = ({
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", wheelEventHandler);
-    if (value === -70 || value === 30) {
-      setValueExceed(false);
-      setTimeout(() => setValueExceed(true), 900);
+    if (value === 30) {
+    }
+    if (value === -70) {
       setTimeout(() => {
         setItems((prev) => ({
           ...prev,

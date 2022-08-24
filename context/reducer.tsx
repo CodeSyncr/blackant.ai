@@ -2,14 +2,14 @@ import { Action, Dispatch, SectionStatesTypes } from "./Types";
 
 export const initialState = {
   sec1: true,
-  sec1ani: true,
   sec2: false,
-  sec2ani1: false,
-  sec2ani2: false,
+  sec2item1: false,
+  sec2item2: false,
+  sec2item3: false,
   sec3: false,
   sec4: false,
-  sec4ani1: false,
-  sec4ani2: false,
+  sec4item1: false,
+  sec4item2: false,
   sec5: false,
   contactUs: true,
   navBlack: false,
@@ -21,30 +21,22 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
       return {
         ...state,
         sec1: true,
-        sec1ani: true,
         navBlack: false,
-        sec2ani1: false,
-        sec3: false,
-        sec4: false,
-        sec5: false,
         contactUs: true,
+        sec5: false,
       };
     case "SEC-2":
       return {
         ...state,
-        sec1ani: false,
         sec2: true,
-        sec3: false,
-        sec2ani1: true,
-        sec2ani2: false,
+        sec1: false,
         navBlack: true,
       };
     case "SEC-3":
       return {
         ...state,
-        sec2ani1: false,
-        sec2ani2: true,
         sec3: true,
+        sec2: false,
         contactUs: false,
         navBlack: false,
       };
@@ -52,8 +44,6 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "SEC-4":
       return {
         ...state,
-        sec1: false,
-        sec2: false,
         sec4: true,
         sec4ani1: true,
         contactUs: true,
@@ -62,8 +52,8 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "SEC-5":
       return {
         ...state,
-        sec2: false,
         sec3: false,
+        sec4: false,
         sec5: true,
         sec4ani1: false,
         navBlack: false,

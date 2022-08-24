@@ -37,16 +37,16 @@ export interface SEC {
 
 export interface SectionStatesTypes{
   sec1: boolean;
-  sec1ani: boolean;
   sec2: boolean;
-  sec2ani1: boolean;
-  sec2ani2: boolean;
+  sec2item1: boolean;
+  sec2item2: boolean;
+  sec2item3: boolean;
   sec3: boolean;
   sec4: boolean;
-  sec4ani1: boolean;
-  sec4ani2: boolean;
+  sec4item1: boolean;
+  sec4item2: boolean;
   sec5: boolean;
-  contactUs:boolean;
+  contactUs: boolean;
   navBlack: boolean;
 }
 

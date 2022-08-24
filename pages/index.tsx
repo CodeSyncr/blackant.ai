@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       </header>
 
       <main className="relative w-screen h-screen overflow-hidden">
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {state.contactUs && (
             <div className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50">
               <RotateTextCompSvg
@@ -46,14 +46,11 @@ const Home: NextPage = () => {
           {state.sec1 && (
             <motion.div
               key={"sec1"}
-              initial={"show"}
-              animate={state.sec1ani ? "show" : "hide"}
+              initial={{ y: "-100vh" }}
+              animate={{ y: "0" }}
+              exit={{ y: "-100vh" }}
               transition={screenSpringTransition}
-              variants={DIRECTION_VARIANT.top}
               className="absolute inset-0"
-              style={{
-                zIndex: state.sec3 ? 20 : state.sec4 ? 50 : 40,
-              }}
             >
               <Section1 />
             </motion.div>
@@ -62,18 +59,11 @@ const Home: NextPage = () => {
           {state.sec2 && (
             <motion.div
               key={"sec2"}
-              initial={state.sec2ani2 ? "show" : "hide"}
-              animate={state.sec2ani1 ? "show" : "hide"}
+              initial={{ y: "100vh" }}
+              animate={!state.sec1 ? { y: "0" } : { y: "100vh" }}
+              exit={{ x: "-100vw", y: "0" }}
               transition={screenSpringTransition}
-              variants={
-                state.sec2ani2
-                  ? DIRECTION_VARIANT.left
-                  : DIRECTION_VARIANT.bottom
-              }
               className="absolute inset-0 overflow-hidden"
-              style={{
-                zIndex: state.sec2ani2 ? 39 : 21,
-              }}
             >
               <Section2 />
             </motion.div>
@@ -82,7 +72,7 @@ const Home: NextPage = () => {
           {state.sec3 && (
             <motion.div
               key={"sec3"}
-              className={"absolute inset-0 overflow-hidden h-screen z-20"}
+              className={"absolute inset-0 overflow-hidden h-screen"}
             >
               <Section3 />
             </motion.div>
@@ -91,18 +81,11 @@ const Home: NextPage = () => {
           {state.sec4 && (
             <motion.div
               key={"sec4"}
-              initial={"hide"}
-              animate={state.sec4ani1 ? "show" : "hide"}
+              initial={{ x: "100vw" }}
+              animate={{ x: "0" }}
+              exit={{ x: "-100vw" }}
               transition={screenSpringTransition}
-              variants={
-                state.sec4ani1
-                  ? DIRECTION_VARIANT.right
-                  : DIRECTION_VARIANT.left
-              }
               className="absolute inset-0 overflow-hidden h-screen"
-              style={{
-                zIndex: state.sec3 ? 20 : 40,
-              }}
             >
               <Section4 />
             </motion.div>
@@ -110,13 +93,11 @@ const Home: NextPage = () => {
           {state.sec5 && (
             <motion.div
               key={"sec5"}
-              initial={{ opacity: 0.8 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ x: 0, y: 0 }}
+              animate={{ x: 0, y: 0 }}
+              exit={{ x: 0, y: "100vh" }}
               transition={screenSpringTransition}
-              variants={anim_y}
               className="absolute inset-0 overflow-hidden h-screen"
-              style={{ zIndex: state.sec1 ? 20 : state.sec4 ? 60 : 30 }}
             >
               <Section5 />
             </motion.div>
