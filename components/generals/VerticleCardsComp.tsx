@@ -17,6 +17,7 @@ const VerticleCardsComp = ({
   const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
   const [value, setValue] = useState(10);
+  const [valueExceed, setValueExceed] = useState(false);
 
   let scrollingDirection = 0;
   let lastScroll = 9999;
@@ -47,7 +48,9 @@ const VerticleCardsComp = ({
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", wheelEventHandler);
-    if (value === -70) {
+    if (value === -70 || value === 30) {
+      setValueExceed(false);
+      setTimeout(() => setValueExceed(true), 900);
       setTimeout(() => {
         setItems((prev) => ({
           ...prev,

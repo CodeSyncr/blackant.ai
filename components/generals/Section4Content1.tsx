@@ -54,9 +54,6 @@ const Section4Content1 = ({
           </div>
         </div>
       </div>
-      <div className=" hidden md:block md:absolute bottom-32 right-32">
-        <RotateTextCompSvg black />
-      </div>
     </>
   );
 };

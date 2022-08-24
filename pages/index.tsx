@@ -6,7 +6,7 @@ import Section2 from "../components/sections/section2";
 import Section3 from "../components/sections/section3";
 import Section4 from "../components/sections/section4";
 import Section5 from "../components/sections/section5";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   anim_y,
   DIRECTION_VARIANT,
@@ -14,10 +14,13 @@ import {
 } from "../utils/animation_variants";
 import { useSection } from "../context";
 import StickyContactUs from "../components/generals/sm_sticky_contact";
+import React, { useEffect, useState } from "react";
+import RotateTextCompSvg from "../components/generals/RotateTextCompSvg";
+import useWindowDimensions from "../utils/useWindowSize";
 
 const Home: NextPage = () => {
   const { state } = useSection();
-
+  const { width } = useWindowDimensions();
   return (
     <>
       <Head>
@@ -30,90 +33,98 @@ const Home: NextPage = () => {
         <Navbar black={state.navBlack} />
       </header>
 
-      <main
-        style={{
-          height: state.contactUs ? "calc(100vh - 10rem)" : "100vh",
-        }}
-        className="relative w-screen overflow-hidden"
-      >
-        {state.sec1 && (
-          <motion.div
-            initial={"show"}
-            animate={state.sec1ani ? "show" : "hide"}
-            transition={screenSpringTransition}
-            variants={DIRECTION_VARIANT.top}
-            className="absolute inset-0"
-            style={{
-              zIndex: state.sec3 ? 20 : state.sec5 ? 50 : 40,
-            }}
-          >
-            <Section1 />
-          </motion.div>
-        )}
+      <main className="relative w-screen h-screen overflow-hidden">
+        <AnimatePresence>
+          {state.contactUs && (
+            <div className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50">
+              <RotateTextCompSvg
+                black={state.navBlack}
+                size={width < 800 ? 8 : 12}
+              />
+            </div>
+          )}
+          {state.sec1 && (
+            <motion.div
+              key={"sec1"}
+              initial={"show"}
+              animate={state.sec1ani ? "show" : "hide"}
+              transition={screenSpringTransition}
+              variants={DIRECTION_VARIANT.top}
+              className="absolute inset-0"
+              style={{
+                zIndex: state.sec3 ? 20 : state.sec4 ? 50 : 40,
+              }}
+            >
+              <Section1 />
+            </motion.div>
+          )}
 
-        {state.sec2 && (
-          <motion.div
-            initial={state.sec2ani2 ? "show" : "hide"}
-            animate={state.sec2ani1 ? "show" : "hide"}
-            transition={screenSpringTransition}
-            variants={
-              state.sec2ani2 ? DIRECTION_VARIANT.left : DIRECTION_VARIANT.bottom
-            }
-            className="absolute inset-0 overflow-hidden"
-            style={{
-              zIndex: state.sec2ani2 ? 39 : 21,
-            }}
-          >
-            <Section2 />
-          </motion.div>
-        )}
+          {state.sec2 && (
+            <motion.div
+              key={"sec2"}
+              initial={state.sec2ani2 ? "show" : "hide"}
+              animate={state.sec2ani1 ? "show" : "hide"}
+              transition={screenSpringTransition}
+              variants={
+                state.sec2ani2
+                  ? DIRECTION_VARIANT.left
+                  : DIRECTION_VARIANT.bottom
+              }
+              className="absolute inset-0 overflow-hidden"
+              style={{
+                zIndex: state.sec2ani2 ? 39 : 21,
+              }}
+            >
+              <Section2 />
+            </motion.div>
+          )}
 
-        {state.sec3 && (
-          <motion.div
-            className={"absolute inset-0 overflow-hidden h-screen z-20"}
-          >
-            <Section3 />
-          </motion.div>
-        )}
+          {state.sec3 && (
+            <motion.div
+              key={"sec3"}
+              className={"absolute inset-0 overflow-hidden h-screen z-20"}
+            >
+              <Section3 />
+            </motion.div>
+          )}
 
-        {state.sec4 && (
-          <motion.div
-            initial={"hide"}
-            animate={state.sec4ani1 ? "show" : "hide"}
-            transition={screenSpringTransition}
-            variants={
-              state.sec4ani1 ? DIRECTION_VARIANT.right : DIRECTION_VARIANT.left
-            }
-            className="absolute inset-0 overflow-hidden h-screen"
-            style={{
-              zIndex: state.sec3 ? 20 : 40,
-            }}
-          >
-            <Section4 />
-          </motion.div>
-        )}
-        {state.sec5 && (
-          <motion.div
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={screenSpringTransition}
-            variants={anim_y}
-            className="absolute inset-0 overflow-hidden h-screen"
-            style={{ zIndex: state.sec1 ? 20 : 30 }}
-          >
-            <Section5 />
-          </motion.div>
-        )}
+          {state.sec4 && (
+            <motion.div
+              key={"sec4"}
+              initial={"hide"}
+              animate={state.sec4ani1 ? "show" : "hide"}
+              transition={screenSpringTransition}
+              variants={
+                state.sec4ani1
+                  ? DIRECTION_VARIANT.right
+                  : DIRECTION_VARIANT.left
+              }
+              className="absolute inset-0 overflow-hidden h-screen"
+              style={{
+                zIndex: state.sec3 ? 20 : 40,
+              }}
+            >
+              <Section4 />
+            </motion.div>
+          )}
+          {state.sec5 && (
+            <motion.div
+              key={"sec5"}
+              initial={{ opacity: 0.8 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={screenSpringTransition}
+              variants={anim_y}
+              className="absolute inset-0 overflow-hidden h-screen"
+              style={{ zIndex: state.sec1 ? 20 : state.sec4 ? 60 : 30 }}
+            >
+              <Section5 />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
-      <footer>
-        {state.contactUs && (
-          <div className="bg-baScrnBlack w-full h-[10rem] fixed flex justify-between">
-            <StickyContactUs />
-          </div>
-        )}
-      </footer>
+      <footer></footer>
     </>
   );
 };

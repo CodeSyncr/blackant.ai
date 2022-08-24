@@ -25,13 +25,10 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: state.contactUs ? "calc(100vh - 10rem)" : "100vh",
+          height: "100vh",
           width: "100%",
           paddingTop: "5rem",
           position: "relative",
-          transitionProperty: "width",
-          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          transitionDuration: "500ms",
           overflow: "hidden",
         }}
       >

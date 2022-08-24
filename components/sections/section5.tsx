@@ -17,7 +17,7 @@ const Section5 = () => {
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        setTimeout(() => dispatch({ type: "SEC-5" }), 500);
+        setTimeout(() => dispatch({ type: "SEC-1" }), 500);
       } else {
         setTimeout(() => dispatch({ type: "SEC-1" }), 500);
       }

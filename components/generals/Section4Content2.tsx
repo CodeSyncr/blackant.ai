@@ -42,7 +42,6 @@ const Section4Content2 = ({ data }: Section4Content2Props) => {
     element.addEventListener("wheel", wheelEventHandler);
     if (value <= -60) {
       setTimeout(() => {
-        console.log("bingo");
         dispatch({ type: "SEC-5" });
       }, 500);
     }

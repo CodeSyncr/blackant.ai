@@ -23,7 +23,6 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec1: true,
         sec1ani: true,
         navBlack: false,
-        sec2: false,
         sec2ani1: false,
         sec3: false,
         sec4: false,
@@ -43,10 +42,10 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "SEC-3":
       return {
         ...state,
-        sec1ani: true,
         sec2ani1: false,
         sec2ani2: true,
         sec3: true,
+        contactUs: false,
         navBlack: false,
       };
 
@@ -57,6 +56,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2: false,
         sec4: true,
         sec4ani1: true,
+        contactUs: true,
         navBlack: true,
       };
     case "SEC-5":
@@ -65,7 +65,6 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2: false,
         sec3: false,
         sec5: true,
-        contactUs: false,
         sec4ani1: false,
         navBlack: false,
       };

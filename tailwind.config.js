@@ -26,6 +26,11 @@ module.exports = {
         baOrange:"#FF9866",
         baCream : "#F9F5EE",
         
+      },
+      zIndex:{
+        '60':'60',
+        '70': '70',
+        '80': '80'
       }
     },
     

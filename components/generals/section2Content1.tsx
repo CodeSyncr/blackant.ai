@@ -86,19 +86,6 @@ const Section2Content1 = ({
         animate={animate}
         animatable
       />
-
-      <motion.div
-        className="flex justify-center items-center lg:absolute bottom-8 right-16"
-        variants={{ ...variants }}
-        initial={initial}
-        animate={animate}
-        transition={{
-          ...springTrans,
-          delay: 0.7,
-        }}
-      >
-        <RotateTextCompSvg black />
-      </motion.div>
     </div>
   );
 };
