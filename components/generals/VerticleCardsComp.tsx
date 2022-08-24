@@ -5,19 +5,10 @@ import Section2Content3 from "./Section2Content3";
 import { VerticleCardsCompProps } from "../sections/Types";
 import { useSection } from "../../context";
 
-const VerticleCardsComp = ({
-  data,
-  items,
-  setItems,
-  sections,
-  setSections,
-  exit,
-  setExit,
-}: VerticleCardsCompProps) => {
+const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
   const [value, setValue] = useState(10);
-  const [valueExceed, setValueExceed] = useState(false);
 
   let scrollingDirection = 0;
   let lastScroll = 9999;
@@ -49,21 +40,18 @@ const VerticleCardsComp = ({
     const element = ref.current;
     element.addEventListener("wheel", wheelEventHandler);
     if (value === 30) {
+      dispatch({ type: "SEC-2b" });
     }
     if (value === -70) {
       setTimeout(() => {
-        setItems((prev) => ({
-          ...prev,
-          item3: false,
-        }));
-      }, 1000);
+        dispatch({ type: "SEC-2item3Exit" });
+      }, 800);
       setTimeout(() => {
-        setExit?.(true);
+        dispatch({ type: "SEC-2item2Exit" });
       }, 1200);
-
-      setTimeout(() => {
-        dispatch({ type: "SEC-3" });
-      }, 1500);
+      // setTimeout(() => {
+      //   dispatch({ type: "SEC-3" });
+      // }, 1500);
     }
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);

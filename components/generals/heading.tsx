@@ -12,6 +12,7 @@ interface HeadingProps {
   delay?: number;
   initial?: string;
   animate?: string;
+  exit?: string;
   variants?: variantTypes;
 }
 
@@ -24,6 +25,7 @@ const Heading = ({
   delay,
   initial,
   animate,
+  exit,
   variants,
 }: HeadingProps) => {
   return (
@@ -32,6 +34,7 @@ const Heading = ({
       style={style}
       initial={initial}
       animate={animate}
+      exit={exit}
       variants={{ ...variants }}
       transition={spring(delay)}
     >

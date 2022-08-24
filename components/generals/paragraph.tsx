@@ -13,6 +13,7 @@ interface ParagraphProps {
   delay?: number;
   variants?: variantTypes;
   initial?: string;
+  exit?: string;
   animate?: string;
   exitPos?: string;
 }
@@ -27,6 +28,7 @@ const Paragraph = ({
   initial = "show",
   animate = "hidden",
   startAni,
+  exit,
   variants,
 }: ParagraphProps) => {
   return (
@@ -35,6 +37,7 @@ const Paragraph = ({
       style={style}
       initial={initial}
       animate={animate}
+      exit={exit}
       variants={{ ...variants }}
       transition={spring(delay)}
     >

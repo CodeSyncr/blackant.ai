@@ -22,7 +22,7 @@ const Section2Content1 = ({
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        setItems?.((prev) => ({ ...prev, item1: false, item2: true }));
+        dispatch({ type: "SEC-2item1" });
       } else {
         dispatch({ type: "SEC-1" });
       }

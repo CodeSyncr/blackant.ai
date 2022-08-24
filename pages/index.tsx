@@ -8,6 +8,7 @@ import Section4 from "../components/sections/section4";
 import Section5 from "../components/sections/section5";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  anim_x,
   anim_y,
   DIRECTION_VARIANT,
   screenSpringTransition,
@@ -46,9 +47,10 @@ const Home: NextPage = () => {
           {state.sec1 && (
             <motion.div
               key={"sec1"}
-              initial={{ y: "-100vh" }}
-              animate={{ y: "0" }}
-              exit={{ y: "-100vh" }}
+              initial={"exit"}
+              animate={state.sec1 ? "show" : "exit"}
+              exit={"exit"}
+              variants={anim_y}
               transition={screenSpringTransition}
               className="absolute inset-0"
             >
@@ -56,12 +58,27 @@ const Home: NextPage = () => {
             </motion.div>
           )}
 
-          {state.sec2 && (
+          {state.sec2a && (
             <motion.div
-              key={"sec2"}
-              initial={{ y: "100vh" }}
-              animate={!state.sec1 ? { y: "0" } : { y: "100vh" }}
-              exit={{ x: "-100vw", y: "0" }}
+              key={"sec2a"}
+              initial={"hidden"}
+              animate={!state.sec1 ? "show" : "hidden"}
+              exit={"hidden"}
+              variants={anim_y}
+              transition={screenSpringTransition}
+              className="absolute inset-0 overflow-hidden"
+            >
+              <Section2 />
+            </motion.div>
+          )}
+
+          {state.sec2b && (
+            <motion.div
+              key={"sec2b"}
+              initial={"show"}
+              animate={state.sec2b ? "show" : "exit"}
+              exit={"exit"}
+              variants={anim_x}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden"
             >
@@ -81,9 +98,10 @@ const Home: NextPage = () => {
           {state.sec4 && (
             <motion.div
               key={"sec4"}
-              initial={{ x: "100vw" }}
-              animate={{ x: "0" }}
-              exit={{ x: "-100vw" }}
+              initial={"hidden"}
+              animate={"show"}
+              exit={"exit"}
+              variants={anim_x}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden h-screen"
             >
@@ -93,9 +111,10 @@ const Home: NextPage = () => {
           {state.sec5 && (
             <motion.div
               key={"sec5"}
-              initial={{ x: 0, y: 0 }}
-              animate={{ x: 0, y: 0 }}
-              exit={{ x: 0, y: "100vh" }}
+              initial={"show"}
+              animate={"show"}
+              exit={"hidden"}
+              variants={anim_y}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden h-screen"
             >

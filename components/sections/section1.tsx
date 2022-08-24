@@ -19,9 +19,9 @@ const Section1 = () => {
     element.addEventListener("wheel", (e: any) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        dispatch({ type: "SEC-2" });
+        dispatch({ type: "SEC-2a" });
       } else {
-        dispatch({ type: "SEC-1" });
+        dispatch({ type: "SEC-5" });
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

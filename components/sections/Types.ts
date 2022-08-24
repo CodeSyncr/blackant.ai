@@ -50,7 +50,7 @@ export interface SectionProps {
   variants?: variantTypes;
   initial?: string;
   animate?: string;
-  exit?:boolean
+  exit?:string;
 }
 
 
@@ -62,8 +62,8 @@ export interface VerticleCardsCompProps {
     txt3: string;
     img: string;
   }[];
-  items: items;
-  setItems: setItems;
+  items?: items;
+  setItems?: setItems;
   exit?: boolean,
   setExit?: setBoolean
   sections?: sections;

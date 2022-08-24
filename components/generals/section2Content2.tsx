@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useSection } from "../../context";
 
 import { SectionProps } from "../sections/Types";
 import Heading from "./Heading";
@@ -10,24 +11,18 @@ const Section2Content2 = ({
   initial,
   animate,
   items,
-  setItems,
+  exit,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
-
+  const { state, dispatch } = useSection();
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        setTimeout(() => {
-          setItems?.((prev) => ({
-            ...prev,
-            item2Exit: true,
-            item3: true,
-          }));
-        }, 500);
+        dispatch({ type: "SEC-2item3" });
       } else {
-        setItems?.((prev) => ({ ...prev, item2: false, item1: true }));
+        dispatch({ type: "SEC-2item1" });
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

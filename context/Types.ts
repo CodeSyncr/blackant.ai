@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 export interface StateProviderProps {
     children: React.ReactNode
 }
@@ -37,7 +39,8 @@ export interface SEC {
 
 export interface SectionStatesTypes{
   sec1: boolean;
-  sec2: boolean;
+  sec2a: boolean;
+  sec2b: boolean;
   sec2item1: boolean;
   sec2item2: boolean;
   sec2item3: boolean;
@@ -52,9 +55,16 @@ export interface SectionStatesTypes{
 
 export type Action =
   | { type: "SEC-1" }
-  | { type: "SEC-2" }
+  | { type: "SEC-2a" }
+  | { type: "SEC-2b" }
+  | { type: "SEC-2item1" }
+  | { type: "SEC-2item2" }
+  | { type: "SEC-2item2Exit" }
+  | { type: "SEC-2item3" }
+  | { type: "SEC-2item3Exit" }
   | { type: "SEC-3" }
   | { type: "SEC-4" }
+  | { type: "SEC-4item2" }
   | { type: "SEC-5" };
 
 export type Dispatch = (action: Action) => void;
