@@ -12,7 +12,7 @@ const Section2Content1 = ({
   variants,
   initial,
   animate,
-  setItems,
+  exit,
 }: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null!);
   const { state, dispatch } = useSection();
@@ -22,7 +22,7 @@ const Section2Content1 = ({
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        dispatch({ type: "SEC-2item1" });
+        dispatch({ type: "SEC-2itm1" });
       } else {
         dispatch({ type: "SEC-1" });
       }
@@ -35,36 +35,40 @@ const Section2Content1 = ({
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"
         variants={variants}
-        delay={0.1}
+        delay={0.2}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
       <Heading
         data={data?.txt2}
         className="text-baOrange lg:pl-[30%] md:-mt-8"
         variants={variants}
-        delay={0.2}
+        delay={0.3}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
       <Heading
         data={data?.txt3}
         className=" md:-mt-8 lg:pl-[15%]"
         variants={variants}
-        delay={0.3}
+        delay={0.4}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
       <Heading
         data={data?.txt2}
         className=" pb-[2rem] lg:pl-[30%] md:-mt-8"
         variants={variants}
-        delay={0.4}
+        delay={0.5}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
 
@@ -72,18 +76,20 @@ const Section2Content1 = ({
         data={data?.placeHolderTxt}
         className="font-manrSemiBold text-[1.3rem] break-normal mb-[2rem] md:pl-[10%] lg:pl-[30%] md:pr-[20vw]"
         variants={variants}
-        delay={0.5}
+        delay={0.6}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
       <Paragraph
         data={data?.placeHolderTxt}
         className="font-manrRegular text-[1rem] break-normal md:pl-[10%] lg:pl-[30%] md:pr-[20vw] mb-[2rem] "
         variants={variants}
-        delay={0.6}
+        delay={0.7}
         initial={initial}
         animate={animate}
+        exit={exit}
         animatable
       />
     </div>

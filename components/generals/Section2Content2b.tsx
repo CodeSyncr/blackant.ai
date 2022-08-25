@@ -5,7 +5,7 @@ import { SectionProps } from "../sections/Types";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 
-const Section2Content2 = ({
+const Section2Content2b = ({
   data,
   variants,
   initial,
@@ -22,13 +22,16 @@ const Section2Content2 = ({
       if (bottom) {
         dispatch({ type: "SEC-2b" });
       } else {
-        dispatch({ type: "SEC-2a" }); // experimenting
+        dispatch({ type: "SEC-2a_curious" }); // experimenting
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
   return (
-    <div ref={ref} className="px-8">
+    <div
+      ref={ref}
+      className="px-8 bg-red-400/50 h-full flex justify-center items-center flex-col"
+    >
       <Heading
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"
@@ -61,4 +64,4 @@ const Section2Content2 = ({
   );
 };
 
-export default Section2Content2;
+export default Section2Content2b;

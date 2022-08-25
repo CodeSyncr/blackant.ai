@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Navbar from "../components/header";
 import Section1 from "../components/sections/section1";
-import Section2 from "../components/sections/section2";
+import Section2 from "../components/sections/section2a";
 import Section3 from "../components/sections/section3";
 import Section4 from "../components/sections/section4";
 import Section5 from "../components/sections/section5";
@@ -18,6 +18,8 @@ import StickyContactUs from "../components/generals/sm_sticky_contact";
 import React, { useEffect, useState } from "react";
 import RotateTextCompSvg from "../components/generals/RotateTextCompSvg";
 import useWindowDimensions from "../utils/useWindowSize";
+import Section2a from "../components/sections/section2a";
+import Section2b from "../components/sections/section2b";
 
 const Home: NextPage = () => {
   const { state } = useSection();
@@ -44,31 +46,41 @@ const Home: NextPage = () => {
               />
             </div>
           )}
-          {state.sec1 && (
-            <motion.div
-              key={"sec1"}
-              initial={"exit"}
-              animate={state.sec1 ? "show" : "exit"}
-              exit={"exit"}
-              variants={anim_y}
-              transition={screenSpringTransition}
-              className="absolute inset-0"
-            >
-              <Section1 />
-            </motion.div>
-          )}
+
+          <motion.div
+            key={"sec1"}
+            initial={"exit"}
+            animate={state.sec1 ? "show" : "exit"}
+            variants={anim_y}
+            transition={screenSpringTransition}
+            className="absolute inset-0"
+          >
+            <Section1 />
+          </motion.div>
 
           {state.sec2a && (
             <motion.div
               key={"sec2a"}
               initial={"hidden"}
-              animate={!state.sec1 ? "show" : "hidden"}
-              exit={"hidden"}
+              animate={state.sec1 ? "hidden" : "show"}
               variants={anim_y}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden"
             >
-              <Section2 />
+              <Section2a />
+            </motion.div>
+          )}
+
+          {state.sec2c && (
+            <motion.div
+              key={"sec2c"}
+              initial={"show"}
+              animate={"show"}
+              variants={anim_y}
+              transition={screenSpringTransition}
+              className="absolute inset-0 overflow-hidden"
+            >
+              <Section2a />
             </motion.div>
           )}
 
@@ -77,12 +89,11 @@ const Home: NextPage = () => {
               key={"sec2b"}
               initial={"show"}
               animate={state.sec2b ? "show" : "exit"}
-              exit={"exit"}
               variants={anim_x}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden"
             >
-              <Section2 />
+              <Section2b />
             </motion.div>
           )}
 

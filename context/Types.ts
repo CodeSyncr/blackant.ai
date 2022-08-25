@@ -41,13 +41,15 @@ export interface SectionStatesTypes{
   sec1: boolean;
   sec2a: boolean;
   sec2b: boolean;
-  sec2item1: boolean;
-  sec2item2: boolean;
-  sec2item3: boolean;
+  sec2c: boolean;
+  sec2bani: boolean;
+  sec2cani: boolean;
+  sec2itm1: boolean;
+  sec2itm2: boolean;
+  sec2itm3: boolean;
   sec3: boolean;
-  sec4: boolean;
-  sec4item1: boolean;
-  sec4item2: boolean;
+  sec4itm1: boolean;
+  sec4itm2: boolean;
   sec5: boolean;
   contactUs: boolean;
   navBlack: boolean;
@@ -57,7 +59,14 @@ export type Action =
   | { type: "SEC-1" }
   | { type: "SEC-2a" }
   | { type: "SEC-2b" }
-  | { type: "SEC-2item1" }
+  | { type: "SEC-2c" }
+  | { type: "SEC-2itm1" }
+  | { type: "analyse_model_exit" }
+  | { type: "curious_abt_exit" }
+  | { type: "SEC-2b-exit" }
+  | { type: "SEC-2a_curious" }
+
+  | { type: "SEC-2item1Exit" }
   | { type: "SEC-2item2" }
   | { type: "SEC-2item2Exit" }
   | { type: "SEC-2item3" }

@@ -40,18 +40,20 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
     const element = ref.current;
     element.addEventListener("wheel", wheelEventHandler);
     if (value === 30) {
-      dispatch({ type: "SEC-2b" });
+      setTimeout(() => {
+        dispatch({ type: "analyse_model_exit" });
+      }, 500);
     }
     if (value === -70) {
       setTimeout(() => {
-        dispatch({ type: "SEC-2item3Exit" });
+        dispatch({ type: "analyse_model_exit" });
       }, 800);
       setTimeout(() => {
-        dispatch({ type: "SEC-2item2Exit" });
+        dispatch({ type: "curious_abt_exit" });
       }, 1200);
-      // setTimeout(() => {
-      //   dispatch({ type: "SEC-3" });
-      // }, 1500);
+      setTimeout(() => {
+        dispatch({ type: "SEC-2b-exit" });
+      }, 1500);
     }
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);

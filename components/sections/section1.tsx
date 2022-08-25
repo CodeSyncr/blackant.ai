@@ -6,10 +6,11 @@ import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Cta from "../generals/Cta";
 import Heading from "../generals/Heading";
-
+import { useRouter } from "next/router";
 // eslint-disable-next-line react/display-name
 
 const Section1 = () => {
+  const router = useRouter();
   const { state, dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
 
