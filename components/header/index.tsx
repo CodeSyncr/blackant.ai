@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSection } from "../../context";
 import HamburgerMenu from "../generals/HamburgerMenu";
 import Logo from "../generals/Logo";
 import MobileMenu from "../generals/MobileMenu";
@@ -9,8 +10,18 @@ interface NavbarProps {
 }
 
 const Navbar = ({ black }: NavbarProps) => {
+  const { state, dispatch } = useSection();
   const [show, setShow] = useState(false);
   const menuHandler = () => setShow(!show);
+  const linkClick = (text: string) => {
+    if (text === "How it's done") {
+      dispatch({ type: "analyse_model" });
+    }
+    if (text === "Features") {
+      dispatch({ type: "features" });
+    }
+    dispatch({ type: "recent_project" });
+  };
   return (
     <div className="relative">
       <div className="flex justify-between p-6 px-8">
@@ -21,6 +32,7 @@ const Navbar = ({ black }: NavbarProps) => {
               ? "hidden lg:flex justify-center items-center text-baBlack"
               : "hidden lg:flex justify-center items-center text-baWhite"
           }
+          onClick={linkClick}
         />
         <HamburgerMenu
           size={40}

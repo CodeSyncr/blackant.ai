@@ -12,12 +12,14 @@ const Section3 = () => {
   const ref = useRef<HTMLDivElement>(null!);
 
   const wheelEventHandler = (e: any) => {
-    const delta = Math.sign(e.deltaY);
+    e.preventDefault();
+    let delta = Math.sign(e.deltaY);
     const bottom = delta > 0;
     if (bottom) {
+      console.log(bottom);
       setTimeout(() => dispatch({ type: "SEC-4" }), 500);
     } else {
-      setTimeout(() => dispatch({ type: "SEC-2" }), 500);
+      setTimeout(() => dispatch({ type: "analyse_model" }), 500);
     }
   };
 
@@ -28,7 +30,7 @@ const Section3 = () => {
       element.addEventListener("wheel", wheelEventHandler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, []);
   return (
     <Container
       ref={ref}

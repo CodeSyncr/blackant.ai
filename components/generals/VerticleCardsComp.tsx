@@ -18,6 +18,7 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   const scrollDown = () => setValue((prev) => (prev > 10 ? 10 : prev + 20));
 
   const wheelEventHandler = (e: any) => {
+    e.preventDefault();
     let delta = e.deltaY;
     let timeNow = performance.now();
     if (
@@ -47,13 +48,16 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
     if (value === -70) {
       setTimeout(() => {
         dispatch({ type: "analyse_model_exit" });
-      }, 800);
+      }, 500);
       setTimeout(() => {
         dispatch({ type: "curious_abt_exit" });
-      }, 1200);
+      }, 1000);
       setTimeout(() => {
-        dispatch({ type: "SEC-2b-exit" });
+        dispatch({ type: "SEC-2-exit" });
       }, 1500);
+      setTimeout(() => {
+        dispatch({ type: "SEC-3" });
+      }, 1600);
     }
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);

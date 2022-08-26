@@ -12,6 +12,7 @@ import {
   anim_y,
   DIRECTION_VARIANT,
   screenSpringTransition,
+  springTrans,
 } from "../utils/animation_variants";
 import { useSection } from "../context";
 import StickyContactUs from "../components/generals/sm_sticky_contact";
@@ -20,10 +21,14 @@ import RotateTextCompSvg from "../components/generals/RotateTextCompSvg";
 import useWindowDimensions from "../utils/useWindowSize";
 import Section2a from "../components/sections/section2a";
 import Section2b from "../components/sections/section2b";
+import Section2c from "../components/sections/section2c";
+import Container from "../components/generals/Container";
+import { sectionsData } from "../modules/sections";
+import VerticleCardsComp from "../components/generals/VerticleCardsComp";
+import AnalyseModel from "../components/sections/analyse_model";
 
 const Home: NextPage = () => {
   const { state } = useSection();
-  const { width } = useWindowDimensions();
   return (
     <>
       <Head>
@@ -38,25 +43,50 @@ const Home: NextPage = () => {
 
       <main className="relative w-screen h-screen overflow-hidden">
         <AnimatePresence initial={false}>
-          {state.contactUs && (
-            <div className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50">
-              <RotateTextCompSvg
-                black={state.navBlack}
-                size={width < 800 ? 8 : 12}
-              />
-            </div>
-          )}
-
           <motion.div
             key={"sec1"}
             initial={"exit"}
             animate={state.sec1 ? "show" : "exit"}
             variants={anim_y}
             transition={screenSpringTransition}
-            className="absolute inset-0"
+            className="absolute inset-0 z-10"
           >
             <Section1 />
           </motion.div>
+
+          {state.sec2 ? (
+            <motion.div
+              key={"sec2"}
+              initial={"hidden"}
+              animate={state.sec1 ? "hidden" : "show"}
+              variants={anim_y}
+              transition={screenSpringTransition}
+              className="absolute inset-0 overflow-hidden z-10"
+            >
+              <Container
+                navblack={state.navBlack}
+                className="bg-baCream w-screen"
+              >
+                {""}
+              </Container>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={"sec2"}
+              initial={"show"}
+              animate={"exit"}
+              variants={anim_x}
+              transition={screenSpringTransition}
+              className="absolute inset-0 overflow-hidden z-10"
+            >
+              <Container
+                navblack={state.navBlack}
+                className="bg-baCream w-screen"
+              >
+                {""}
+              </Container>
+            </motion.div>
+          )}
 
           {state.sec2a && (
             <motion.div
@@ -65,42 +95,56 @@ const Home: NextPage = () => {
               animate={state.sec1 ? "hidden" : "show"}
               variants={anim_y}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden"
+              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] px-8 z-10"
             >
-              <Section2a />
-            </motion.div>
-          )}
-
-          {state.sec2c && (
-            <motion.div
-              key={"sec2c"}
-              initial={"show"}
-              animate={"show"}
-              variants={anim_y}
-              transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden"
-            >
-              <Section2a />
+              <Section2a
+                initial={"show"}
+                animate={state.sec2itm1 ? "show" : "exit"}
+                variants={anim_x}
+              />
             </motion.div>
           )}
 
           {state.sec2b && (
             <motion.div
               key={"sec2b"}
-              initial={"show"}
-              animate={state.sec2b ? "show" : "exit"}
+              initial={"hidden"}
+              animate={state.sec2itm1 ? "hidden" : "show"}
               variants={anim_x}
-              transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden"
+              transition={{
+                ...springTrans,
+                delay: state.sec2itm1 ? 0.7 : 0.3,
+              }}
+              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] px-8 z-10 "
             >
-              <Section2b />
+              {!state.sec2itm2exit ? (
+                <Section2b
+                  initial={"hidden"}
+                  animate={state.sec2itm1 ? "hidden" : "show"}
+                  variants={anim_x}
+                />
+              ) : (
+                <Section2b
+                  initial={"show"}
+                  animate={"exit"}
+                  variants={anim_x}
+                />
+              )}
             </motion.div>
           )}
 
+          {state.sec2c && (
+            <>
+              <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-40">
+                <VerticleCardsComp data={sectionsData.section2.content3} />
+              </motion.div>
+              <div className="absolute bg-baScrnBlack w-full opacity-30 h-full top-0 z-30"></div>
+            </>
+          )}
           {state.sec3 && (
             <motion.div
               key={"sec3"}
-              className={"absolute inset-0 overflow-hidden h-screen"}
+              className={"absolute inset-0 overflow-hidden h-screen z-0"}
             >
               <Section3 />
             </motion.div>
@@ -114,11 +158,12 @@ const Home: NextPage = () => {
               exit={"exit"}
               variants={anim_x}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden h-screen"
+              className="absolute inset-0 overflow-hidden h-screen z-40"
             >
               <Section4 />
             </motion.div>
           )}
+
           {state.sec5 && (
             <motion.div
               key={"sec5"}
@@ -127,7 +172,7 @@ const Home: NextPage = () => {
               exit={"hidden"}
               variants={anim_y}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden h-screen"
+              className="absolute inset-0 overflow-hidden h-screen z-20"
             >
               <Section5 />
             </motion.div>

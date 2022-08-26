@@ -20,7 +20,7 @@ const Section2Content2 = ({
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        dispatch({ type: "SEC-2b" });
+        // dispatch({ type: "SEC-2b" });
       } else {
         dispatch({ type: "SEC-2a" }); // experimenting
       }
@@ -28,7 +28,10 @@ const Section2Content2 = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
   return (
-    <div ref={ref} className="px-8">
+    <div
+      ref={ref}
+      className="px-8 bg-red-300/50 h-full flex flex-col justify-center items-center"
+    >
       <Heading
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"

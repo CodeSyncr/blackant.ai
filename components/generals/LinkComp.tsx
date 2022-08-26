@@ -5,11 +5,17 @@ interface LinkCompProps {
   className?: string;
   children?: React.ReactNode;
   style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-const LinkComp = ({ children, className = "", style }: LinkCompProps) => {
+const LinkComp = ({
+  children,
+  className = "",
+  style,
+  onClick,
+}: LinkCompProps) => {
   return (
-    <a>
+    <a style={{ cursor: "pointer" }} onClick={onClick}>
       <div
         className={cssClasses(
           "mx-[1.5rem] hover:text-baOrange transition-all",

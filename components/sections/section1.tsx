@@ -18,7 +18,9 @@ const Section1 = () => {
     dispatch({ type: "SEC-1" });
     const element = ref.current;
     element.addEventListener("wheel", (e: any) => {
-      const bottom = e.deltaY > 0;
+      e.preventDefault();
+      let delta = Math.sign(e.deltaY);
+      const bottom = delta > 0;
       if (bottom) {
         dispatch({ type: "SEC-2a" });
       } else {

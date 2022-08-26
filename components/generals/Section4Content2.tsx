@@ -19,6 +19,7 @@ const Section4Content2 = ({ data }: Section4Content2Props) => {
   const scrollRight = () => setValue((prev) => (prev > -20 ? 0 : prev + 20));
 
   const wheelEventHandler = (e: any) => {
+    e.preventDefault();
     let delta = e.deltaY;
     let timeNow = performance.now();
     if (

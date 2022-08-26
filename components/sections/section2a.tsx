@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Section2Content1 from "../generals/section2Content1";
@@ -6,51 +6,113 @@ import Section2Content2 from "../generals/Section2Content2";
 import { motion } from "framer-motion";
 import { anim_x, springTrans } from "../../utils/animation_variants";
 import { useSection } from "../../context";
+import { SectionProps } from "./Types";
+import Heading from "../generals/Heading";
+import Paragraph from "../generals/Paragraph";
+import RotateTextCompSvg from "../generals/RotateTextCompSvg";
+import useWindowDimensions from "../../utils/useWindowSize";
 
-const Section2a = () => {
-  const { state } = useSection();
+const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
+  const data = sectionsData.section2.content1;
+  const { width } = useWindowDimensions();
+  const ref = useRef<HTMLDivElement>(null!);
+  const { state, dispatch } = useSection();
+
+  useEffect(() => {
+    const element = ref.current;
+    element.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      let delta = Math.sign(e.deltaY);
+      const bottom = delta > 0;
+      if (bottom) {
+        dispatch({ type: "SEC-2b" });
+      } else {
+        dispatch({ type: "SEC-1" });
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <Container
-      navblack={state.navBlack}
-      className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
+    <motion.div
+      ref={ref}
+      initial={"show"}
+      animate={state.sec2itm1 ? "show" : "exit"}
+      variants={anim_x}
+      transition={{
+        ...springTrans,
+        delay: state.sec2itm1 ? 0.1 : 0.9,
+      }}
+      className="s2_a absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all "
     >
+      <Heading
+        data={data?.txt1}
+        className="md:-mt-8 lg:pl-[15%]"
+        variants={variants}
+        delay={0.2}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+      <Heading
+        data={data?.txt2}
+        className="text-baOrange lg:pl-[30%] md:-mt-8"
+        variants={variants}
+        delay={0.3}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+      <Heading
+        data={data?.txt3}
+        className=" md:-mt-8 lg:pl-[15%]"
+        variants={variants}
+        delay={0.4}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+      <Heading
+        data={data?.txt2}
+        className=" pb-[2rem] lg:pl-[30%] md:-mt-8"
+        variants={variants}
+        delay={0.5}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+
+      <Paragraph
+        data={data?.placeHolderTxt}
+        className="font-manrSemiBold text-[1.3rem] break-normal mb-[2rem] md:pl-[10%] lg:pl-[30%] md:pr-[20vw]"
+        variants={variants}
+        delay={0.6}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+      <Paragraph
+        data={data?.placeHolderTxt}
+        className="font-manrRegular text-[1rem] break-normal md:pl-[10%] lg:pl-[30%] md:pr-[20vw] mb-[2rem] "
+        variants={variants}
+        delay={0.7}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
       <motion.div
         initial={"show"}
         animate={state.sec2itm1 ? "show" : "exit"}
         variants={anim_x}
         transition={{
           ...springTrans,
-          delay: state.sec2itm1 ? 0.1 : 0.8,
+          delay: 0.8,
         }}
-        className="s2_item1 absolute inset-0 pt-[5rem] flex flex-col justify-center items-center "
+        className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50"
       >
-        <Section2Content1
-          data={sectionsData.section2.content1}
-          initial={"show"}
-          animate={state.sec2itm1 ? "show" : "exit"}
-          variants={anim_x}
-        />
+        <RotateTextCompSvg black={state.navBlack} size={width < 800 ? 8 : 12} />
       </motion.div>
-
-      <motion.div
-        initial={"hidden"}
-        animate={state.sec2itm1 ? "hidden" : "show"}
-        variants={anim_x}
-        transition={{
-          ...springTrans,
-          delay: state.sec2itm1 ? 0.4 : 0.1,
-        }}
-        className="s2_item2 absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-      >
-        <Section2Content2
-          data={sectionsData.section2.content2}
-          initial={"hidden"}
-          animate={state.sec2itm1 ? "hidden" : "show"}
-          variants={anim_x}
-        />
-      </motion.div>
-    </Container>
+    </motion.div>
   );
 };
 

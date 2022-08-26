@@ -15,7 +15,9 @@ const Section5 = () => {
   useEffect(() => {
     const element = ref.current;
     element.addEventListener("wheel", (e) => {
-      const bottom = e.deltaY > 0;
+      e.preventDefault();
+      let delta = Math.sign(e.deltaY);
+      const bottom = delta > 0;
       if (bottom) {
         setTimeout(() => dispatch({ type: "SEC-1" }), 500);
       } else {

@@ -30,7 +30,7 @@ const Section2Content2b = ({
   return (
     <div
       ref={ref}
-      className="px-8 bg-red-400/50 h-full flex justify-center items-center flex-col"
+      className="px-8 h-full flex justify-center items-center flex-col"
     >
       <Heading
         data={data?.txt1}

@@ -22,7 +22,7 @@ const Section2Content1 = ({
     element.addEventListener("wheel", (e) => {
       const bottom = e.deltaY > 0;
       if (bottom) {
-        dispatch({ type: "SEC-2itm1" });
+        dispatch({ type: "SEC-2b" });
       } else {
         dispatch({ type: "SEC-1" });
       }
@@ -30,7 +30,10 @@ const Section2Content1 = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div ref={ref} className="px-8">
+    <div
+      ref={ref}
+      className="px-8  bg-green-300/50 h-full flex flex-col justify-center items-center"
+    >
       <Heading
         data={data?.txt1}
         className="md:-mt-8 lg:pl-[15%]"
@@ -38,7 +41,6 @@ const Section2Content1 = ({
         delay={0.2}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
       <Heading
@@ -48,7 +50,6 @@ const Section2Content1 = ({
         delay={0.3}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
       <Heading
@@ -58,7 +59,6 @@ const Section2Content1 = ({
         delay={0.4}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
       <Heading
@@ -68,7 +68,6 @@ const Section2Content1 = ({
         delay={0.5}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
 
@@ -79,7 +78,6 @@ const Section2Content1 = ({
         delay={0.6}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
       <Paragraph
@@ -89,7 +87,6 @@ const Section2Content1 = ({
         delay={0.7}
         initial={initial}
         animate={animate}
-        exit={exit}
         animatable
       />
     </div>

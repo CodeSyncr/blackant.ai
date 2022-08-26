@@ -13,7 +13,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ data }: ProjectCardProps) => {
   return (
     <div className="w-[20.8rem] md:w-[30.8rem] lg:w-[40.8rem] h-[30.6rem] bg-baWhite overflow-hidden relative rounded-sm">
-      <div className="absolute inset-0 flex justify-center items-center ">
+      <div className="absolute inset-0 flex justify-center items-center pb-1 ">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/images/${data.img}.png`}

@@ -21,10 +21,10 @@ const Section4 = () => {
     >
       <motion.div
         initial={"show"}
-        animate={items.item1 ? "show" : "exit"}
+        animate={state.sec4itm1 ? "show" : "exit"}
         variants={anim_y}
         transition={screenSpringTransition}
-        className="absolute"
+        className="absolute inset-0 overflow-hidden"
       >
         <Section4Content1
           data={sectionsData.section4.content1}

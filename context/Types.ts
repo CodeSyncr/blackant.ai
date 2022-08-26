@@ -39,6 +39,7 @@ export interface SEC {
 
 export interface SectionStatesTypes{
   sec1: boolean;
+  sec2:boolean;
   sec2a: boolean;
   sec2b: boolean;
   sec2c: boolean;
@@ -46,8 +47,10 @@ export interface SectionStatesTypes{
   sec2cani: boolean;
   sec2itm1: boolean;
   sec2itm2: boolean;
+  sec2itm2exit:boolean;
   sec2itm3: boolean;
   sec3: boolean;
+  sec4:boolean;
   sec4itm1: boolean;
   sec4itm2: boolean;
   sec5: boolean;
@@ -60,12 +63,15 @@ export type Action =
   | { type: "SEC-2a" }
   | { type: "SEC-2b" }
   | { type: "SEC-2c" }
+  | { type: "SEC-2-exit" }
   | { type: "SEC-2itm1" }
+  | { type: "analyse_model" }
+  | { type: "features" }
+  | { type: "recent_project" }
   | { type: "analyse_model_exit" }
   | { type: "curious_abt_exit" }
   | { type: "SEC-2b-exit" }
   | { type: "SEC-2a_curious" }
-
   | { type: "SEC-2item1Exit" }
   | { type: "SEC-2item2" }
   | { type: "SEC-2item2Exit" }
@@ -73,6 +79,7 @@ export type Action =
   | { type: "SEC-2item3Exit" }
   | { type: "SEC-3" }
   | { type: "SEC-4" }
+  | { type: "SEC-4a" }
   | { type: "SEC-4item2" }
   | { type: "SEC-5" };
 

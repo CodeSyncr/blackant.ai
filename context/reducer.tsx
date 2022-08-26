@@ -2,6 +2,7 @@ import { Action, Dispatch, SectionStatesTypes } from "./Types";
 
 export const initialState = {
   sec1: true,
+  sec2: true,
   sec2a: false,
   sec2b: false,
   sec2c: false,
@@ -9,81 +10,141 @@ export const initialState = {
   sec2cani: false,
   sec2itm1: false,
   sec2itm2: false,
+  sec2itm2exit: false,
   sec2itm3: false,
   sec3: false,
-  sec4itm1: false,
+  sec4: false,
+  sec4itm1: true,
   sec4itm2: false,
   sec5: false,
   contactUs: false,
   navBlack: false,
+  analyse_model: false,
 };
 
 export const reducer = (state: SectionStatesTypes, actions: Action) => {
   switch (actions.type) {
     case "SEC-1":
       return {
-        ...state,
         sec1: true,
-        sec2a: true,
-        navBlack: false,
-        contactUs: true,
+        sec2: true,
+        sec2a: false,
+        sec2b: false,
+        sec2c: false,
+        sec2bani: false,
+        sec2cani: false,
+        sec2itm1: false,
+        sec2itm2: false,
+        sec2itm2exit: false,
+        sec2itm3: false,
+        sec3: false,
+        sec4: false,
+        sec4itm1: true,
+        sec4itm2: false,
         sec5: false,
+        contactUs: false,
+        navBlack: false,
       };
     case "SEC-2a":
       return {
         ...state,
         sec1: false,
+        sec2: true,
+        sec2a: true,
+        sec2b: true,
         sec2itm1: true,
         navBlack: true,
       };
-    case "SEC-2a_curious":
-      return {
-        ...state,
-        sec2itm1: false,
-        sec2a: true,
-        sec2c: true,
-        sec2b: false,
-      };
-
-    case "SEC-2itm1":
-      return {
-        ...state,
-        sec2itm1: false,
-      };
-
     case "SEC-2b":
       return {
         ...state,
+        sec2itm1: false,
+      };
+    case "SEC-2c":
+      return {
+        ...state,
+        sec2b: true,
+        sec2c: true,
+        sec2itm2: true,
+        sec3: true,
+      };
+    case "analyse_model":
+      return {
+        ...state,
         sec1: false,
+        sec2: true,
         sec2a: false,
         sec2b: true,
-        sec2bani: true,
-        sec2itm2: true,
-        sec2itm3: true,
+        sec2itm1: false,
+        sec2itm2exit: false,
+        sec2c: true,
+        navBlack: true,
       };
 
     case "analyse_model_exit":
       return {
         ...state,
-        sec2itm3: false,
+        sec2c: false,
       };
     case "curious_abt_exit":
       return {
         ...state,
-        sec2itm2: false,
+        sec2itm2exit: true,
       };
-    case "SEC-2b-exit":
+    case "SEC-2-exit":
       return {
         ...state,
-        sec2bani: false,
-      };
-    case "SEC-3":
-      return {
-        ...state,
-        sec2b: false,
+        sec2: false,
+        sec2a: false,
+        sec2c: false,
         sec3: true,
+        navBlack: false,
       };
 
+    // case "features":
+    //   return {
+    //     ...state,
+    //     sec2: false,
+    //     sec2a: false,
+    //     sec2c: false,
+    //     sec3: true,
+    //     navBlack: false,
+    //   };
+    case "recent_project":
+      return {
+        ...state,
+        sec4itm1: false,
+        sec4itm2: true,
+      };
+
+    case "SEC-4":
+      return {
+        ...state,
+        sec1: false,
+        sec2: false,
+        navBlack: true,
+        sec4: true,
+      };
+
+    case "SEC-4a":
+      return {
+        ...state,
+        sec1: false,
+        sec2: false,
+        sec4: true,
+      };
+    case "SEC-5":
+      return {
+        ...state,
+        sec4: false,
+        sec5: true,
+        sec2: true,
+        sec2a: true,
+        sec2b: true,
+        sec2itm1: true,
+        sec2c: false,
+        navBlack: false,
+      };
     default:
       return state;
   }

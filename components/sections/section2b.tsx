@@ -1,50 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Section2Content1 from "../generals/section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { anim_x, springTrans } from "../../utils/animation_variants";
-import { SectionProps } from "./Types";
-import VerticleCardsComp from "../generals/VerticleCardsComp";
 import { useSection } from "../../context";
-import Section2Content2b from "../generals/Section2Content2b";
+import { SectionProps } from "./Types";
+import Heading from "../generals/Heading";
+import Paragraph from "../generals/Paragraph";
 
-const Section2b = () => {
-  const { state } = useSection();
+const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
+  const data = sectionsData.section2.content2;
+  const ref = useRef<HTMLDivElement>(null!);
+  const { state, dispatch } = useSection();
+  useEffect(() => {
+    const element = ref.current;
+    element.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      let delta = Math.sign(e.deltaY);
+      const bottom = delta > 0;
+      if (bottom) {
+        dispatch({ type: "SEC-2c" });
+      } else {
+        dispatch({ type: "SEC-2a" }); // experimenting
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <Container
-      navblack={state.navBlack}
-      className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
+    <motion.div
+      ref={ref}
+      initial={"hidden"}
+      animate={state.sec2itm1 ? "hidden" : "show"}
+      variants={anim_x}
+      transition={{
+        ...springTrans,
+        delay: state.sec2itm1 ? 0.7 : 0.3,
+      }}
+      className="s2_b absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all"
     >
-      <motion.div
-        initial={"show"}
-        animate={state.sec2itm2 ? "show" : "exit"}
-        variants={anim_x}
-        transition={{
-          ...springTrans,
-          delay: 0.4,
-        }}
-        className=" absolute bottom-0 pt-[5rem] w-full h-full flex flex-col justify-center items-center"
-      >
-        <Section2Content2b
-          data={sectionsData.section2.content2}
-          initial={"show"}
-          animate={state.sec2itm2 ? "show" : "exit"}
-          variants={anim_x}
-        />
-      </motion.div>
+      <Heading
+        data={data?.txt1}
+        className="md:-mt-8 lg:pl-[15%]"
+        variants={variants}
+        delay={0.4}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
 
-      {state.sec2itm3 && (
-        <>
-          <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
-            <VerticleCardsComp data={sectionsData.section2.content3} />
-          </motion.div>
-          <div className="absolute bg-baScrnBlack w-full opacity-30 h-full top-0 z-0"></div>
-        </>
-      )}
-    </Container>
+      <Heading
+        data={data?.txt2}
+        className="text-baOrange lg:pl-[30%] md:-mt-8 mb-[2rem]"
+        variants={variants}
+        delay={0.5}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+      <Paragraph
+        data={data?.placeHolderTxt}
+        className="font-manrSemiBold text-[1.3rem] break-normal mb-[2rem] md:pl-[10%] lg:pl-[30%] md:pr-[20vw]"
+        variants={variants}
+        delay={0.6}
+        initial={initial}
+        animate={animate}
+        animatable
+      />
+    </motion.div>
   );
 };
 

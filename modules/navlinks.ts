@@ -12,7 +12,7 @@ export const navlinks = [
         active:false
     },   
     {
-        label: "Recent concepts", 
+        label: "Recent projects", 
         url:"/",
         icon:"",
         active:true

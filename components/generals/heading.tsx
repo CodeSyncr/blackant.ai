@@ -34,7 +34,6 @@ const Heading = ({
       style={style}
       initial={initial}
       animate={animate}
-      exit={exit}
       variants={{ ...variants }}
       transition={spring(delay)}
     >
