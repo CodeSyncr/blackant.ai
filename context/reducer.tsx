@@ -28,12 +28,12 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
       return {
         sec1: true,
         sec2: true,
-        sec2a: false,
+        sec2a: true,
         sec2b: false,
         sec2c: false,
         sec2bani: false,
         sec2cani: false,
-        sec2itm1: false,
+        sec2itm1: true,
         sec2itm2: false,
         sec2itm2exit: false,
         sec2itm3: false,
@@ -108,6 +108,9 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2: false,
         sec2a: false,
         sec3: true,
+        sec4: false,
+        sec4itm1: false,
+        sec4itm2: false,
         navBlack: false,
       };
     case "recent_project":
