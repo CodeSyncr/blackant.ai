@@ -44,9 +44,9 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
       element.removeEventListener("wheel", wheelEventHandler);
     };
   }, []);
-
+  console.log(value);
   useEffect(() => {
-    if (value === 30) {
+    if (value > 20) {
       setTimeout(() => {
         dispatch({ type: "analyse_model_exit" });
       }, 1000);
