@@ -47,8 +47,9 @@ const Home: NextPage = () => {
           <motion.div
             key={"sec1"}
             initial={"exit"}
-            animate={state.sec1 ? "show" : "exit"}
+            animate={state.sec1 ? "show" : state.sec5 ? "hidden" : "exit"}
             variants={anim_y}
+            exit={"hidden"}
             transition={screenSpringTransition}
             className="absolute inset-0 z-10"
           >
@@ -59,7 +60,7 @@ const Home: NextPage = () => {
             <motion.div
               key={"sec2"}
               initial={"hidden"}
-              animate={state.sec1 ? "hidden" : "show"}
+              animate={state.sec1 ? "hidden" : state.sec5 ? "hidden" : "show"}
               variants={anim_y}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden z-10"
@@ -75,7 +76,7 @@ const Home: NextPage = () => {
             <motion.div
               key={"sec2"}
               initial={"show"}
-              animate={"exit"}
+              animate={state.sec2c ? "show" : "exit"}
               variants={anim_x}
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden z-10"
@@ -192,12 +193,12 @@ const Home: NextPage = () => {
           {state.sec5 && (
             <motion.div
               key={"sec5"}
-              initial={"show"}
+              initial={state.sec5 ? "exit" : "show"}
               animate={"show"}
-              exit={"hidden"}
+              exit={state.sec5 ? "exit" : "hidden"}
               variants={anim_y}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden h-screen z-20"
+              className="absolute inset-0 overflow-hidden h-screen z-0"
             >
               <Section5 />
             </motion.div>

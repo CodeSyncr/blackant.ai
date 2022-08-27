@@ -72,12 +72,14 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
       return {
         ...state,
         sec1: false,
-        sec2: true,
+        sec2: false,
+        sect3: false,
         sec2a: false,
         sec2b: true,
         sec2itm1: false,
         sec2itm2exit: false,
         sec2c: true,
+        sec5: false,
         navBlack: true,
       };
 
@@ -118,6 +120,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         ...state,
         sec4itm1: false,
         sec4itm2: true,
+        sec5: true,
       };
 
     case "SEC-4":
@@ -138,17 +141,27 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec1: false,
         sec2: false,
         sec4: true,
+        sec5: true,
       };
     case "SEC-5":
       return {
-        ...state,
-        sec4: false,
-        sec5: true,
+        sec1: false,
         sec2: true,
-        sec2a: true,
-        sec2b: true,
-        sec2itm1: true,
+        sec2a: false,
+        sec2b: false,
         sec2c: false,
+        sec2bani: false,
+        sec2cani: false,
+        sec2itm1: false,
+        sec2itm2: false,
+        sec2itm2exit: false,
+        sec2itm3: false,
+        sec3: false,
+        sec4: false,
+        sec4itm1: true,
+        sec4itm2: false,
+        sec5: true,
+        contactUs: false,
         navBlack: false,
       };
     default:
