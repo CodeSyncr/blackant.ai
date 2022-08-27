@@ -6,8 +6,10 @@ import ProjectCard from "../generals/ProjectCard";
 import { Section4Content2Props } from "../sections/Types";
 import Heading from "./Heading";
 import { useSection } from "../../context";
+import { sectionsData } from "../../modules/sections";
 
-const Section4Content2 = ({ data }: Section4Content2Props) => {
+const Section4Content2 = () => {
+  const data = sectionsData.section4.content2;
   const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
   const [value, setValue] = useState(1);

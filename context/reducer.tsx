@@ -96,20 +96,20 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         ...state,
         sec2: false,
         sec2a: false,
+        sec2b: false,
         sec2c: false,
         sec3: true,
         navBlack: false,
       };
 
-    // case "features":
-    //   return {
-    //     ...state,
-    //     sec2: false,
-    //     sec2a: false,
-    //     sec2c: false,
-    //     sec3: true,
-    //     navBlack: false,
-    //   };
+    case "features":
+      return {
+        ...state,
+        sec2: false,
+        sec2a: false,
+        sec3: true,
+        navBlack: false,
+      };
     case "recent_project":
       return {
         ...state,
@@ -122,6 +122,9 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         ...state,
         sec1: false,
         sec2: false,
+        sec2a: false,
+        sec2b: false,
+        sec2c: false,
         navBlack: true,
         sec4: true,
       };

@@ -1,20 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
+import { sectionsData } from "../../modules/sections";
 import useWindowDimensions from "../../utils/useWindowSize";
 import { Section4Content1Props } from "../sections/Types";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import RotateTextCompSvg from "./RotateTextCompSvg";
 
-const Section4Content1 = ({
-  data,
-  setItems,
-  items,
-  sections,
-}: Section4Content1Props) => {
+const Section4Content1 = () => {
   const ref = useRef<HTMLDivElement>(null!);
   const { state, dispatch } = useSection();
   const { width } = useWindowDimensions();
+  const data = sectionsData.section4.content1;
 
   useEffect(() => {
     const element = ref.current;
@@ -29,7 +26,7 @@ const Section4Content1 = ({
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, []);
   return (
     <div
       ref={ref}

@@ -36,14 +36,14 @@ const Section2c = () => {
         />
       </motion.div>
 
-      {state.sec2itm3 && (
+      {/* {state.sec2itm3 && (
         <>
           <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
             <VerticleCardsComp data={sectionsData.section2.content3} />
           </motion.div>
           <div className="absolute bg-baScrnBlack w-full opacity-30 h-full top-0 z-0"></div>
         </>
-      )}
+      )} */}
     </Container>
   );
 };

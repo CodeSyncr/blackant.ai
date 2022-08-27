@@ -25,7 +25,8 @@ import Section2c from "../components/sections/section2c";
 import Container from "../components/generals/Container";
 import { sectionsData } from "../modules/sections";
 import VerticleCardsComp from "../components/generals/VerticleCardsComp";
-import AnalyseModel from "../components/sections/analyse_model";
+import Section4Content1 from "../components/generals/Section4Content1";
+import Section4Content2 from "../components/generals/Section4Content2";
 
 const Home: NextPage = () => {
   const { state } = useSection();
@@ -160,6 +161,30 @@ const Home: NextPage = () => {
               transition={screenSpringTransition}
               className="absolute inset-0 overflow-hidden h-screen z-40"
             >
+              <Container
+                navblack={state.navBlack}
+                className="bg-baCream text-baBlack font-fracRegular w-screen overflow-hidden"
+              >
+                <motion.div
+                  initial={"show"}
+                  animate={state.sec4itm1 ? "show" : "exit"}
+                  variants={anim_y}
+                  transition={screenSpringTransition}
+                  className="absolute inset-0 overflow-hidden"
+                >
+                  <Section4Content1 />
+                </motion.div>
+
+                <motion.div
+                  initial={"hidden"}
+                  animate={state.sec4itm1 ? "hidden" : "show"}
+                  variants={anim_y}
+                  transition={screenSpringTransition}
+                  className="absolute w-full h-full pt-[5rem] flex flex-col justify-center items-center "
+                >
+                  <Section4Content2 />
+                </motion.div>
+              </Container>
               <Section4 />
             </motion.div>
           )}
