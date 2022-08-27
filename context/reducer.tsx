@@ -26,6 +26,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
   switch (actions.type) {
     case "SEC-1":
       return {
+        ...state,
         sec1: true,
         sec2: true,
         sec2a: true,
@@ -71,6 +72,15 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "analyse_model":
       return {
         ...state,
+        sec2bani: false,
+        sec2cani: false,
+        sec2itm2: false,
+        sec2itm3: false,
+        sec3: false,
+        sec4: false,
+        sec4itm1: false,
+        sec4itm2: false,
+        contactUs: false,
         sec1: false,
         sec2: false,
         sect3: false,
@@ -110,17 +120,9 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2: false,
         sec2a: false,
         sec3: true,
-        sec4: false,
         sec4itm1: false,
         sec4itm2: false,
         navBlack: false,
-      };
-    case "recent_project":
-      return {
-        ...state,
-        sec4itm1: false,
-        sec4itm2: true,
-        sec5: true,
       };
 
     case "SEC-4":
@@ -133,36 +135,23 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2c: false,
         navBlack: true,
         sec4: true,
-      };
-
-    case "SEC-4a":
-      return {
-        ...state,
-        sec1: false,
-        sec2: false,
-        sec4: true,
-        sec5: true,
-      };
-    case "SEC-5":
-      return {
-        sec1: false,
-        sec2: true,
-        sec2a: false,
-        sec2b: false,
-        sec2c: false,
-        sec2bani: false,
-        sec2cani: false,
-        sec2itm1: false,
-        sec2itm2: false,
-        sec2itm2exit: false,
-        sec2itm3: false,
-        sec3: false,
-        sec4: false,
         sec4itm1: true,
         sec4itm2: false,
+      };
+
+    case "recent_project":
+      return {
+        ...state,
+        sec4: true,
+        sec4itm1: true,
+        sec4itm2: true,
         sec5: true,
-        contactUs: false,
-        navBlack: false,
+      };
+
+    case "SEC-5":
+      return {
+        sec2: true,
+        sec5: true,
       };
     default:
       return state;

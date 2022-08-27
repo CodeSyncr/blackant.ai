@@ -12,6 +12,7 @@ const Section4Content2 = () => {
   const data = sectionsData.section4.content2;
   const { dispatch } = useSection();
   const ref = useRef<HTMLDivElement>(null!);
+  const refs4 = useRef<HTMLDivElement>(null!);
   const [value, setValue] = useState(1);
   let scrollingDirection = 0;
   let lastScroll = 9999;
@@ -38,30 +39,49 @@ const Section4Content2 = () => {
       scrollingDirection = 2;
     }
     lastScroll = timeNow;
+    e.stopPropagation();
   };
-
+  const wheelEventHandlerS4 = (e: any) => {
+    e.preventDefault();
+    let delta = Math.sign(e.deltaY);
+    const bottom = delta > 0;
+    if (!bottom) {
+      dispatch({ type: "SEC-4" });
+    }
+    e.stopPropagation();
+  };
   useEffect(() => {
     const element = ref.current;
+    const elementS4 = refs4.current;
     element.addEventListener("wheel", wheelEventHandler);
     if (value <= -60) {
       setTimeout(() => {
         dispatch({ type: "SEC-5" });
       }, 500);
     }
+    elementS4.addEventListener("wheel", wheelEventHandlerS4);
     return () => {
       element.removeEventListener("wheel", wheelEventHandler);
+      elementS4.addEventListener("wheel", wheelEventHandlerS4);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
-    <div className="font-fracRegular w-full h-full px-8 md:pl-[5rem]">
+    <div
+      ref={refs4}
+      className="font-fracRegular w-full h-full px-8 md:pl-[5rem]"
+    >
       <Heading data={data.txt1} className="text-[2rem] md:text-[3rem] " />
       <div className="mb-[2rem] flex justify-start items-center ">
         <p className="text-baOrange mr-4 font-bold">{data.txt2}</p>
         <img src={"/icons/long_aero.svg"} alt="aero" />
       </div>
-      <div ref={ref} className="relative flex w-full h-full overflow-hidden">
+
+      <div
+        ref={ref}
+        className="relative flex w-full h-[32rem] overflow-hidden cursor-move "
+      >
         <motion.div
           initial={{ x: `0%` }}
           animate={{ x: `${value}%` }}

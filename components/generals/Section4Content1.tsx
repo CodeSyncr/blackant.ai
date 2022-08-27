@@ -22,7 +22,7 @@ const Section4Content1 = () => {
       if (bottom) {
         setTimeout(() => dispatch({ type: "recent_project" }), 500);
       } else {
-        dispatch({ type: "features" });
+        setTimeout(() => dispatch({ type: "features" }), 500);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

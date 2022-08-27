@@ -156,7 +156,7 @@ const Home: NextPage = () => {
             <motion.div
               key={"sec4"}
               initial={"hidden"}
-              animate={"show"}
+              animate={state.sec4itm1 ? "show" : "hidden"}
               exit={"exit"}
               variants={anim_x}
               transition={screenSpringTransition}
@@ -168,17 +168,17 @@ const Home: NextPage = () => {
               >
                 <motion.div
                   initial={"show"}
-                  animate={state.sec4itm1 ? "show" : "exit"}
+                  animate={state.sec4itm2 ? "exit" : "show"}
                   variants={anim_y}
                   transition={screenSpringTransition}
-                  className="absolute inset-0 overflow-hidden"
+                  className="absolute inset-0 overflow-hidden "
                 >
                   <Section4Content1 />
                 </motion.div>
 
                 <motion.div
                   initial={"hidden"}
-                  animate={state.sec4itm1 ? "hidden" : "show"}
+                  animate={state.sec4itm2 ? "show" : "hidden"}
                   variants={anim_y}
                   transition={screenSpringTransition}
                   className="absolute w-full h-full pt-[5rem] flex flex-col justify-center items-center "
