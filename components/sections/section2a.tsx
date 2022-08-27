@@ -43,7 +43,7 @@ const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
         ...springTrans,
         delay: state.sec2itm1 ? 0.1 : 0.9,
       }}
-      className="s2_a absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all "
+      className="s2_a absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
     >
       <Heading
         data={data?.txt1}

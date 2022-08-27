@@ -44,7 +44,7 @@ const Sec1 = () => {
         <Container
           ref={ref}
           navblack={state.navBlack}
-          className="s1_item1 bg-baScrnBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] z-10"
+          className="s1_item1 bg-baScrnBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem]  z-10"
         >
           <Heading
             data={sectionsData.section1.txt1}

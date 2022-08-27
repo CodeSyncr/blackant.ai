@@ -36,23 +36,21 @@ const RotateTextCompSvg = ({ size = 12, black }: RotateTextCompSvgProps) => {
           <img src="/icons/contact_us_wht1.svg" alt="contact us" />
         )}
       </motion.div>
-      {!state.sec5 && (
-        <motion.div
-          animate={{ y: [0, 5] }}
-          transition={{
-            type: "spring",
-            repeat: Infinity,
-            repeatType: "reverse",
-            duration: 0.8,
-            stiffness: 80,
-          }}
-          style={{
-            width: `${size / 6}rem`,
-          }}
-        >
-          <img src="/icons/down_aero_sm.svg" alt="aero" />
-        </motion.div>
-      )}
+      <motion.div
+        animate={{ y: [0, 5] }}
+        transition={{
+          type: "spring",
+          repeat: Infinity,
+          repeatType: "reverse",
+          duration: 0.8,
+          stiffness: 80,
+        }}
+        style={{
+          width: `${size / 6}rem`,
+        }}
+      >
+        <img src="/icons/down_aero_sm.svg" alt="aero" />
+      </motion.div>
     </div>
   );
 };

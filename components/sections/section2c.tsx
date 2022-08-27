@@ -16,7 +16,7 @@ const Section2c = () => {
   return (
     <Container
       navblack={state.navBlack}
-      className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
+      className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem]  transition-all"
     >
       <motion.div
         initial={"show"}

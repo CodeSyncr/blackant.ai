@@ -30,7 +30,7 @@ const Section4Content1 = () => {
   return (
     <div
       ref={ref}
-      className="relative w-full h-full  px-8 md:pl-[15%] font-fracRegular text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] flex justify-center flex-col pt-[5rem]"
+      className="relative w-full h-full  px-8 md:pl-[15%] font-fracRegular text-[3rem] sm:text-[4rem] md:text-[5rem]  flex justify-center flex-col pt-[5rem]"
     >
       <Heading data={data.txt1} className="md:-mt-8" />
       <Heading

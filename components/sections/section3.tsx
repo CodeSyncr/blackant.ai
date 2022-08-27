@@ -40,7 +40,7 @@ const Section3 = () => {
         <Cell className="col-span-full lg:col-span-3 flex justify-start items-center text-left lg:text-right">
           <Heading
             data={sectionsData.section3.txt1}
-            className="text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] lg:w-[90%]"
+            className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] lg:w-[90%]"
           />
         </Cell>
 

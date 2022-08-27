@@ -12,7 +12,7 @@ const Sec1itm3 = () => {
       <Container
         key={"sec1itm3"}
         navblack={state.navBlack}
-        className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] transition-all"
+        className="bg-baCream px-8 flex-col text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem]  transition-all"
       >
         <motion.div className="s2_item3 absolute bottom-0 w-full min-h-full flex flex-col justify-center items-center overflow-hidden z-50">
           <VerticleCardsComp data={sectionsData.section2.content3} />
