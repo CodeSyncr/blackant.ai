@@ -3,11 +3,11 @@ import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
-import Cta from "../generals/Cta";
-import Heading from "../generals/Heading";
+import Cta from "../generals/cta";
+import Heading from "../generals/heading";
 import Input from "../generals/Input";
 import { Cell, Grid } from "../generals/LayoutComp";
-import Paragraph from "../generals/Paragraph";
+import Paragraph from "../generals/paragraph";
 
 const Section5 = () => {
   const { state, dispatch } = useSection();

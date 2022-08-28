@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 
 import { SectionProps } from "../sections/Types";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
+import Heading from "./heading";
+import Paragraph from "./paragraph";
 
 const Section2Content2b = ({
   data,

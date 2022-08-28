@@ -4,9 +4,9 @@ import { useSection } from "../../context";
 import { ctaData } from "../../modules/navlinks";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
-import Cta from "../generals/Cta";
-import Heading from "../generals/Heading";
-import { useRouter } from "next/router";
+import Cta from "../generals/cta";
+import Heading from "../generals/heading";
+
 // eslint-disable-next-line react/display-name
 
 const Section1 = () => {

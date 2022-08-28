@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-
 import ProjectCard from "../generals/ProjectCard";
-import { Section4Content2Props } from "../sections/Types";
-import Heading from "./Heading";
+import Heading from "./heading";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 

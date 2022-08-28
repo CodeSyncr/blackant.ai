@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
-import Cta from "./Cta";
+import Cta from "./cta";
 
 const StickyContactUs = () => {
   const { dispatch } = useSection();

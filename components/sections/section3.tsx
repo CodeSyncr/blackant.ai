@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
-import Heading from "../generals/Heading";
+import Heading from "../generals/heading";
 import { Cell, Grid } from "../generals/LayoutComp";
 import ProgramCard from "../generals/ProgramCard";
 import RotateTextCompSvg from "../generals/RotateTextCompSvg";

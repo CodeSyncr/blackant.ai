@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
-import RotateTextCompSvg from "./RotateTextCompSvg";
-import { motion } from "framer-motion";
-import { springTrans } from "../../utils/animation_variants";
+import Heading from "./heading";
+import Paragraph from "./paragraph";
 import { SectionProps } from "../sections/Types";
 import { useSection } from "../../context";
 

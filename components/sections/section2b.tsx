@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { anim_x, springTrans } from "../../utils/animation_variants";
 import { useSection } from "../../context";
 import { SectionProps } from "./Types";
-import Heading from "../generals/Heading";
-import Paragraph from "../generals/Paragraph";
+import Heading from "../generals/heading";
+import Paragraph from "../generals/paragraph";
 
 const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
   const data = sectionsData.section2.content2;
