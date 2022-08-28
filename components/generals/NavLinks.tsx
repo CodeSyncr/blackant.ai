@@ -3,7 +3,7 @@ import React from "react";
 import { useSection } from "../../context";
 import { navlinks, ctaData } from "../../modules/navlinks";
 import { cssClasses } from "../../utils/helpers";
-import Cta from "./Cta";
+import Cta from "./cta";
 import LinkComp from "./LinkComp";
 
 interface NavLinksProps {

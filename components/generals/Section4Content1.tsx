@@ -2,9 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import useWindowDimensions from "../../utils/useWindowSize";
-import { Section4Content1Props } from "../sections/Types";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
+import Heading from "./heading";
+import Paragraph from "./paragraph";
 import RotateTextCompSvg from "./RotateTextCompSvg";
 
 const Section4Content1 = () => {
