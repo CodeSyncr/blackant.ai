@@ -101,7 +101,6 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         ...initialState,
         sec2: false,
         sec2a: false,
-        sec2b: false,
         sec1: false,
         sec5: false,
         sec3: true,
