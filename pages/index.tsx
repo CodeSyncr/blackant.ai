@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/Logo.svg" />
       </Head>
 
-      <header className="fixed w-full z-50">
+      <header className="fixed w-full z-50 ">
         <Navbar black={state.navBlack} />
       </header>
 
