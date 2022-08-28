@@ -48,6 +48,7 @@ const Section1 = () => {
       <Cta
         text={ctaData.section1.text}
         className="border-none outline-none bg-baWhite text-baBlack font-bold p-4 px-10 flex justify-center items-center text-[1rem] font-manrBold z-10"
+        onClick={() => dispatch({ type: "SEC-5" })}
       />
       <div className="absolute inset-0 -z-10 overflow-hidden flex justify-center items-center">
         <img
