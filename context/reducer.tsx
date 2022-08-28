@@ -26,25 +26,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
   switch (actions.type) {
     case "SEC-1":
       return {
-        ...state,
-        sec1: true,
-        sec2: true,
-        sec2a: true,
-        sec2b: false,
-        sec2c: false,
-        sec2bani: false,
-        sec2cani: false,
-        sec2itm1: true,
-        sec2itm2: false,
-        sec2itm2exit: false,
-        sec2itm3: false,
-        sec3: false,
-        sec4: false,
-        sec4itm1: true,
-        sec4itm2: false,
-        sec5: false,
-        contactUs: false,
-        navBlack: false,
+        ...initialState,
       };
     case "SEC-2a":
       return {
@@ -82,7 +64,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec4itm2: false,
         contactUs: false,
         sec1: false,
-        sec2: false,
+        sec2: true,
         sect3: false,
         sec2a: false,
         sec2b: true,
@@ -116,9 +98,12 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
 
     case "features":
       return {
-        ...state,
+        ...initialState,
         sec2: false,
         sec2a: false,
+        sec2b: false,
+        sec1: false,
+        sec5: false,
         sec3: true,
         sec4itm1: false,
         sec4itm2: false,
@@ -146,12 +131,16 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec4itm1: true,
         sec4itm2: true,
         sec5: true,
+        navBlack: true,
       };
 
     case "SEC-5":
       return {
         sec2: true,
         sec5: true,
+        sec4: false,
+        sec4itm1: false,
+        sec4itm2: false,
       };
     default:
       return state;

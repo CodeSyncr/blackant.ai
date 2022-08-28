@@ -198,7 +198,7 @@ const Home: NextPage = () => {
               exit={state.sec5 ? "exit" : "hidden"}
               variants={anim_y}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden h-screen z-0"
+              className="absolute inset-0 overflow-hidden h-screen z-20"
             >
               <Section5 />
             </motion.div>

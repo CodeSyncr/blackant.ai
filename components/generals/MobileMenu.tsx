@@ -31,6 +31,7 @@ const MobileMenu = ({ black, menuHandler }: MobileMenuProps) => {
             ? "flex flex-col justify-between items-center text-[2rem] h-[50%]"
             : "flex flex-col justify-between items-center text-[2rem] h-[50%]"
         }
+        menuClose={menuHandler}
       />
     </div>
   );

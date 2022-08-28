@@ -8,7 +8,7 @@ interface RotateTextCompSvgProps {
 }
 
 const RotateTextCompSvg = ({ size = 12, black }: RotateTextCompSvgProps) => {
-  const { state } = useSection();
+  const { state, dispatch } = useSection();
   return (
     <div
       style={{
@@ -47,7 +47,9 @@ const RotateTextCompSvg = ({ size = 12, black }: RotateTextCompSvgProps) => {
         }}
         style={{
           width: `${size / 6}rem`,
+          cursor: "pointer",
         }}
+        onClick={() => dispatch({ type: "SEC-5" })}
       >
         <img src="/icons/down_aero_sm.svg" alt="aero" />
       </motion.div>

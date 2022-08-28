@@ -8,10 +8,28 @@ import LinkComp from "./LinkComp";
 
 interface NavLinksProps {
   className: string;
-  onClick: (text: string) => void;
+  menuClose?: () => void;
 }
 
-const NavLinks = ({ className, onClick }: NavLinksProps) => {
+const NavLinks = ({ className, menuClose }: NavLinksProps) => {
+  const { dispatch } = useSection();
+  const quoteHandler = () => {
+    dispatch({ type: "SEC-5" });
+    menuClose?.();
+  };
+  const linkClick = (text: string) => {
+    if (text === "How it's done") {
+      return dispatch({ type: "analyse_model" });
+    }
+    if (text === "Features") {
+      return dispatch({ type: "features" });
+    }
+    return dispatch({ type: "recent_project" });
+  };
+  const navLinkHandler = (text: string) => {
+    linkClick(text);
+    menuClose?.();
+  };
   return (
     <>
       <div className={className + " " + "font-manrMedium"}>
@@ -20,7 +38,7 @@ const NavLinks = ({ className, onClick }: NavLinksProps) => {
             <a
               key={idx}
               style={{ cursor: "pointer" }}
-              onClick={() => onClick(link.label)}
+              onClick={() => navLinkHandler(link.label)}
             >
               <div
                 className={cssClasses(
@@ -38,6 +56,7 @@ const NavLinks = ({ className, onClick }: NavLinksProps) => {
           text={ctaData.quote.text}
           icon={`/icons/long_aero.svg`}
           className="border-none outline-none bg-baOrange text-baWhite p-3 px-4 ml-6 flex justify-center items-center"
+          onClick={quoteHandler}
         />
       </div>
     </>
