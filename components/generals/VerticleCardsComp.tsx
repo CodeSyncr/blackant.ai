@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Section2Content3 from "./Section2Content3";
 import { VerticleCardsCompProps } from "../sections/Types";
 import { useSection } from "../../context";
+import { debounce } from "lodash";
 
 const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   const { dispatch } = useSection();
@@ -19,7 +20,7 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
 
   const wheelEventHandler = (e: any) => {
     e.preventDefault();
-    let delta = e.deltaY;
+    let delta = Math.sign(e.deltaY);
     let timeNow = performance.now();
     if (
       delta > 0 &&
@@ -44,12 +45,14 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
       element.removeEventListener("wheel", wheelEventHandler);
     };
   }, []);
+
   console.log(value);
+
   useEffect(() => {
-    if (value > 20) {
+    if (value > 15) {
       setTimeout(() => {
         dispatch({ type: "analyse_model_exit" });
-      }, 1000);
+      }, 500);
     }
     if (value === -75) {
       setTimeout(() => {
@@ -57,7 +60,7 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
       }, 1000);
       setTimeout(() => {
         dispatch({ type: "curious_abt_exit" });
-      }, 1500);
+      }, 1200);
       setTimeout(() => {
         dispatch({ type: "SEC-2-exit" });
       }, 2000);
