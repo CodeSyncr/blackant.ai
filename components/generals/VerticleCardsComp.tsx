@@ -15,8 +15,8 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   let lastScroll = 9999;
   let scrollIdleTime = 300;
 
-  const scrollUp = () => setValue((prev) => (prev < -50 ? -65 : prev - 25));
-  const scrollDown = () => setValue((prev) => (prev > 10 ? 10 : prev + 25));
+  const scrollUp = () => setValue((prev) => (prev < -50 ? -76 : prev - 25));
+  const scrollDown = () => setValue((prev) => (prev > 0 ? 26 : prev + 25));
 
   const wheelEventHandler = (e: any) => {
     e.preventDefault();
@@ -26,47 +26,54 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
       delta > 0 &&
       (scrollingDirection != 1 || timeNow > lastScroll + scrollIdleTime)
     ) {
-      setTimeout(() => scrollUp(), 1000);
+      setTimeout(() => scrollUp(), 500);
       scrollingDirection = 1;
     } else if (
       delta < 0 &&
       (scrollingDirection != 2 || timeNow > lastScroll + scrollIdleTime)
     ) {
-      setTimeout(() => scrollDown(), 1000);
+      setTimeout(() => scrollDown(), 500);
       scrollingDirection = 2;
     }
     lastScroll = timeNow;
   };
 
   useEffect(() => {
+    let timer: any;
     const element = ref.current;
-    element.addEventListener("wheel", wheelEventHandler);
+    timer = setTimeout(() => {
+      element.addEventListener("wheel", wheelEventHandler);
+    }, 500);
     return () => {
+      clearTimeout(timer);
       element.removeEventListener("wheel", wheelEventHandler);
     };
   }, []);
 
-  console.log(value);
-
   useEffect(() => {
-    if (value > 15) {
-      setTimeout(() => {
-        dispatch({ type: "analyse_model_exit" });
-      }, 500);
+    const element = ref.current;
+    if (value > 25) {
+      element.addEventListener("wheel", () => {
+        setTimeout(() => {
+          dispatch({ type: "analyse_model_exit" });
+        }, 500);
+      });
     }
-    if (value === -75) {
-      setTimeout(() => {
-        dispatch({ type: "analyse_model_exit" });
-      }, 1000);
-      setTimeout(() => {
-        dispatch({ type: "curious_abt_exit" });
-      }, 1200);
-      setTimeout(() => {
-        dispatch({ type: "SEC-2-exit" });
-      }, 2000);
-      setTimeout(() => {
-        dispatch({ type: "SEC-3" });
-      }, 2100);
+    if (value < -75) {
+      element.addEventListener("wheel", () => {
+        setTimeout(() => {
+          dispatch({ type: "analyse_model_exit" });
+        }, 1000);
+        setTimeout(() => {
+          dispatch({ type: "curious_abt_exit" });
+        }, 1200);
+        setTimeout(() => {
+          dispatch({ type: "SEC-2-exit" });
+        }, 2000);
+        setTimeout(() => {
+          dispatch({ type: "SEC-3" });
+        }, 2100);
+      });
     }
   }, [value]);
 
