@@ -8,7 +8,7 @@ interface RotateTextCompSvgProps {
 }
 
 const RotateTextCompSvg = ({ size = 12, black }: RotateTextCompSvgProps) => {
-  const { state, dispatch } = useSection();
+  const { dispatch } = useSection();
   return (
     <div
       style={{

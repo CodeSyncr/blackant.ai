@@ -33,7 +33,7 @@ const Section4Content1 = () => {
   return (
     <div
       ref={ref}
-      className="relative w-full h-full  px-8 md:pl-[15%] font-fracRegular text-[3rem] sm:text-[4rem] md:text-[5rem]  flex justify-center flex-col pt-[5rem]"
+      className="relative w-full h-full  px-8 md:pl-[15%] font-fracRegular text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] flex justify-center flex-col pt-[5rem]"
     >
       <Heading data={data.txt1} className="md:-mt-8" />
       <Heading
@@ -53,7 +53,7 @@ const Section4Content1 = () => {
         </div>
       </div>
       <div className="absolute bottom-4 right-8 md:bottom-16 md:right-32 z-50">
-        <RotateTextCompSvg black={state.navBlack} size={width < 800 ? 8 : 12} />
+        <RotateTextCompSvg black={state.navBlack} size={width < 800 ? 8 : 10} />
       </div>
     </div>
   );

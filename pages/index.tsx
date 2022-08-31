@@ -12,6 +12,7 @@ import {
   anim_y,
   DIRECTION_VARIANT,
   screenSpringTransition,
+  spring,
   springTrans,
 } from "../utils/animation_variants";
 import { useSection } from "../context";
@@ -30,6 +31,7 @@ import Section4Content2 from "../components/generals/Section4Content2";
 
 const Home: NextPage = () => {
   const { state } = useSection();
+  const { width } = useWindowDimensions();
   return (
     <>
       <Head>
@@ -97,7 +99,7 @@ const Home: NextPage = () => {
               animate={state.sec1 ? "hidden" : "show"}
               variants={anim_y}
               transition={screenSpringTransition}
-              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] px-8 z-10"
+              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] px-8 z-10"
             >
               <Section2a
                 initial={"show"}
@@ -117,7 +119,7 @@ const Home: NextPage = () => {
                 ...springTrans,
                 delay: state.sec2itm1 ? 0.7 : 0.3,
               }}
-              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem]  px-8 z-10 "
+              className="absolute inset-0 overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] px-8 z-10 "
             >
               {!state.sec2itm2exit ? (
                 <Section2b

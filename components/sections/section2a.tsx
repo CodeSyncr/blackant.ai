@@ -4,7 +4,7 @@ import Container from "../generals/Container";
 import Section2Content1 from "../generals/section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
 import { motion } from "framer-motion";
-import { anim_x, springTrans } from "../../utils/animation_variants";
+import { anim_x, spring, springTrans } from "../../utils/animation_variants";
 import { useSection } from "../../context";
 import { SectionProps } from "./Types";
 import Heading from "../generals/heading";
@@ -13,7 +13,7 @@ import RotateTextCompSvg from "../generals/RotateTextCompSvg";
 import useWindowDimensions from "../../utils/useWindowSize";
 import { debounce } from "lodash";
 
-const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
+const Section2a = ({ variants, initial, animate }: SectionProps) => {
   const data = sectionsData.section2.content1;
   const { width } = useWindowDimensions();
   const ref = useRef<HTMLDivElement>(null!);
@@ -40,9 +40,9 @@ const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
   return (
     <motion.div
       ref={ref}
-      initial={"show"}
-      animate={state.sec2itm1 ? "show" : "exit"}
-      variants={anim_x}
+      initial={initial}
+      animate={animate}
+      variants={{ ...variants }}
       transition={{
         ...springTrans,
         delay: state.sec2itm1 ? 0.1 : 0.9,
@@ -105,16 +105,18 @@ const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
         animatable
       />
       <motion.div
-        initial={"show"}
-        animate={state.sec2itm1 ? "show" : "exit"}
-        variants={anim_x}
-        transition={{
-          ...springTrans,
-          delay: 0.8,
-        }}
+        initial={initial}
+        animate={animate}
+        variants={{ ...variants }}
+        transition={spring(0.8)}
         className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50"
       >
-        <RotateTextCompSvg black={state.navBlack} size={width < 800 ? 8 : 12} />
+        {state.sec2 && (
+          <RotateTextCompSvg
+            black={state.navBlack}
+            size={width < 800 ? 8 : 10}
+          />
+        )}
       </motion.div>
     </motion.div>
   );

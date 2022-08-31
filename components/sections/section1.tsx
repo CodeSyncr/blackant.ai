@@ -7,6 +7,7 @@ import { sectionsData } from "../../modules/sections";
 import Container from "../generals/Container";
 import Cta from "../generals/cta";
 import Heading from "../generals/heading";
+import { useSwipeable } from "react-swipeable";
 
 // eslint-disable-next-line react/display-name
 
@@ -37,7 +38,7 @@ const Section1 = () => {
     <Container
       ref={ref}
       navblack={state.navBlack}
-      className="s1_item1 bg-baScrnBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] z-10"
+      className="s1_item1 bg-baScrnBlack text-baWhite flex-col text-center font-fracRegular text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] z-10"
     >
       <Heading
         data={sectionsData.section1.txt1}

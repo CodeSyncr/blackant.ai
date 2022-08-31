@@ -4,14 +4,17 @@ import Container from "../generals/Container";
 import Section2Content1 from "../generals/section2Content1";
 import Section2Content2 from "../generals/Section2Content2";
 import { motion } from "framer-motion";
-import { anim_x, springTrans } from "../../utils/animation_variants";
+import { anim_x, spring, springTrans } from "../../utils/animation_variants";
 import { useSection } from "../../context";
 import { SectionProps } from "./Types";
 import Heading from "../generals/heading";
 import Paragraph from "../generals/paragraph";
 import { debounce } from "lodash";
+import RotateTextCompSvg from "../generals/RotateTextCompSvg";
+import useWindowDimensions from "../../utils/useWindowSize";
 
 const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
+  const { width } = useWindowDimensions();
   const data = sectionsData.section2.content2;
   const ref = useRef<HTMLDivElement>(null!);
   const { state, dispatch } = useSection();
@@ -73,6 +76,15 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
         animate={animate}
         animatable
       />
+      <motion.div
+        initial={initial}
+        animate={animate}
+        variants={{ ...variants }}
+        transition={spring(0.7)}
+        className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50"
+      >
+        <RotateTextCompSvg black={state.navBlack} size={width < 800 ? 8 : 10} />
+      </motion.div>
     </motion.div>
   );
 };
