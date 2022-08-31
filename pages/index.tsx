@@ -2,27 +2,19 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Navbar from "../components/header";
 import Section1 from "../components/sections/section1";
-import Section2 from "../components/sections/section2a";
 import Section3 from "../components/sections/section3";
-import Section4 from "../components/sections/section4";
 import Section5 from "../components/sections/section5";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   anim_x,
   anim_y,
-  DIRECTION_VARIANT,
   screenSpringTransition,
-  spring,
   springTrans,
 } from "../utils/animation_variants";
 import { useSection } from "../context";
-import StickyContactUs from "../components/generals/sm_sticky_contact";
-import React, { useEffect, useState } from "react";
-import RotateTextCompSvg from "../components/generals/RotateTextCompSvg";
-import useWindowDimensions from "../utils/useWindowSize";
+import React from "react";
 import Section2a from "../components/sections/section2a";
 import Section2b from "../components/sections/section2b";
-import Section2c from "../components/sections/section2c";
 import Container from "../components/generals/Container";
 import { sectionsData } from "../modules/sections";
 import VerticleCardsComp from "../components/generals/VerticleCardsComp";
@@ -31,7 +23,7 @@ import Section4Content2 from "../components/generals/Section4Content2";
 
 const Home: NextPage = () => {
   const { state } = useSection();
-  const { width } = useWindowDimensions();
+
   return (
     <>
       <Head>
@@ -188,7 +180,6 @@ const Home: NextPage = () => {
                   <Section4Content2 />
                 </motion.div>
               </Container>
-              <Section4 />
             </motion.div>
           )}
 

@@ -5,6 +5,8 @@ import ProjectCard from "../generals/ProjectCard";
 import Heading from "./heading";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
+import { useSwipeable } from "react-swipeable";
+import { debounce } from "lodash";
 
 const Section4Content2 = () => {
   const data = sectionsData.section4.content2;
@@ -48,6 +50,32 @@ const Section4Content2 = () => {
     }
     e.stopPropagation();
   };
+
+  const handlersS4 = useSwipeable({
+    onSwiped: (eventData) => {
+      if (eventData.dir === "Up" || eventData.dir === "Left")
+        setTimeout(() => dispatch({ type: "recent_project" }), 200);
+      else {
+        setTimeout(() => dispatch({ type: "SEC-4" }), 200);
+      }
+    },
+  });
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => {
+      if (eventData.dir === "Up" || eventData.dir === "Left")
+        setTimeout(() => scrollLeft(), 200);
+      else {
+        setTimeout(() => scrollRight(), 200);
+      }
+      if (value <= -60) {
+        setTimeout(() => {
+          dispatch({ type: "SEC-5" });
+        }, 800);
+      }
+    },
+  });
+
   useEffect(() => {
     const element = ref.current;
     const elementS4 = refs4.current;
@@ -55,7 +83,7 @@ const Section4Content2 = () => {
     if (value <= -60) {
       setTimeout(() => {
         dispatch({ type: "SEC-5" });
-      }, 500);
+      }, 800);
     }
     elementS4.addEventListener("wheel", wheelEventHandlerS4);
     return () => {
@@ -66,35 +94,39 @@ const Section4Content2 = () => {
   }, [value]);
 
   return (
-    <div
-      ref={refs4}
-      className="font-fracRegular w-full h-full px-8 md:pl-[5rem]"
-    >
-      <Heading data={data.txt1} className="text-[2rem] md:text-[3rem] " />
-      <div className="mb-[2rem] flex justify-start items-center ">
-        <p className="text-baOrange mr-4 font-bold">{data.txt2}</p>
-        <img src={"/icons/long_aero.svg"} alt="aero" />
-      </div>
-
+    <div {...handlersS4} className="w-full h-full">
       <div
-        ref={ref}
-        className="relative flex w-full h-[32rem] overflow-hidden cursor-move "
+        ref={refs4}
+        className="font-fracRegular w-full h-full px-8 md:pl-[5rem]"
       >
-        <motion.div
-          initial={{ x: `0%` }}
-          animate={{ x: `${value}%` }}
-          transition={{
-            type: "spring",
-            stiffness: 50,
-          }}
-          className="absolute h-full flex "
+        <Heading data={data.txt1} className="text-[2rem] md:text-[3rem] " />
+        <div className="mb-[2rem] flex justify-start items-center ">
+          <p className="text-baOrange mr-4 font-bold">{data.txt2}</p>
+          <img src={"/icons/long_aero.svg"} alt="aero" />
+        </div>
+
+        <div
+          ref={ref}
+          className="relative flex w-full h-[32rem] overflow-hidden cursor-move "
         >
-          {data.cards.map((card, i) => (
-            <div key={i} className="inline-block mx-2 md:mx-8 ">
-              <ProjectCard data={card} />
-            </div>
-          ))}
-        </motion.div>
+          <div {...handlers} className="flex w-full h-[32rem]">
+            <motion.div
+              initial={{ x: `0%` }}
+              animate={{ x: `${value}%` }}
+              transition={{
+                type: "spring",
+                stiffness: 50,
+              }}
+              className="absolute h-full flex "
+            >
+              {data.cards.map((card, i) => (
+                <div key={i} className="inline-block mx-2 md:mx-8 ">
+                  <ProjectCard data={card} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Section2Content3 from "./Section2Content3";
 import { VerticleCardsCompProps } from "../sections/Types";
 import { useSection } from "../../context";
-import { debounce } from "lodash";
+import { useSwipeable } from "react-swipeable";
 
 const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   const { dispatch } = useSection();
@@ -37,6 +37,34 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
     }
     lastScroll = timeNow;
   };
+
+  const handlers = useSwipeable({
+    onSwipedUp: (eventData) => {
+      setTimeout(() => scrollUp(), 100);
+      if (value <= -75) {
+        setTimeout(() => {
+          dispatch({ type: "analyse_model_exit" });
+        }, 1000);
+        setTimeout(() => {
+          dispatch({ type: "curious_abt_exit" });
+        }, 1200);
+        setTimeout(() => {
+          dispatch({ type: "SEC-2-exit" });
+        }, 2000);
+        setTimeout(() => {
+          dispatch({ type: "SEC-3" });
+        }, 2100);
+      }
+    },
+    onSwipedDown: (eventData) => {
+      setTimeout(() => scrollDown(), 100);
+      if (value >= 25) {
+        setTimeout(() => {
+          dispatch({ type: "analyse_model_exit" });
+        }, 500);
+      }
+    },
+  });
 
   useEffect(() => {
     let timer: any;
@@ -78,25 +106,27 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   }, [value]);
 
   return (
-    <motion.div ref={ref} className="w-full flex flex-col h-screen">
-      <motion.div
-        initial={{ y: `25%` }}
-        animate={{ y: `${value}%` }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          duration: 0.5,
-        }}
-      >
-        {data.map((cardItem, i) => (
-          <Section2Content3
-            key={i}
-            align={i % 2 === 0 ? "flex-end" : "flex-start"}
-            content={cardItem}
-          />
-        ))}
+    <div className="absolute inset-0 " {...handlers}>
+      <motion.div ref={ref} className="w-full flex flex-col h-screen">
+        <motion.div
+          initial={{ y: `25%` }}
+          animate={{ y: `${value}%` }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            duration: 0.5,
+          }}
+        >
+          {data.map((cardItem, i) => (
+            <Section2Content3
+              key={i}
+              align={i % 2 === 0 ? "flex-end" : "flex-start"}
+              content={cardItem}
+            />
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

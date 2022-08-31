@@ -104,6 +104,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec1: false,
         sec5: false,
         sec3: true,
+        sec4: true,
         sec4itm1: false,
         sec4itm2: false,
         navBlack: false,
