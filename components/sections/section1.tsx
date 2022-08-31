@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { debounce } from "lodash";
 import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { ctaData } from "../../modules/navlinks";
@@ -16,16 +17,19 @@ const Section1 = () => {
   useEffect(() => {
     dispatch({ type: "SEC-1" });
     const element = ref.current;
-    element.addEventListener("wheel", (e: any) => {
-      e.preventDefault();
-      let delta = Math.sign(e.deltaY);
-      const bottom = delta > 0;
-      if (bottom) {
-        dispatch({ type: "SEC-2a" });
-      } else {
-        dispatch({ type: "SEC-5" });
-      }
-    });
+    element.addEventListener(
+      "wheel",
+      debounce((e: any) => {
+        e.preventDefault();
+        let delta = Math.sign(e.deltaY);
+        const bottom = delta > 0;
+        if (bottom) {
+          dispatch({ type: "SEC-2a" });
+        } else {
+          dispatch({ type: "SEC-5" });
+        }
+      }, 300)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

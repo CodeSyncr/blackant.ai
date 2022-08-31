@@ -1,3 +1,4 @@
+import { debounce } from "lodash";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
@@ -14,16 +15,19 @@ const Section5 = () => {
   const ref = useRef<HTMLDivElement>(null!);
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      let delta = Math.sign(e.deltaY);
-      const bottom = delta > 0;
-      if (bottom) {
-        setTimeout(() => dispatch({ type: "SEC-1" }), 500);
-      } else {
-        setTimeout(() => dispatch({ type: "SEC-1" }), 500);
-      }
-    });
+    element.addEventListener(
+      "wheel",
+      debounce((e) => {
+        e.preventDefault();
+        let delta = Math.sign(e.deltaY);
+        const bottom = delta > 0;
+        if (bottom) {
+          setTimeout(() => dispatch({ type: "SEC-1" }), 500);
+        } else {
+          setTimeout(() => dispatch({ type: "SEC-1" }), 500);
+        }
+      }, 300)
+    );
   });
   return (
     <Container

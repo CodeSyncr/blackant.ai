@@ -15,8 +15,8 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   let lastScroll = 9999;
   let scrollIdleTime = 300;
 
-  const scrollUp = () => setValue((prev) => (prev < -50 ? -76 : prev - 25));
-  const scrollDown = () => setValue((prev) => (prev > 0 ? 26 : prev + 25));
+  const scrollUp = () => setValue((prev) => (prev < -50 ? -75 : prev - 25));
+  const scrollDown = () => setValue((prev) => (prev > 0 ? 25 : prev + 25));
 
   const wheelEventHandler = (e: any) => {
     e.preventDefault();
@@ -52,14 +52,14 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
 
   useEffect(() => {
     const element = ref.current;
-    if (value > 25) {
+    if (value >= 25) {
       element.addEventListener("wheel", () => {
         setTimeout(() => {
           dispatch({ type: "analyse_model_exit" });
         }, 500);
       });
     }
-    if (value < -75) {
+    if (value <= -75) {
       element.addEventListener("wheel", () => {
         setTimeout(() => {
           dispatch({ type: "analyse_model_exit" });

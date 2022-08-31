@@ -11,6 +11,7 @@ import Heading from "../generals/heading";
 import Paragraph from "../generals/paragraph";
 import RotateTextCompSvg from "../generals/RotateTextCompSvg";
 import useWindowDimensions from "../../utils/useWindowSize";
+import { debounce } from "lodash";
 
 const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
   const data = sectionsData.section2.content1;
@@ -20,16 +21,19 @@ const Section2a = ({ variants, initial, animate, exit }: SectionProps) => {
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      let delta = Math.sign(e.deltaY);
-      const bottom = delta > 0;
-      if (bottom) {
-        dispatch({ type: "SEC-2b" });
-      } else {
-        dispatch({ type: "SEC-1" });
-      }
-    });
+    element.addEventListener(
+      "wheel",
+      debounce((e) => {
+        e.preventDefault();
+        let delta = Math.sign(e.deltaY);
+        const bottom = delta > 0;
+        if (bottom) {
+          dispatch({ type: "SEC-2b" });
+        } else {
+          dispatch({ type: "SEC-1" });
+        }
+      }, 300)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

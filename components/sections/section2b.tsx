@@ -9,6 +9,7 @@ import { useSection } from "../../context";
 import { SectionProps } from "./Types";
 import Heading from "../generals/heading";
 import Paragraph from "../generals/paragraph";
+import { debounce } from "lodash";
 
 const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
   const data = sectionsData.section2.content2;
@@ -16,16 +17,19 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
   const { state, dispatch } = useSection();
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      let delta = Math.sign(e.deltaY);
-      const bottom = delta > 0;
-      if (bottom) {
-        dispatch({ type: "SEC-2c" });
-      } else {
-        dispatch({ type: "SEC-2a" }); // experimenting
-      }
-    });
+    element.addEventListener(
+      "wheel",
+      debounce((e) => {
+        e.preventDefault();
+        let delta = Math.sign(e.deltaY);
+        const bottom = delta > 0;
+        if (bottom) {
+          dispatch({ type: "SEC-2c" });
+        } else {
+          dispatch({ type: "SEC-2a" }); // experimenting
+        }
+      }, 300)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

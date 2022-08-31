@@ -1,3 +1,4 @@
+import { debounce } from "lodash";
 import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
@@ -14,16 +15,19 @@ const Section4Content1 = () => {
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      let delta = Math.sign(e.deltaY);
-      const bottom = delta > 0;
-      if (bottom) {
-        setTimeout(() => dispatch({ type: "recent_project" }), 500);
-      } else {
-        setTimeout(() => dispatch({ type: "features" }), 500);
-      }
-    });
+    element.addEventListener(
+      "wheel",
+      debounce((e) => {
+        e.preventDefault();
+        let delta = Math.sign(e.deltaY);
+        const bottom = delta > 0;
+        if (bottom) {
+          setTimeout(() => dispatch({ type: "recent_project" }), 500);
+        } else {
+          setTimeout(() => dispatch({ type: "features" }), 500);
+        }
+      }, 300)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

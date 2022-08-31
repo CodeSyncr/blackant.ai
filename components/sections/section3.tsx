@@ -1,3 +1,4 @@
+import { debounce } from "lodash";
 import React, { useEffect, useRef } from "react";
 import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
@@ -25,7 +26,7 @@ const Section3 = () => {
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", wheelEventHandler);
+    element.addEventListener("wheel", debounce(wheelEventHandler, 300));
     return () => {
       element.addEventListener("wheel", wheelEventHandler);
     };
