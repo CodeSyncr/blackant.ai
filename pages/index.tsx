@@ -142,7 +142,7 @@ const Home: NextPage = () => {
           {state.sec3 && (
             <motion.div
               key={"sec3"}
-              className={"absolute inset-0 overflow-hidden h-screen z-10"}
+              className={"absolute inset-0 overflow-hidden h-screen z-[5]"}
             >
               <Section3 />
             </motion.div>
