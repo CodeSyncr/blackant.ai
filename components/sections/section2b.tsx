@@ -56,9 +56,9 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
         variants={anim_x}
         transition={{
           ...springTrans,
-          delay: state.sec2itm1 ? 0.7 : 0.3,
+          delay: state.sec2itm1 ? 0.8 : 0.3,
         }}
-        className="s2_b absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
+        className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
       >
         <Heading
           data={data?.txt1}
@@ -88,6 +88,7 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
           animate={animate}
           animatable
         />
+
         <motion.div
           initial={initial}
           animate={animate}

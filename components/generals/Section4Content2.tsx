@@ -81,9 +81,11 @@ const Section4Content2 = () => {
     const elementS4 = refs4.current;
     element.addEventListener("wheel", wheelEventHandler);
     if (value <= -60) {
-      setTimeout(() => {
-        dispatch({ type: "SEC-5" });
-      }, 800);
+      element.addEventListener("wheel", () => {
+        setTimeout(() => {
+          dispatch({ type: "SEC-5" });
+        }, 800);
+      });
     }
     elementS4.addEventListener("wheel", wheelEventHandlerS4);
     return () => {

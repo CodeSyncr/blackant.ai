@@ -12,6 +12,7 @@ import { debounce } from "lodash";
 import { useSwipeable } from "react-swipeable";
 
 const Section2a = ({ variants, initial, animate }: SectionProps) => {
+  const [textAni, setTextAni] = useState(false);
   const data = sectionsData.section2.content1;
   const { width } = useWindowDimensions();
   const ref = useRef<HTMLDivElement>(null!);
@@ -44,9 +45,27 @@ const Section2a = ({ variants, initial, animate }: SectionProps) => {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  useEffect(() => {
+    let timer;
+    if (!state.sec1a && state.sec2a) {
+      timer = setTimeout(() => {
+        setTextAni(true);
+      }, 1000);
+    } else {
+      setTextAni(false);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [state.sec1a, state.sec2a]);
   return (
-    <div className="absolute inset-0" {...handlers}>
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={textAni ? { opacity: [1, 0.8, 0.6, 1] } : { opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 1 }}
+      className="absolute inset-0"
+      {...handlers}
+    >
       <motion.div
         ref={ref}
         initial={initial}
@@ -120,15 +139,13 @@ const Section2a = ({ variants, initial, animate }: SectionProps) => {
           transition={spring(0.8)}
           className="absolute bottom-2 right-4 md:bottom-8 md:right-16 z-50"
         >
-          {state.sec2 && (
-            <RotateTextCompSvg
-              black={state.navBlack}
-              size={width < 800 ? 8 : 10}
-            />
-          )}
+          <RotateTextCompSvg
+            black={state.navBlack}
+            size={width < 800 ? 8 : 10}
+          />
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

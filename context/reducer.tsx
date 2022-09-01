@@ -2,8 +2,9 @@ import { Action, Dispatch, SectionStatesTypes } from "./Types";
 
 export const initialState = {
   sec1: true,
+  sec1a: true,
   sec2: true,
-  sec2a: true,
+  sec2a: false,
   sec2b: false,
   sec2c: false,
   sec2bani: false,
@@ -27,13 +28,13 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "SEC-1":
       return {
         ...initialState,
+        sec2a: true,
       };
     case "SEC-2a":
       return {
         ...state,
-        sec1: false,
+        sec1a: false,
         sec2: true,
-        sec2a: true,
         sec2b: true,
         sec2itm1: true,
         navBlack: true,
@@ -88,6 +89,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
     case "SEC-2-exit":
       return {
         ...state,
+        sec1: false,
         sec2: false,
         sec2a: false,
         sec2b: false,
@@ -118,6 +120,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec2a: false,
         sec2b: false,
         sec2c: false,
+        sec3: true,
         navBlack: true,
         sec4: true,
         sec4itm1: true,
@@ -136,11 +139,11 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
 
     case "SEC-5":
       return {
-        sec2: true,
+        ...state,
         sec5: true,
+        sec1: false,
         sec4: false,
-        sec4itm1: false,
-        sec4itm2: false,
+        navBlack: false,
       };
     default:
       return state;

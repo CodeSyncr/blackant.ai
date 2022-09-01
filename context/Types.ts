@@ -39,6 +39,7 @@ export interface SEC {
 
 export interface SectionStatesTypes{
   sec1: boolean;
+  sec1a: boolean;
   sec2:boolean;
   sec2a: boolean;
   sec2b: boolean;

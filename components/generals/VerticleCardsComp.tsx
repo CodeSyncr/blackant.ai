@@ -97,10 +97,10 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
         }, 1200);
         setTimeout(() => {
           dispatch({ type: "SEC-2-exit" });
-        }, 2000);
+        }, 2200);
         setTimeout(() => {
           dispatch({ type: "SEC-3" });
-        }, 2100);
+        }, 2150);
       });
     }
   }, [value]);
