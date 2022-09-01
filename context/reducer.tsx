@@ -67,7 +67,7 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         sec1: false,
         sec2: true,
         sect3: false,
-        sec2a: false,
+        sec2a: true,
         sec2b: true,
         sec2itm1: false,
         sec2itm2exit: false,
@@ -142,6 +142,8 @@ export const reducer = (state: SectionStatesTypes, actions: Action) => {
         ...state,
         sec5: true,
         sec1: false,
+        sec2b: false,
+        sec2c: false,
         sec4: false,
         navBlack: false,
       };

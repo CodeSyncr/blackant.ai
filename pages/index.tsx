@@ -142,8 +142,7 @@ const Home: NextPage = () => {
           {state.sec3 && (
             <motion.div
               key={"sec3"}
-              className={"absolute inset-0 overflow-hidden h-screen"}
-              style={{ zIndex: state.sec3 ? 5 : 0 }}
+              className={"absolute inset-0 overflow-hidden h-screen z-10"}
             >
               <Section3 />
             </motion.div>
