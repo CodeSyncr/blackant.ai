@@ -46,7 +46,10 @@ const Home: NextPage = () => {
               variants={anim_y}
               exit={"hidden"}
               transition={screenSpringTransition}
-              className="absolute inset-0 z-10"
+              className="absolute inset-0"
+              style={{
+                zIndex: state.sec3 ? 0 : 10,
+              }}
             >
               <Section1 />
             </motion.div>
@@ -71,10 +74,10 @@ const Home: NextPage = () => {
           ) : (
             <motion.div
               key={"sec2b1"}
-              initial={"show"}
               animate={state.sec2c ? "show" : "exit"}
               variants={anim_x}
-              transition={screenSpringTransition}
+              exit={"exit"}
+              transition={{ ...screenSpringTransition, duration: 0.2 }}
               className="absolute inset-0 overflow-hidden z-30 "
             >
               <Container
@@ -113,7 +116,7 @@ const Home: NextPage = () => {
                 ...springTrans,
                 delay: state.sec2itm1 ? 0.8 : 0.3,
               }}
-              className="absolute inset-0  overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] px-8 z-10 "
+              className="absolute inset-0  overflow-hidden text-baBlack font-fracRegular w-screen text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] px-8 z-10"
             >
               {!state.sec2itm2exit ? (
                 <Section2b

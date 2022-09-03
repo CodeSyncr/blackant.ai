@@ -5,6 +5,7 @@ import Section2Content3 from "./Section2Content3";
 import { VerticleCardsCompProps } from "../sections/Types";
 import { useSection } from "../../context";
 import { useSwipeable } from "react-swipeable";
+import { springTrans_modal } from "../../utils/animation_variants";
 
 const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   const { dispatch } = useSection();
@@ -15,8 +16,8 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   let lastScroll = 9999;
   let scrollIdleTime = 300;
 
-  const scrollUp = () => setValue((prev) => (prev < -50 ? -75 : prev - 25));
-  const scrollDown = () => setValue((prev) => (prev > 0 ? 25 : prev + 25));
+  const scrollUp = () => setValue((prev) => (prev < -50 ? -76 : prev - 25));
+  const scrollDown = () => setValue((prev) => (prev > 0 ? 26 : prev + 25));
 
   const wheelEventHandler = (e: any) => {
     e.preventDefault();
@@ -39,32 +40,51 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   };
 
   const handlers = useSwipeable({
-    onSwipedUp: (eventData) => {
-      setTimeout(() => scrollUp(), 100);
-      if (value <= -75) {
+    onSwiped: (eventData) => {
+      if (eventData.dir === "Up" || eventData.dir === "Left") {
+        setTimeout(() => scrollUp(), 100);
+      } else {
+        setTimeout(() => scrollDown(), 100);
+      }
+      if (value <= -76) {
         setTimeout(() => {
           dispatch({ type: "analyse_model_exit" });
-        }, 1000);
+        }, 500);
         setTimeout(() => {
           dispatch({ type: "curious_abt_exit" });
-        }, 1200);
+        }, 700);
         setTimeout(() => {
           dispatch({ type: "SEC-2-exit" });
-        }, 2000);
+        }, 1500);
         setTimeout(() => {
           dispatch({ type: "SEC-3" });
-        }, 2100);
+        }, 1600);
       }
-    },
-    onSwipedDown: (eventData) => {
-      setTimeout(() => scrollDown(), 100);
-      if (value >= 25) {
+      if (value >= 26) {
         setTimeout(() => {
           dispatch({ type: "analyse_model_exit" });
         }, 500);
       }
     },
   });
+
+  const exitHandler = () => {
+    dispatch({ type: "analyse_model_exit" });
+  };
+  const exitHandlerAfterValue = () => {
+    setTimeout(() => {
+      dispatch({ type: "analyse_model_exit" });
+    }, 500);
+    setTimeout(() => {
+      dispatch({ type: "curious_abt_exit" });
+    }, 700);
+    setTimeout(() => {
+      dispatch({ type: "SEC-2-exit" });
+    }, 2200);
+    setTimeout(() => {
+      dispatch({ type: "SEC-3" });
+    }, 1600);
+  };
 
   useEffect(() => {
     let timer: any;
@@ -79,30 +99,25 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
   }, []);
 
   useEffect(() => {
+    let timer1: any;
+    let timer2: any;
     const element = ref.current;
-    if (value >= 25) {
-      element.addEventListener("wheel", () => {
-        setTimeout(() => {
-          dispatch({ type: "analyse_model_exit" });
-        }, 500);
-      });
+    if (value >= 26) {
+      timer1 = setTimeout(() => {
+        element.addEventListener("wheel", exitHandler);
+      }, 500);
     }
-    if (value <= -75) {
-      element.addEventListener("wheel", () => {
-        setTimeout(() => {
-          dispatch({ type: "analyse_model_exit" });
-        }, 1000);
-        setTimeout(() => {
-          dispatch({ type: "curious_abt_exit" });
-        }, 1200);
-        setTimeout(() => {
-          dispatch({ type: "SEC-2-exit" });
-        }, 2200);
-        setTimeout(() => {
-          dispatch({ type: "SEC-3" });
-        }, 2150);
-      });
+    if (value <= -76) {
+      timer2 = setTimeout(() => {
+        element.addEventListener("wheel", exitHandlerAfterValue);
+      }, 500);
     }
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      element.removeEventListener("wheel", exitHandler);
+      element.removeEventListener("wheel", exitHandlerAfterValue);
+    };
   }, [value]);
 
   return (
@@ -111,11 +126,7 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
         <motion.div
           initial={{ y: `25%` }}
           animate={{ y: `${value}%` }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            duration: 0.5,
-          }}
+          transition={springTrans_modal}
         >
           {data.map((cardItem, i) => (
             <Section2Content3

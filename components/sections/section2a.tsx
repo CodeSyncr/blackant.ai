@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { sectionsData } from "../../modules/sections";
 import { motion } from "framer-motion";
-import { anim_x, spring, springTrans } from "../../utils/animation_variants";
+import {
+  anim_x,
+  spring,
+  springTrans,
+  springTransContainer,
+} from "../../utils/animation_variants";
 import { useSection } from "../../context";
 import { SectionProps } from "./Types";
 import Heading from "../generals/heading";
@@ -72,10 +77,10 @@ const Section2a = ({ variants, initial, animate }: SectionProps) => {
         animate={animate}
         variants={{ ...variants }}
         transition={{
-          ...springTrans,
-          delay: state.sec2itm1 ? 0.1 : 0.9,
+          ...springTransContainer,
+          delay: state.sec2itm1 ? 0.1 : 2,
         }}
-        className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
+        className="absolute inset-0  pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
       >
         <Heading
           data={data?.txt1}

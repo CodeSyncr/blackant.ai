@@ -7,6 +7,7 @@ import { useSection } from "../../context";
 import { sectionsData } from "../../modules/sections";
 import { useSwipeable } from "react-swipeable";
 import { debounce } from "lodash";
+import { springTrans_carousel } from "../../utils/animation_variants";
 
 const Section4Content2 = () => {
   const data = sectionsData.section4.content2;
@@ -18,7 +19,7 @@ const Section4Content2 = () => {
   let lastScroll = 9999;
   let scrollIdleTime = 300;
 
-  const scrollLeft = () => setValue((prev) => (prev < -50 ? -60 : prev - 20));
+  const scrollLeft = () => setValue((prev) => (prev < -50 ? -61 : prev - 20));
   const scrollRight = () => setValue((prev) => (prev > -20 ? 0 : prev + 20));
 
   const wheelEventHandler = (e: any) => {
@@ -68,7 +69,7 @@ const Section4Content2 = () => {
       else {
         setTimeout(() => scrollRight(), 200);
       }
-      if (value <= -60) {
+      if (value <= -61) {
         setTimeout(() => {
           dispatch({ type: "SEC-5" });
         }, 800);
@@ -80,7 +81,7 @@ const Section4Content2 = () => {
     const element = ref.current;
     const elementS4 = refs4.current;
     element.addEventListener("wheel", wheelEventHandler);
-    if (value <= -60) {
+    if (value <= -61) {
       element.addEventListener("wheel", () => {
         setTimeout(() => {
           dispatch({ type: "SEC-5" });
@@ -115,10 +116,7 @@ const Section4Content2 = () => {
             <motion.div
               initial={{ x: `0%` }}
               animate={{ x: `${value}%` }}
-              transition={{
-                type: "spring",
-                stiffness: 50,
-              }}
+              transition={springTrans_carousel}
               className="absolute h-full flex "
             >
               {data.cards.map((card, i) => (

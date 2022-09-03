@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { sectionsData } from "../../modules/sections";
 import { motion } from "framer-motion";
-import { anim_x, spring, springTrans } from "../../utils/animation_variants";
+import {
+  anim_x,
+  spring,
+  springTrans,
+  springTransContainer,
+} from "../../utils/animation_variants";
 import { useSection } from "../../context";
 import { SectionProps } from "./Types";
 import Heading from "../generals/heading";
@@ -55,10 +60,10 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
         animate={state.sec2itm1 ? "hidden" : "show"}
         variants={anim_x}
         transition={{
-          ...springTrans,
-          delay: state.sec2itm1 ? 0.8 : 0.3,
+          ...springTransContainer,
+          delay: state.sec2itm1 ? 2 : 0.3,
         }}
-        className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8"
+        className="absolute inset-0 pt-[5rem] flex flex-col justify-center items-center transition-all px-8 "
       >
         <Heading
           data={data?.txt1}

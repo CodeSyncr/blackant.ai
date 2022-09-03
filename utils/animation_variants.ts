@@ -18,30 +18,37 @@ export interface variantTypes {
 
 // transitions
 
-// container
-export const containerSpringTransition = {
-    type: "spring",
-    stiffness: 50,
-    staggerChildren: 0.5,
-}
-export const textContainerSpringTransition = {
-    type: "spring",
-    stiffness: 50,
-    delayChildren: 0.5
-}
 
-export const screenSpringTransition = {
-    type: "easeIn",
-    stiffness: 50,
-    duration:1
-}
 
 
 // variant
 
+export const anim_x_container = {
+  show: { x: SCREEN_DIRECTION.SHOW, y:SCREEN_DIRECTION.SHOW, 
+    transition: {
+      type: "easeIn",
+      duration: 1 ,
+      delayChildren: 0.1,
+      when: "afterChildren"
+  } },
+  hidden: { x: SCREEN_DIRECTION.RIGHT, y:SCREEN_DIRECTION.SHOW,
+    transition: {
+      type: "easeIn",
+      duration: 1 ,
+      delayChildren: 0.1,
+      // when: "afterChildren"
+  } },
+  exit:{ x: SCREEN_DIRECTION.LEFT, y:SCREEN_DIRECTION.SHOW,
+    transition: {
+      type: "easeIn",
+      duration: 1 ,
+      delayChildren: 0.1,
+      // when: "afterChildren"
+  }}
+};
 
 export const anim_x = {
-    show: { x: SCREEN_DIRECTION.SHOW, y:SCREEN_DIRECTION.SHOW },
+    show: { x: SCREEN_DIRECTION.SHOW, y:SCREEN_DIRECTION.SHOW, },
     hidden: { x: SCREEN_DIRECTION.RIGHT, y:SCREEN_DIRECTION.SHOW },
     exit:{ x: SCREEN_DIRECTION.LEFT, y:SCREEN_DIRECTION.SHOW}
 };
@@ -59,21 +66,51 @@ export const anim_y = {
 
 // transitions
 
-export const springTrans = {
+export const springTransContainer = {
     type: "spring",
-    duration: 0.1 ,
-    stiffness: 50,
+    stiffness: 13,
 }
 
+export const springTrans = {
+  type: "spring",
+  stiffness: 13,
+  damping:6,
+}
+export const springTrans_modal = {
+  type: "spring",
+  stiffness: 100,
+  damping:30,
+}
+export const springTrans_carousel = {
+  type: "spring",
+  stiffness: 50,
+  damping:20,
+
+  // type: "spring",
+  // stiffness: 50,
+}
 
 
 export const spring = (delay:number = 0.1)=> ({
     
         type: "spring",
+        stiffness: 13,
+        damping:6,
         delay: delay ,
-        stiffness: 50,
       
 })
+
+
+
+// container
+
+export const screenSpringTransition = {
+  type: "easeIn",
+  // stiffness: 50,
+  duration:1
+}
+
+
 
 // latest
   
