@@ -36,7 +36,7 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
     let delta = Math.sign(e.deltaY);
     const bottom = delta > 0;
     if (bottom) {
-      setTimeout(() => dispatch({ type: "SEC-2c" }), 300);
+      setTimeout(() => dispatch({ type: "SEC-2c" }), 250);
     } else {
       dispatch({ type: "SEC-2a" });
     }
@@ -44,10 +44,10 @@ const Section2b = ({ variants, initial, animate, exit }: SectionProps) => {
 
   useEffect(() => {
     const element = ref.current;
-    element.addEventListener("wheel", debounce(wheelHandler, 300));
+    element.addEventListener("wheel", debounce(wheelHandler, 250));
 
     return () => {
-      element.removeEventListener("wheel", debounce(wheelHandler, 300));
+      element.removeEventListener("wheel", debounce(wheelHandler, 250));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

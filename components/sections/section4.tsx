@@ -26,11 +26,7 @@ const Section4 = () => {
         transition={screenSpringTransition}
         className="absolute inset-0 overflow-hidden"
       >
-        <Section4Content1
-          data={sectionsData.section4.content1}
-          setItems={setItems}
-          items={items}
-        />
+        <Section4Content1 />
       </motion.div>
 
       <motion.div
@@ -40,11 +36,7 @@ const Section4 = () => {
         transition={screenSpringTransition}
         className="absolute w-full h-full pt-[5rem] flex flex-col justify-center items-center "
       >
-        <Section4Content2
-          data={sectionsData.section4.content2}
-          setItems={setItems}
-          items={items}
-        />
+        <Section4Content2 />
       </motion.div>
     </Container>
   );

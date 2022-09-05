@@ -37,7 +37,7 @@ const Section1 = () => {
         } else {
           dispatch({ type: "SEC-5" });
         }
-      }, 300)
+      }, 250)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

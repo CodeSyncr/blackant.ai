@@ -46,7 +46,7 @@ const Section2a = ({ variants, initial, animate }: SectionProps) => {
         } else {
           dispatch({ type: "SEC-1" });
         }
-      }, 300)
+      }, 250)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
