@@ -122,11 +122,15 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
 
   return (
     <div className="absolute inset-0 " {...handlers}>
-      <motion.div ref={ref} className="w-full flex flex-col h-screen">
+      <motion.div
+        ref={ref}
+        className="w-full flex flex-col h-screen transition-all"
+      >
         <motion.div
           initial={{ y: `25%` }}
           animate={{ y: `${value}%` }}
           transition={springTrans_modal}
+          className="transition-all"
         >
           {data.map((cardItem, i) => (
             <Section2Content3
