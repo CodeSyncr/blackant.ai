@@ -12,7 +12,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ data }: ServiceCardProps) => {
   return (
-    <div className="relative w-[50rem] h-[22rem] md:h-[31rem] bg-baWhite md:bg-transparent rounded-xl transition-all">
+    <div className="relative w-[50rem] h-[22rem] md:h-[31rem] bg-baWhite md:bg-transparent rounded-xl ">
       <div className="relative w-full h-full ">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -21,7 +21,7 @@ const ServiceCard = ({ data }: ServiceCardProps) => {
           className="absolute top-0 left-0 "
         />
       </div>
-      <div className="absolute text-baBlack right-[5%] top-[20%] lg:right-[5%] lg:top-[30%] w-1/2 transition-all">
+      <div className="absolute text-baBlack right-[5%] top-[20%] lg:right-[5%] lg:top-[30%] w-1/2 ">
         <ServiceCardContent
           title={data.txt1}
           heading={data.txt2}

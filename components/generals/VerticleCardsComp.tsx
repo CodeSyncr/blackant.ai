@@ -130,7 +130,6 @@ const VerticleCardsComp = ({ data }: VerticleCardsCompProps) => {
           initial={{ y: `25%` }}
           animate={{ y: `${value}%` }}
           transition={springTrans_modal}
-          className="transition-all"
         >
           {data.map((cardItem, i) => (
             <Section2Content3

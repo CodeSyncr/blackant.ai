@@ -20,7 +20,7 @@ const Section5 = () => {
       if (eventData.dir === "Up" || eventData.dir === "Left")
         setTimeout(() => dispatch({ type: "SEC-1" }), 200);
       else {
-        setTimeout(() => dispatch({ type: "SEC-1" }), 200);
+        setTimeout(() => dispatch({ type: "recent_project" }), 200);
       }
     },
   });
@@ -36,7 +36,7 @@ const Section5 = () => {
         if (bottom) {
           setTimeout(() => dispatch({ type: "SEC-1" }), 200);
         } else {
-          setTimeout(() => dispatch({ type: "SEC-1" }), 200);
+          setTimeout(() => dispatch({ type: "recent_project" }), 200);
         }
       }, 300)
     );

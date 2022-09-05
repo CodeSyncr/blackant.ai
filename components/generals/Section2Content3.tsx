@@ -14,7 +14,7 @@ interface Section2Content3Props {
 const Section2Content3 = ({ align, content }: Section2Content3Props) => {
   return (
     <div
-      className=" relative flex items-center h-[70vh] mx-8 md:mx-16 lg:mx-32 my-8 transition-all"
+      className=" relative flex items-center h-[70vh] mx-8 md:mx-16 lg:mx-32 my-8 "
       style={{
         justifyContent: align,
       }}
